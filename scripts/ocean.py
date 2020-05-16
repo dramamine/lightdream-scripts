@@ -1,5 +1,5 @@
 from functools import partial
-from utils import send, simple_effects_hit, dashboardKnobPre1, dashboardKnobPre2, dashboardKnobBG1, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
+from utils import send, simple_effects_hit, dashboardKnobPre1, dashboardKnobPre2, dashboardKnobBG1, dashboardKnobBG2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
 import sequences
 
 # sections

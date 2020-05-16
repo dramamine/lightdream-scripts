@@ -14,6 +14,7 @@
 #   peer.port       #network port associated with the peer
 #
 from utils import send, resync, set_tempo
+from effects_controller import load_song
 # import time
 
 quickpressMap = [1, 3, 4, 6, 2, 4]
@@ -60,17 +61,26 @@ def onReceive(dat, rowIndex, message, bytes, peer):
   # got a 'hit' message. used as the secret bass line
   if action == 'h':
     field = 'hit'
-    op('udp_recent_values')[field, 1] = int(vals[1])
+    op('udp_recent_values')[field, 1] = int(value)
 
   # scene gets updated. increment scene
   if action == 's':
     # print("updating scene")
     field = 'scene'
-    new_value = int(vals[1])
+    new_value = int(value)
     op('udp_recent_values')[field, 1] = new_value
 
     op('effects_select').par.Value0 = new_value
     # @TODO might remove BG stuff
     # op('bg_select').par.Value0 = new_value
+
+  if action == 'title':
+    module_name = op('table1')[value, 1]
+    # value is our song title. look it up in the table.
+    op('udp_recent_values')['module_name', 1] = module_name
+    load_song(op('table1')[value, 1])
+
+    # @TODO does this actually work tho?
+    op('deck_select').par.Value0 = op('table1')[value, 2]
 
   return

@@ -92,6 +92,10 @@ def dashboardKnobBG1(val, idx):
   dashboardKnobPre(val, layer_bg, idx, 1)
   return
 
+def dashboardKnobBG2(val, idx):
+  dashboardKnobPre(val, layer_bg, idx, 2)
+  return
+
 def default_init(column):
   print("default init with column:", column)
   send('/composition/layers/' + str(layer_post) + '/clips/' + str(column) + '/connect', 1)  # pre
