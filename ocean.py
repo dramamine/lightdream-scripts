@@ -44,18 +44,19 @@ intro_shift = {**sequences.simple_effects_hits,
 
 intro_b = {**sequences.simple_effects_hits, 
   'column': 3,
-  'bg': 3,
   'knobs': [dashboardKnobBG1, dashboardKnobPre2]
 }
 
-buildup_a = {**sequences.opacity_pianos, 'column': 4}
+buildup_a = {**sequences.opacity_pianos, 'column': 4} # @TODO add bass hits
 buildup_b = {**sequences.opacity_pianos, 'column': 5}
 
-pre_drop_a = {**sequences.opacity_pianos, 'column': 6}
-pre_drop_b = {**sequences.opacity_pianos, 'column': 7}
+pre_drop_a = {**sequences.opacity_pianos, 'column': 6, 'resync': True}
+pre_drop_b = {**sequences.opacity_pianos, 'column': 7, 'resync': True}
 
-drop_a = {**sequences.opacity_pianos, 'column': 8}
-drop_b = {**sequences.opacity_pianos, 'column': 9}
+drop_a = {**sequences.opacity_pianos, 'column': 8,
+          'knobs': [dashboardKnobBG1, dashboardKnobBG2]}
+drop_b = {**sequences.opacity_pianos, 'column': 9,
+          'knobs': [dashboardKnobBG1, dashboardKnobBG2]}
 drop_end = {**sequences.opacity_pianos, 'column': 10}
 
 mid = {**sequences.opacity_pianos, 'column': 11}
@@ -71,7 +72,7 @@ controls = {
   3: intro_b,
   4: intro_shift, 
   5: intro_a,
-  6: buildup_a,  # you could put an ocean
+  6: buildup_a,  # you could put an ocean 
   7: buildup_b,  # if im caught
   8: pre_drop_a,  # 1 measure
   9: pre_drop_b,  # 1 measure
@@ -80,8 +81,8 @@ controls = {
   12: drop_end,
   13: drop_a,
   14: drop_b,
-  15: drop_end,
-  16: mid,  #  @todo zoom => 0
+  15: drop_end, # @TODO dont do this, jsut continue with drop_b maybe?
+  16: mid,
   17: bridge_a, 
   18: bridge_b,  
   19: intro_a,  # when my echos.. 

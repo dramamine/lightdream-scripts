@@ -116,3 +116,12 @@ def clear(opt=0):
   send('/composition/layers/6/clear', 0)
   send('/composition/layers/7/clear', 0)
   return
+
+def set_tempo(bpm):
+    send('/composition/tempocontroller/tempo', bpm)
+    return
+
+def resync():
+    send('/composition/tempocontroller/resync', 1)
+    send('/composition/tempocontroller/resync', 0)
+    return

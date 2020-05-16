@@ -13,7 +13,7 @@
 #   peer.address    #network address associated with the peer
 #   peer.port       #network port associated with the peer
 #
-from utils import send
+from utils import send, resync, set_tempo
 # import time
 
 quickpressMap = [1, 3, 4, 6, 2, 4]
@@ -42,24 +42,25 @@ def onReceive(dat, rowIndex, message, bytes, peer):
     # TODO convert from range 20-500 to 0-1
     tempo = float(vals[1])
     to_send = (tempo - 20) / 480
-    send('/composition/tempocontroller/tempo', to_send)
-    send('/composition/tempocontroller/resync', 1)
-    send('/composition/tempocontroller/resync', 0)
-  if action == 'quickpress':
-    ourbutton = quickpressMap[int(value)]
-    field = 'timer' + str(ourbutton)
+    set_tempo(to_send)
+    resync()
 
-    # WORKS!!!
-    op(field).par.start.pulse()
-  if action == 'zoom':
-    field = 'zoom' + value
-    op('udp_recent_values')[field, 1] = vals[2]
+  # deprecated
+  # if action == 'quickpress':
+  #   ourbutton = quickpressMap[int(value)]
+  #   field = 'timer' + str(ourbutton)
+  #   # WORKS!!!
+  #   op(field).par.start.pulse()
+
+  # deprecated
+  # if action == 'zoom':
+  #   field = 'zoom' + value
+  #   op('udp_recent_values')[field, 1] = vals[2]
 
   # got a 'hit' message. used as the secret bass line
   if action == 'h':
     field = 'hit'
     op('udp_recent_values')[field, 1] = int(vals[1])
-    op('pulse').par.Value0 = int(vals([1]))
 
   # scene gets updated. increment scene
   if action == 's':

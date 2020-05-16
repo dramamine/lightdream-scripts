@@ -6,7 +6,7 @@
 # prev - the previous sample value
 #
 # Make sure the corresponding toggle is enabled in the CHOP Execute DAT.
-from utils import simple_bg_update  # , save_eg
+from utils import resync  # simple_bg_update  # , save_eg
 eg = me.fetch('eg', 0);
 # print("effects_controller think eg is:", eg)
 my_controls = mod('ocean').controls
@@ -69,12 +69,7 @@ def onOffToOn(channel, sampleIndex, val, prev):
       pass
     # if eg in my_controls_dynamic and controlid in my_controls_dynamic[eg]['buttons']:
     #   print("tryin")
-  if ctrlname == 'puls' and val == 1:
-    # print("got a hit!")
-    try:
-      my_controls_dynamic[eg]['pulse']()
-    except (IndexError, KeyError):
-      pass
+
 
   return
 
@@ -87,19 +82,21 @@ onOnToOff = onOffToOn
 #   return
 
 def onValueChange(channel, sampleIndex, val, prev):
+  my_controls_dynamic = mod('ocean').controls
+  column = my_controls_dynamic[eg]['column']
   # print("onValueChange:" + str(channel.index) +
   #       " (" + channel.name + ")" + str(val))
   # expecting this to be effects group, otherwise use the on/offs to handle.
   # @todo might be different when we add knobs
   if channel.name[:4] == 'knob':
-    my_controls_dynamic = mod('ocean').controls
+    
     # knob 0 or 1
     controlid = int(channel.name[4:]) - 1
     print('lookin for knob:', controlid)
     try:
       my_controls_dynamic[eg]['knobs'][controlid](
           val=val, 
-          column=my_controls_dynamic[eg]['column']
+          column=column
       )
     except (IndexError, KeyError):
       pass
@@ -107,6 +104,17 @@ def onValueChange(channel, sampleIndex, val, prev):
   if channel.name == 'effects_group':
     onEffectsGroupUpdate(int(val))
     return
+
+  if channel.name == 'hit' and val > prev:
+    print("got a hit!", val, prev)
+    print("I think eg is:", eg)
+    try:
+      print("pulsing..")
+      my_controls_dynamic[eg]['pulse'](column=column)
+      print("pulsed.")
+    except (IndexError, KeyError):
+      pass
+
   # if channel.name == 'bg':
   #   onBGUpdate(int(val))
   #   return
@@ -130,6 +138,12 @@ def onEffectsGroupUpdate(val):
   except (IndexError, KeyError):
     pass
   
+  try:
+    if mod('ocean').controls[val]['resync']:
+      resync()
+  except (IndexError, KeyError):
+    pass
+
   # print("effects group changed to " + str(val));
   return
 
