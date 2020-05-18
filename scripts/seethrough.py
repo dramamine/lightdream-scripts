@@ -1,5 +1,5 @@
 from functools import partial
-from utils import send, simple_effects_hit, dashboardKnobPre1, dashboardKnobPre2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
+from resolume_commands import send, simple_effects_hit, dashboardKnobPre1, dashboardKnobPre2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
 
 ## sections:
 # intro

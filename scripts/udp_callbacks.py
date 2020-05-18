@@ -13,8 +13,7 @@
 #   peer.address    #network address associated with the peer
 #   peer.port       #network port associated with the peer
 #
-from utils import send, resync, set_tempo
-from effects_controller import load_song
+import resolume_commands
 
 def onReceive(dat, rowIndex, message, bytes, peer):
   vals = message.split('|')
@@ -27,8 +26,8 @@ def onReceive(dat, rowIndex, message, bytes, peer):
     # TODO convert from range 20-500 to 0-1
     tempo = float(vals[1])
     to_send = (tempo - 20) / 480
-    set_tempo(to_send)
-    resync()
+    resolume_commands.update_tempo(to_send)
+    resolume_commands.resync()
 
   # got a 'hit'/pulse message. used as the secret bass line
   if action == 'h':
@@ -39,13 +38,16 @@ def onReceive(dat, rowIndex, message, bytes, peer):
   if action == 's':
     field = 'section'
     new_value = int(value)
+    print("section being updated", new_value)
     op('udp_recent_values')[field, 1] = new_value
 
   if action == 'title':
-    print("got title.", value)
     # check the 1st column for the offical track name, then
     # grab the track_id, i.e. row index
     row = op('track_info')[value, 'track_id']
+    if row == None:
+      print("ERR: track name not found in track_info table.", value)
+      return
     # value is our song title. look it up in the table.
     op('udp_recent_values')['track_id', 1] = row
     op('udp_recent_values')['module_name', 1] = op('track_info')[row, 'module_name']

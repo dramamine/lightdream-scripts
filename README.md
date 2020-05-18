@@ -25,17 +25,17 @@ UDP (from svdx, or from console)
 - `udp_callbacks` (filename: `udp_callbacks.py`) handles changes to these values
 
 TRACK INFO
-- table `track_info` stores track names from svdx; look up module names and deck #s
+- table `track_info` stores track names from svdx; use it to look up module names and deck #s
 
 PROTOTYPE CONTROLS V2
 - handle button presses and knob turns
 - show SECTIONS dropdown
 - show (and/or allow clicks for) BG and EFFECTS sets
 
-UDP => EFFECTS_CONTROLLER
-- scene changes
+UDP => RESOLUME_CONTROLLER
+- track changes
+- section changes
 - pulses
-- use 
 
 
 

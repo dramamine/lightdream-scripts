@@ -6,12 +6,11 @@
 # prev - the previous sample value
 #
 # Make sure the corresponding toggle is enabled in the CHOP Execute DAT.
-from utils import resync  # simple_bg_update  # , save_eg
-# @TODO necessary?
-eg = me.fetch('eg', 0);
+import resolume_commands
 
 module = None
 controls = None
+section = None
 
 def load_song(module_name):
   global module, controls
@@ -28,26 +27,39 @@ load_song('ocean')
 def onOffToOn(channel, sampleIndex, val, prev):
   is_on = 1 - int(val)
   # print("offToOn index:" + str(channel.index) + " (" + channel.name + ")" + str(val))
-  column = controls[eg]['column']
+  column = controls[section]['effects_column']
 
-  ctrlname = channel.name[:4]
-  if ctrlname == 'butt':
+  ctrlname = channel.name[:6]
+  if ctrlname == 'button':
     # get the control id
     # assume it's named 'button1' etc... or things will break
     controlid = int(channel.name[6:]) - 1;
     try:
-      controls[eg]['buttons'][controlid][is_on](column=column)
+      controls[section]['buttons'][controlid][is_on](column=column)
     except (IndexError, KeyError):
       pass
-
-
   return
 
+# using the same function as above
 onOnToOff = onOffToOn
 
 # one of the values in our 'rename1' chop has changed.
 def onValueChange(channel, sampleIndex, val, prev):
-  column = controls[eg]['column']
+  if channel.name == 'track_id':
+    module_name = op('track_info')[int(val), 'module_name']
+    print("retreived module", module_name, "for track id", val)
+    load_song(module_name)
+    return
+
+  if channel.name == 'section':
+    onSectionChange(int(val))
+    return
+  
+  if channel.name == 'deck':
+    resolume_commands.update_deck(val)
+  
+
+  column = controls[section]['effects_column']
   # print("onValueChange:" + str(channel.index) +
   #       " (" + channel.name + ")" + str(val))
   if channel.name[:4] == 'knob':
@@ -55,7 +67,9 @@ def onValueChange(channel, sampleIndex, val, prev):
     controlid = int(channel.name[4:]) - 1
     print('lookin for knob:', controlid)
     try:
-      controls[eg]['knobs'][controlid](
+      # controls[eg]['knobs'] is an array of knob functions, so
+      # controls[eg]['knobs'][controlid] should access one of em.
+      controls[section]['knobs'][controlid](
           val=val, 
           column=column
       )
@@ -63,36 +77,29 @@ def onValueChange(channel, sampleIndex, val, prev):
       pass
     return
 
-  if channel.name == 'effects_group':
-    onEffectsGroupUpdate(int(val))
-    return
-
   if channel.name == 'hit' and val > prev:
     try:
-      controls[eg]['pulse'](column=column)
+      controls[section]['pulse'](column=column)
     except (IndexError, KeyError):
       pass
     return
 
   return
 
-# called when we update an effects group.
-def onEffectsGroupUpdate(val):
-  global eg
-  eg = val
-
-  column = controls[val]['column']
-  print("using column", column)
+def onSectionChange(new_section):
+  global section
+  section = new_section
+  print("hello from onSectionChange", section)
+  resolume_commands.simple_bg_update(controls[section]['bg_column'])
 
   try:
-    controls[val]['init'](column)
+    controls[section]['init'](controls[section]['effects_column'])
   except (IndexError, KeyError):
     pass
   
   try:
-    if controls[val]['resync']:
-      resync()
+    if controls[section]['resync']:
+      resolume_commands.resync()
   except (IndexError, KeyError):
     pass
-
   return
