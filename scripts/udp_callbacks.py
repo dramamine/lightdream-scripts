@@ -15,30 +15,14 @@
 #
 from utils import send, resync, set_tempo
 from effects_controller import load_song
-# import time
-
-quickpressMap = [1, 3, 4, 6, 2, 4]
-
-def quickUnpress(field):
-  op('udp_recent_values')[field, 1] = 0
-
-def worker(event):
-  while not event.isSet():
-    print("waitin...")
-    event.wait(1)
-    print("done waitin")
-    event.set()
-
 
 def onReceive(dat, rowIndex, message, bytes, peer):
   vals = message.split('|')
   action = vals[0]
   value = vals[1]
 
-  if vals[0][:4] == 'butt' or vals[0][:4] == 'knob' or vals[0][:3] == 'bpm':
-    op('udp_recent_values')[vals[0], 1] = vals[1]
-
   if vals[0][:3] == 'bpm':
+    op('udp_recent_values')[action, 1] = value
     # print('updating bpm')
     # TODO convert from range 20-500 to 0-1
     tempo = float(vals[1])
@@ -46,41 +30,26 @@ def onReceive(dat, rowIndex, message, bytes, peer):
     set_tempo(to_send)
     resync()
 
-  # deprecated
-  # if action == 'quickpress':
-  #   ourbutton = quickpressMap[int(value)]
-  #   field = 'timer' + str(ourbutton)
-  #   # WORKS!!!
-  #   op(field).par.start.pulse()
-
-  # deprecated
-  # if action == 'zoom':
-  #   field = 'zoom' + value
-  #   op('udp_recent_values')[field, 1] = vals[2]
-
-  # got a 'hit' message. used as the secret bass line
+  # got a 'hit'/pulse message. used as the secret bass line
   if action == 'h':
     field = 'hit'
     op('udp_recent_values')[field, 1] = int(value)
 
-  # scene gets updated. increment scene
+  # section gets updated. increment section
   if action == 's':
-    # print("updating scene")
-    field = 'scene'
+    field = 'section'
     new_value = int(value)
     op('udp_recent_values')[field, 1] = new_value
 
-    op('effects_select').par.Value0 = new_value
-    # @TODO might remove BG stuff
-    # op('bg_select').par.Value0 = new_value
-
   if action == 'title':
-    module_name = op('table1')[value, 1]
+    print("got title.", value)
+    # check the 1st column for the offical track name, then
+    # grab the track_id, i.e. row index
+    row = op('track_info')[value, 'track_id']
     # value is our song title. look it up in the table.
-    op('udp_recent_values')['module_name', 1] = module_name
-    load_song(op('table1')[value, 1])
-
-    # @TODO does this actually work tho?
-    op('deck_select').par.Value0 = op('table1')[value, 2]
+    op('udp_recent_values')['track_id', 1] = row
+    op('udp_recent_values')['module_name', 1] = op('track_info')[row, 'module_name']
+    op('udp_recent_values')['deck', 1] = op('track_info')[row, 'deck']
+    op('udp_recent_values')['section', 1] = 0
 
   return
