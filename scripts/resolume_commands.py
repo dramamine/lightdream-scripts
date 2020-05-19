@@ -65,38 +65,38 @@ def simple_bg_update(idx):
 
 # load pre- and post- duders
 def default_init(column):
-  print("default init with column:", column)
+  # print("default init with column:", column)
   send('/composition/layers/' + str(layer_post) + '/clips/' + str(column) + '/connect', 1)  # pre
   send('/composition/layers/' + str(layer_pre) + '/clips/' + str(column) + '/connect', 1)  # pre
   # send('/composition/layers/' + str(layer_bg) + '/clips/' + str(column) + '/connect', 1)  #bg
   return
 
 
-def dashboardKnobPre(val, layer, idx, link):
-  send('/composition/layers/' + str(layer) + '/clips/' + str(idx) + '/dashboard/link' + str(link), val)
+def dashboardKnobPre(val, layer, column, link):
+  send('/composition/layers/' + str(layer) + '/clips/' + str(column) + '/dashboard/link' + str(link), val)
   return
 
 # in layer 'Pre', control the 1st dashboard knob
-def dashboardKnobPre1(val, idx):
-  if idx <= 0:
-    print("WARN: dashboardKnobPre1 called with idx <= 0")
-  dashboardKnobPre(val, layer_pre, idx, 1)
+def dashboardKnobPre1(val, column):
+  if column <= 0:
+    print("WARN: dashboardKnobPre1 called with column <= 0")
+  dashboardKnobPre(val, layer_pre, column, 1)
   return 
 
 # in layer 'Pre', control the 1st dashboard knob
-def dashboardKnobPre2(val, idx):
-  if idx <= 0:
-    print("WARN: dashboardKnobPre1 called with idx <= 0")
-  dashboardKnobPre(val, layer_pre, idx, 2)
+def dashboardKnobPre2(val, column):
+  if column <= 0:
+    print("WARN: dashboardKnobPre1 called with column <= 0")
+  dashboardKnobPre(val, layer_pre, column, 2)
   return
 
 
-def dashboardKnobBG1(val, idx):
-  dashboardKnobPre(val, layer_bg, idx, 1)
+def dashboardKnobBG1(val, column):
+  dashboardKnobPre(val, layer_bg, column, 1)
   return
 
-def dashboardKnobBG2(val, idx):
-  dashboardKnobPre(val, layer_bg, idx, 2)
+def dashboardKnobBG2(val, column):
+  dashboardKnobPre(val, layer_bg, column, 2)
   return
 
 

@@ -10,17 +10,20 @@ import resolume_commands
 
 module = None
 controls = None
-section = None
+section = 0
 
-def load_song(module_name):
-  global module, controls
-  module = mod(module_name)
-  controls = module.controls
+def load_song_by_index(row):
+  load_song(op('track_info')[row, 'module_name'])
   return
 
-load_song('ocean')
-# @TODO make this dynamic
-# load_song( op('udp_recent_values')['module_name', 1] ))
+def load_song(module_name):
+  global module, controls, section
+  module = mod(module_name)
+  controls = module.controls
+  section = int(op('rename1').chan('section'))
+  return
+
+load_song_by_index( int(op('rename1').chan('track_id')) )
 
 # checking to see when buttons (button1-button6) are pressed,
 # or released.
@@ -58,14 +61,12 @@ def onValueChange(channel, sampleIndex, val, prev):
   if channel.name == 'deck':
     resolume_commands.update_deck(val)
   
-
   column = controls[section]['effects_column']
   # print("onValueChange:" + str(channel.index) +
   #       " (" + channel.name + ")" + str(val))
   if channel.name[:4] == 'knob':
     # knob 0 or 1
     controlid = int(channel.name[4:]) - 1
-    print('lookin for knob:', controlid)
     try:
       # controls[eg]['knobs'] is an array of knob functions, so
       # controls[eg]['knobs'][controlid] should access one of em.

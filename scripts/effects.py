@@ -1,4 +1,4 @@
-from effects_styles import *
+from effects_styles import style_momentary, style_piano, style_clear
 
 php = {
     **style_momentary,
