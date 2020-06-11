@@ -4,7 +4,7 @@ from resolume_commands import send, clear, default_init, simple_effects_hit, das
 style_momentary = {
     # 'column': 0,  # intro A
     'init': default_init,
-    'pulse': partial(simple_effects_hit, column=0, layer=6),
+    'pulse': partial(simple_effects_hit, layer=6),
     'buttons': [
         [partial(simple_effects_hit, layer=0)],
         [partial(simple_effects_hit, layer=1)],
@@ -19,7 +19,7 @@ style_momentary = {
 style_piano = {
     # 'column': 0,  # intro A
     'init': default_init,
-    'pulse': partial(simple_effects_hit, column=0, layer=6),
+    'pulse': partial(simple_effects_hit, layer=6),
     'buttons': [
         [partial(opacity_piano_on, layer=0),
          partial(opacity_piano_off, layer=0)],

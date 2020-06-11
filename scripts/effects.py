@@ -33,5 +33,6 @@ blank = {
 
 clear = {
     **style_clear,
-    'effects_column': -1
+    'effects_column': -1,
+    'bg_column': 0
 }

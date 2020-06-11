@@ -39,6 +39,15 @@ UDP => RESOLUME_CONTROLLER
 
 
 
+## Effects Brainstorming 6/8
+What if we shifted to a setup where we had the main (jukebox) controller but spread buttons and knobs to the 5 'brains'? Each brain would have one button and one knob. This would fit with the 5-Fer (Sectional) effects. Knob effects could be the generic-ish effects I've been thinking of; would simplify things because I could come up with generic knob effects and just rotate em.
+
+Knobs to use:
+GRID (adds negative space)
+FRAGMENT (adds negative space)
+ROTATE (spin 2 win)
+
+
 
 ## EDITING TRACKS
 ### The track editor
@@ -80,5 +89,6 @@ function Send-UdpDatagram
       $SendMessage = $Socket.Send($EncodedText, $EncodedText.Length, $EndPoints)
       $Socket.Close()
 }
-Send-UdpDatagram -EndPoint "127.0.0.1"-Port 7001 -Message "s|14"
+
+Send-UdpDatagram -EndPoint "127.0.0.1"-Port 7001 -Message "bpm|100"
 ```

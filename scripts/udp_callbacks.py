@@ -15,6 +15,29 @@
 #
 import resolume_commands
 
+def update_title(title):
+    # check the 1st column for the offical track name, then
+    # grab the track_id, i.e. row index
+    print("update title called", title)
+    row = op('track_info')[title, 'track_id']
+    print("trackid:", op('track_info')[title, 'track_id'])
+    print("mod name:", op('track_info')[title, 'module_name'])
+    if row is None:
+      print("ERR: track name not found in track_info table.", title)
+      return
+    # row = row + 1
+    print("using row:", row)
+    # value is our song title. look it up in the table.
+    op('udp_recent_values')['track_id', 1] = row
+    op('udp_recent_values')['module_name', 1] = op(
+        'track_info')[row, 'module_name']
+    op('udp_recent_values')['deck', 1] = op('track_info')[row, 'deck']
+    op('udp_recent_values')['section', 1] = 0
+    return
+
+def update_section(value):
+    op('udp_recent_values')['section', 1] = value
+
 def onReceive(dat, rowIndex, message, bytes, peer):
   vals = message.split('|')
   action = vals[0]
@@ -36,22 +59,11 @@ def onReceive(dat, rowIndex, message, bytes, peer):
 
   # section gets updated. increment section
   if action == 's':
-    field = 'section'
-    new_value = int(value)
-    print("section being updated", new_value)
-    op('udp_recent_values')[field, 1] = new_value
+    update_section(int(value))
 
   if action == 'title':
-    # check the 1st column for the offical track name, then
-    # grab the track_id, i.e. row index
-    row = op('track_info')[value, 'track_id']
-    if row == None:
-      print("ERR: track name not found in track_info table.", value)
-      return
-    # value is our song title. look it up in the table.
-    op('udp_recent_values')['track_id', 1] = row
-    op('udp_recent_values')['module_name', 1] = op('track_info')[row, 'module_name']
-    op('udp_recent_values')['deck', 1] = op('track_info')[row, 'deck']
-    op('udp_recent_values')['section', 1] = 0
+    print("yep got title", value)
+    update_title(value)
+    update_section(0)
 
   return

@@ -17,63 +17,54 @@ def simple_effects_hit(layer, column):
   if column <= 0:
     print("WARN: simple_effects_hit called with column <= 0")
 
-  # print("simple effects hit on column:" + str(eg) + "idx:" + str(layer))
   button_layer = layer_button_first + layer
-  send('/composition/layers/' + str(button_layer) + '/clips/' + str(column) + '/connect', 1)
-
+  send("/composition/layers/{}/clips/{}/connect".format(button_layer, column), 1)
 
 def clip_piano_on(layer, column=0):
-  # print("opac on. using layer ", layer, "column:", column)
   button_layer = layer_button_first + layer
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/connect', 1.0)
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/transport/position', 1.0)
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/transport/position/behaviour/playdirection', 2)
+  send("/composition/layers/{}/clips/{}/connect".format(button_layer, column), 1.0)
+  send("/composition/layers/{}/clips/{}/transport/position".format(button_layer, column), 1.0)
+  send("/composition/layers/{}/clips/{}/transport/position/behaviour/playdirection".format(button_layer, column), 2)
   return
-
 
 def clip_piano_off(layer, column=0):
   button_layer = layer_button_first + layer
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/transport/position/behaviour/playdirection', 0)
+  send("/composition/layers/{}/clips/{}/transport/position/behaviour/playdirection".format(button_layer, column), 0)
   return
 
 def opacity_piano_on(layer, column=0):
   # print("opac on. using layer ", layer, "column:", column)
   button_layer = layer_button_first + layer
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/connect', 1.0)
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/video/opacity', 1.0)
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/video/opacity/behaviour/playdirection', 2)
+  send("/composition/layers/{}/clips/{}/connect".format(button_layer, column), 1.0)
+  send("/composition/layers/{}/clips/{}/video/opacity".format(button_layer, column), 1.0)
+  send("/composition/layers/{}/clips/{}/video/opacity/behaviour/playdirection".format(button_layer, column), 2)
   return
 
 def opacity_piano_off(layer, column=0):
   button_layer = layer_button_first + layer
-  send('/composition/layers/'+str(button_layer) +
-       '/clips/' + str(column) + '/video/opacity/behaviour/playdirection', 0)
+  send("/composition/layers/{}/clips/{}/video/opacity/behaviour/playdirection".format(button_layer, column), 0)
   return
 
 # update the bg.
 def simple_bg_update(idx):
-  print("simple bg update called. trouble?", idx)
-  send('/composition/layers/' + str(layer_bg) + '/clips/' + str(idx) + '/connect', 1)
+  # print("INFO: simple_bg_update: ", idx)
+  if (idx <= 0):
+    send('/composition/layers/1/clear', 1)
+    send('/composition/layers/1/clear', 0)
+    return
+  send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, idx), 1)
   return
 
 # load pre- and post- duders
 def default_init(column):
-  # print("default init with column:", column)
-  send('/composition/layers/' + str(layer_post) + '/clips/' + str(column) + '/connect', 1)  # pre
-  send('/composition/layers/' + str(layer_pre) + '/clips/' + str(column) + '/connect', 1)  # pre
-  # send('/composition/layers/' + str(layer_bg) + '/clips/' + str(column) + '/connect', 1)  #bg
+  # print("INFO: default init with column:", column)
+  send("/composition/layers/{}/clips/{}/connect".format(layer_post, column), 1)  # pre
+  send("/composition/layers/{}/clips/{}/connect".format(layer_pre, column), 1)  # pre
   return
 
 
 def dashboardKnobPre(val, layer, column, link):
-  send('/composition/layers/' + str(layer) + '/clips/' + str(column) + '/dashboard/link' + str(link), val)
+  send("/composition/layers/{}/clips/{}/dashboard/link{}".format(layer, column, link), val)
   return
 
 # in layer 'Pre', control the 1st dashboard knob
@@ -99,8 +90,6 @@ def dashboardKnobBG2(val, column):
   dashboardKnobPre(val, layer_bg, column, 2)
   return
 
-
-
 def clear(opt=0):
   send('/composition/layers/1/clear', 1)
   send('/composition/layers/2/clear', 1)
@@ -118,6 +107,14 @@ def clear(opt=0):
   send('/composition/layers/7/clear', 0)
   return
 
+# clears any active pulses
+def pulse_clear_init(column):
+  send('/composition/layers/9/clear', 1)
+  send('/composition/layers/9/clear', 0)
+  default_init(column)
+  return
+
+
 def update_tempo(bpm):
     send('/composition/tempocontroller/tempo', bpm)
     return
@@ -128,5 +125,5 @@ def resync():
     return
 
 def update_deck(idx):
-  send('/composition/decks/'+str(idx)+'/select', 1);
+  send("/composition/decks/{}/select".format(idx), 1)
   return

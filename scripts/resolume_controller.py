@@ -60,8 +60,15 @@ def onValueChange(channel, sampleIndex, val, prev):
   
   if channel.name == 'deck':
     resolume_commands.update_deck(val)
+    return
   
-  column = controls[section]['effects_column']
+  # NOTE: on 6/2, changed this from 'effects_column' since my pulses and knobs
+  # have all been connected to the bg column I'm using.
+  try:
+    column = controls[section]['bg_column']
+  except (IndexError, KeyError):
+    print("ERR: could not find required entry bg_column in controls section:", section)
+    return
   # print("onValueChange:" + str(channel.index) +
   #       " (" + channel.name + ")" + str(val))
   if channel.name[:4] == 'knob':
@@ -78,7 +85,7 @@ def onValueChange(channel, sampleIndex, val, prev):
       pass
     return
 
-  if channel.name == 'hit' and val > prev:
+  if (channel.name == 'hit' and val > prev) or channel.name == 'pulse' and val > 0:
     try:
       controls[section]['pulse'](column=column)
     except (IndexError, KeyError):
@@ -90,11 +97,12 @@ def onValueChange(channel, sampleIndex, val, prev):
 def onSectionChange(new_section):
   global section
   section = new_section
-  print("hello from onSectionChange", section)
+  # print("hello from onSectionChange", section)
+  # print(controls[section])
   resolume_commands.simple_bg_update(controls[section]['bg_column'])
 
   try:
-    controls[section]['init'](controls[section]['effects_column'])
+    controls[section]['init'](controls[section]['bg_column'])
   except (IndexError, KeyError):
     pass
   
