@@ -3,6 +3,34 @@ from resolume_commands import send, simple_effects_hit, pulse_clear_init, dashbo
 # import sequences
 import effects
 
+intro = {
+    **effects.heatinvert,
+    'bg_column': 1,
+}
+
+verse_a = {
+    **effects.heatinvert,
+    'bg_column': 2,
+    'init': pulse_clear_init
+}
+verse_b = {
+    **effects.heatinvert,
+    'bg_column': 3,
+}
+wonk = {
+    **effects.heatinvert,
+    'bg_column': 4,
+}
+quiet_a = { **effects.heatinvert, 'bg_column': 5, }
+quiet_b = { **effects.heatinvert, 'bg_column': 6, }
+quiet_c = { **effects.heatinvert, 'bg_column': 7, }
+verseplus_a = { **effects.heatinvert, 'bg_column': 8, }
+verseplus_b = { **effects.heatinvert, 'bg_column': 9, }
+verseplus_c = { **effects.heatinvert, 'bg_column': 10, }
+verseplus_d = { **effects.heatinvert, 'bg_column': 11, }
+pre_end = { **effects.heatinvert, 'bg_column': 12, }
+end = {**effects.heatinvert, 'bg_column': 13, 'init': pulse_clear_init}
+
 #intro
 # verse a ( 8 m)
 # verse b ( 8 m)
@@ -21,35 +49,6 @@ import effects
 # verse++ d
 # pre-end
 # end
-
-intro = {
-    **effects.blank,
-    'bg_column': 1,
-}
-
-verse_a = {
-    **effects.blank,
-    'bg_column': 2,
-    'init': pulse_clear_init
-}
-verse_b = {
-    **effects.blank,
-    'bg_column': 3,
-}
-wonk = {
-    **effects.blank,
-    'bg_column': 4,
-}
-quiet_a = { **effects.blank, 'bg_column': 5, }
-quiet_b = { **effects.blank, 'bg_column': 6, }
-quiet_c = { **effects.blank, 'bg_column': 7, }
-verseplus_a = { **effects.blank, 'bg_column': 8, }
-verseplus_b = { **effects.blank, 'bg_column': 9, }
-verseplus_c = { **effects.blank, 'bg_column': 10, }
-verseplus_d = { **effects.blank, 'bg_column': 11, }
-pre_end = { **effects.blank, 'bg_column': 12, }
-end = {**effects.blank, 'bg_column': 13, 'init': pulse_clear_init}
-
 
 controls = {
     0: effects.clear,

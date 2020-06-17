@@ -5,6 +5,11 @@ php = {
     'effects_column': 1
 }
 
+heatinvert = {
+    **style_piano,
+    'effects_column': 1
+}
+
 rm = {
     **style_piano,
     'effects_column': 2

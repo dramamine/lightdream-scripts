@@ -1,5 +1,5 @@
 from functools import partial
-from resolume_commands import send, clear, default_init, simple_effects_hit, dashboardKnobPre1, dashboardKnobPre2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
+from resolume_commands import clear, default_init, simple_effects_hit, updated_knob_handler, opacity_piano_on, opacity_piano_off
 
 style_momentary = {
     # 'column': 0,  # intro A
@@ -13,7 +13,7 @@ style_momentary = {
         [partial(simple_effects_hit, layer=4)],
         [partial(simple_effects_hit, layer=5)],
     ],
-    'knobs': [dashboardKnobPre1, dashboardKnobPre2]
+    'knobs': updated_knob_handler
 }
 
 style_piano = {
@@ -34,7 +34,7 @@ style_piano = {
         [partial(opacity_piano_on, layer=5),
          partial(opacity_piano_off, layer=5)],
     ],
-    'knobs': [dashboardKnobPre1, dashboardKnobPre2]
+    'knobs': updated_knob_handler
 }
 
 style_clear = {

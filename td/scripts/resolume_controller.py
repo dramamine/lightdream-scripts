@@ -69,17 +69,19 @@ def onValueChange(channel, sampleIndex, val, prev):
   except (IndexError, KeyError):
     print("ERR: could not find required entry bg_column in controls section:", section)
     return
-  # print("onValueChange:" + str(channel.index) +
-  #       " (" + channel.name + ")" + str(val))
+
   if channel.name[:4] == 'knob':
-    # knob 0 or 1
-    controlid = int(channel.name[4:]) - 1
+    # knob 0 through 5
+    controlid = int(channel.name[4:5])
+    left = channel.name[5:6] == 'a'
     try:
       # controls[eg]['knobs'] is an array of knob functions, so
       # controls[eg]['knobs'][controlid] should access one of em.
-      controls[section]['knobs'][controlid](
-          val=val, 
-          column=column
+      controls[section]['knobs'](
+        val=val, 
+        column=controls[section]['effects_column'],
+        controlid=controlid,
+        left=left
       )
     except (IndexError, KeyError):
       pass

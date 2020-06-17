@@ -90,6 +90,16 @@ def dashboardKnobBG2(val, column):
   dashboardKnobPre(val, layer_bg, column, 2)
   return
 
+# keeping it simple:
+# controlid refers to the integer of "knob1"-"knob6"
+# this maps to a layer
+def updated_knob_handler(val, column, controlid, left):
+  # print("coming soon", val, column, controlid, left)
+  layer = controlid + 2
+  link = 1 if left else 2
+  send("/composition/layers/{}/clips/{}/dashboard/link{}".format(layer, column, link), val)
+  return
+
 def clear(opt=0):
   send('/composition/layers/1/clear', 1)
   send('/composition/layers/2/clear', 1)
