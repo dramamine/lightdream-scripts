@@ -108,6 +108,8 @@ def clear(opt=0):
   send('/composition/layers/5/clear', 1)
   send('/composition/layers/6/clear', 1)
   send('/composition/layers/7/clear', 1)
+  send('/composition/layers/8/clear', 1)
+  send('/composition/layers/9/clear', 1)
   send('/composition/layers/1/clear', 0)
   send('/composition/layers/2/clear', 0)
   send('/composition/layers/3/clear', 0)
@@ -115,6 +117,8 @@ def clear(opt=0):
   send('/composition/layers/5/clear', 0)
   send('/composition/layers/6/clear', 0)
   send('/composition/layers/7/clear', 0)
+  send('/composition/layers/8/clear', 0)
+  send('/composition/layers/9/clear', 0)
   return
 
 # clears any active pulses
