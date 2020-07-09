@@ -100,8 +100,10 @@ def onSectionChange(new_section):
   global section
   section = new_section
   # print("hello from onSectionChange", section)
-  # print(controls[section])
-  resolume_commands.simple_bg_update(controls[section]['bg_column'])
+  try:
+    resolume_commands.simple_bg_update(controls[section]['bg_column'])
+  except (IndexError, KeyError):
+    pass
 
   try:
     controls[section]['init'](controls[section]['bg_column'])
