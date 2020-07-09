@@ -1,6 +1,3 @@
-from functools import partial
-from resolume_commands import send, simple_effects_hit, pulse_clear_init, dashboardKnobPre1, dashboardKnobPre2, dashboardKnobBG1, dashboardKnobBG2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
-# import sequences
 import effects
 
 intro = {
@@ -21,17 +18,17 @@ wonk = {
     **effects.heatinvert,
     'bg_column': 4,
 }
-quiet_a = { **effects.heatinvert, 'bg_column': 5, }
-quiet_b = { **effects.heatinvert, 'bg_column': 6, }
-quiet_c = { **effects.heatinvert, 'bg_column': 7, }
-verseplus_a = { **effects.heatinvert, 'bg_column': 8, }
-verseplus_b = { **effects.heatinvert, 'bg_column': 9, }
-verseplus_c = { **effects.heatinvert, 'bg_column': 10, }
-verseplus_d = { **effects.heatinvert, 'bg_column': 11, }
-pre_end = { **effects.heatinvert, 'bg_column': 12, }
+quiet_a = {**effects.heatinvert, 'bg_column': 5, }
+quiet_b = {**effects.heatinvert, 'bg_column': 6, }
+quiet_c = {**effects.heatinvert, 'bg_column': 7, }
+verseplus_a = {**effects.heatinvert, 'bg_column': 8, }
+verseplus_b = {**effects.heatinvert, 'bg_column': 9, }
+verseplus_c = {**effects.heatinvert, 'bg_column': 10, }
+verseplus_d = {**effects.heatinvert, 'bg_column': 11, }
+pre_end = {**effects.heatinvert, 'bg_column': 12, }
 end = {**effects.heatinvert, 'bg_column': 13, 'init': pulse_clear_init}
 
-#intro
+# intro
 # verse a ( 8 m)
 # verse b ( 8 m)
 # verse a
