@@ -37,7 +37,22 @@ UDP => RESOLUME_CONTROLLER
 - section changes
 - pulses
 
-
+## REQUIRED SOFTWARE
+- AutoHotKey - not really necessary if you chose to compile it as .exe on host machine
+- AHK script needs to be added to Windows Start scripts as appropriate
+- OBS latest with obs-ndi plugin
+- Resolume 7.1.0
+  - To use new files:
+    - Copy this Resolume\ folder into [destination]\Documents\Resolume Arena
+    - Copy video clips etc. to SSD
+  - To collect files:
+    - Extra Effects dlls: need to check Video Preferences for locations: 
+      - e:\shaders\plugins
+      - e:\git\resolume-ffgl\binaries\x64
+    - Collect media using Media Manager
+    - Advanced mapping
+      - Documents\Resolume Arena\Presets\Advanced Output
+- USC: zip up on host, unzip on target, check AHK destinations
 
 ## Effects Brainstorming 6/8
 What if we shifted to a setup where we had the main (jukebox) controller but spread buttons and knobs to the 5 'brains'? Each brain would have one button and one knob. This would fit with the 5-Fer (Sectional) effects. Knob effects could be the generic-ish effects I've been thinking of; would simplify things because I could come up with generic knob effects and just rotate em.
