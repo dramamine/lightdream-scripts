@@ -1,5 +1,5 @@
 #from functools import partial
-#from resolume_commands import send, simple_effects_hit, pulse_clear_init, dashboardKnobPre1, dashboardKnobPre2, dashboardKnobBG1, dashboardKnobBG2, opacity_piano_on, opacity_piano_off, clip_piano_on, clip_piano_off
+from resolume_commands import pulse_clear_init
 # import sequences
 import effects
 

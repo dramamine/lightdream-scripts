@@ -1,4 +1,5 @@
 import effects
+from resolume_commands import pulse_clear_init
 
 intro = {
     **effects.heatinvert,

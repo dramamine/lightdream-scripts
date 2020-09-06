@@ -18,12 +18,15 @@ def load_song_by_index(row):
 
 def load_song(module_name):
   global module, controls, section
+  print("trying to load module:", module_name)
   module = mod(module_name)
   controls = module.controls
   section = int(op('rename1').chan('section'))
   return
 
+print("before load_song_by_index")
 load_song_by_index( int(op('rename1').chan('track_id')) )
+print("after load_song_by_index")
 
 # checking to see when buttons (button1-button6) are pressed,
 # or released.

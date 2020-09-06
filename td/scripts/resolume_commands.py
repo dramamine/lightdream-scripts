@@ -139,5 +139,6 @@ def resync():
     return
 
 def update_deck(idx):
-  send("/composition/decks/{}/select".format(idx), 1)
+  print("update deck called.")
+  send("/composition/decks/{}/select".format(int(idx)), 1)
   return

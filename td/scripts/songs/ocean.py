@@ -1,19 +1,10 @@
 import effects
 
-intro_a = {**effects.php,
-    'bg_column': 1,
-    'knobs': [dashboardKnobBG1, dashboardKnobPre2]
-}
+intro_a = {**effects.php, 'bg_column': 1}
 
-intro_shift = {**effects.php,
-    'bg_column': 2,
-    'knobs': [dashboardKnobBG1, dashboardKnobPre2]
-}
+intro_shift = {**effects.php, 'bg_column': 2}
 
-intro_b = {**effects.php,
-    'bg_column': 3,
-    'knobs': [dashboardKnobBG1, dashboardKnobPre2]
-}
+intro_b = {**effects.php, 'bg_column': 3}
 
 buildup_a = {**effects.rm, 'bg_column': 4}  # @TODO add bass hits
 buildup_b = {**effects.rm, 'bg_column': 5}
@@ -21,10 +12,8 @@ buildup_b = {**effects.rm, 'bg_column': 5}
 pre_drop_a = {**effects.blank, 'bg_column': 6, 'resync': True}
 pre_drop_b = {**effects.blank, 'bg_column': 7, 'resync': True}
 
-drop_a = {**effects.eagle_spreader_inverter, 'bg_column': 8,
-          'knobs': [dashboardKnobBG1, dashboardKnobBG2]}
-drop_b = {**effects.eagle_spreader_inverter, 'bg_column': 9,
-          'knobs': [dashboardKnobBG1, dashboardKnobBG2]}
+drop_a = {**effects.eagle_spreader_inverter, 'bg_column': 8}
+drop_b = {**effects.eagle_spreader_inverter, 'bg_column': 9}
 
 # @TODO this one was special - maybe add bright/contrast to bg layer
 drop_end = {**effects.eagle_spreader_inverter, 'bg_column': 10}
