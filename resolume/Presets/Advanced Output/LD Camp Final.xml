@@ -3,7 +3,7 @@
 	<versionInfo name="Resolume Arena" majorVersion="7" minorVersion="1" microVersion="0" revision="67353"/>
 	<ScreenSetup name="ScreenSetup">
 		<Params name="ScreenSetupParams"/>
-		<CurrentCompositionTextureSize JorisIsLiev="true" width="800" height="800"/>
+		<CurrentCompositionTextureSize JorisIsLiev="false" width="800" height="800"/>
 		<screens>
 			<Screen name="Screen 1" uniqueId="1576892224303">
 				<Params name="Params">
@@ -243,8 +243,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -466,9 +466,9 @@
 						</Params>
 						<InputRect orientation="-2.9146509170532226563">
 							<v x="439.060333251953125" y="550.275146484375"/>
-							<v x="366.201507568359375" y="533.4505615234375"/>
-							<v x="368.160003662109375" y="524.9693603515625"/>
-							<v x="441.018829345703125" y="541.7939453125"/>
+							<v x="366.201446533203125" y="533.4505615234375"/>
+							<v x="368.159942626953125" y="524.96923828125"/>
+							<v x="441.018829345703125" y="541.7938232421875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -667,10 +667,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.8361124992370605469">
-							<v x="415.4385986328125" y="471.09075927734375"/>
-							<v x="348.52239990234375" y="449.9886474609375"/>
-							<v x="351.3658447265625" y="440.97186279296875"/>
-							<v x="418.28204345703125" y="462.073974609375"/>
+							<v x="415.438568115234375" y="471.090728759765625"/>
+							<v x="348.522369384765625" y="449.988616943359375"/>
+							<v x="351.365814208984375" y="440.971832275390625"/>
+							<v x="418.282012939453125" y="462.073944091796875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -866,8 +866,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -987,10 +987,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.069986529648303985596">
-							<v x="388.815643310546875" y="603.88641357421875"/>
-							<v x="466.070709228515625" y="609.30206298828125"/>
-							<v x="465.212066650390625" y="621.55108642578125"/>
-							<v x="387.957000732421875" y="616.13543701171875"/>
+							<v x="388.81561279296875" y="603.8863525390625"/>
+							<v x="466.0706787109375" y="609.302001953125"/>
+							<v x="465.2120361328125" y="621.551025390625"/>
+							<v x="387.95697021484375" y="616.1353759765625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -1088,10 +1088,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.1207139492034912109">
-							<v x="475.552276611328125" y="621.89971923828125"/>
-							<v x="438.882415771484375" y="681.72076416015625"/>
-							<v x="430.817291259765625" y="676.77691650390625"/>
-							<v x="467.487152099609375" y="616.95587158203125"/>
+							<v x="475.55224609375" y="621.8997802734375"/>
+							<v x="438.8824462890625" y="681.7208251953125"/>
+							<v x="430.81732177734375" y="676.7769775390625"/>
+							<v x="467.48712158203125" y="616.9559326171875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -1189,10 +1189,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.6633885502815246582">
-							<v x="441.48663330078125" y="686.0234375"/>
-							<v x="497.3377685546875" y="729.673828125"/>
-							<v x="491.91094970703125" y="736.617431640625"/>
-							<v x="436.059814453125" y="692.967041015625"/>
+							<v x="441.486572265625" y="686.02337646484375"/>
+							<v x="497.33770751953125" y="729.67376708984375"/>
+							<v x="491.91094970703125" y="736.61737060546875"/>
+							<v x="436.059814453125" y="692.96697998046875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -1391,10 +1391,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.8273859024047851563">
-							<v x="530.630615234375" y="659.2745361328125"/>
-							<v x="447.72271728515625" y="686.21728515625"/>
-							<v x="444.1671142578125" y="675.276123046875"/>
-							<v x="527.0750732421875" y="648.3333740234375"/>
+							<v x="530.63055419921875" y="659.27447509765625"/>
+							<v x="447.72265625" y="686.21722412109375"/>
+							<v x="444.16705322265625" y="675.27606201171875"/>
+							<v x="527.07501220703125" y="648.33331298828125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -1489,8 +1489,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -1610,10 +1610,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.0210005044937133789">
-							<v x="319.90179443359375" y="679.27978515625"/>
-							<v x="356.37103271484375" y="738.789794921875"/>
-							<v x="348.9119873046875" y="743.36083984375"/>
-							<v x="312.4427490234375" y="683.850830078125"/>
+							<v x="319.90179443359375" y="679.2796630859375"/>
+							<v x="356.37103271484375" y="738.7896728515625"/>
+							<v x="348.9119873046875" y="743.3607177734375"/>
+							<v x="312.4427490234375" y="683.8507080078125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -2014,10 +2014,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.1308974921703338623">
-							<v x="328.092041015625" y="666.96240234375"/>
-							<v x="418.35784912109375" y="678.845947265625"/>
-							<v x="416.99639892578125" y="689.1875"/>
-							<v x="326.7305908203125" y="677.303955078125"/>
+							<v x="328.092010498046875" y="666.96234130859375"/>
+							<v x="418.357818603515625" y="678.84588623046875"/>
+							<v x="416.996368408203125" y="689.18743896484375"/>
+							<v x="326.730560302734375" y="677.30389404296875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -2112,8 +2112,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -2637,10 +2637,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.727846980094909668">
-							<v x="282.37298583984375" y="574.3271484375"/>
-							<v x="270.12689208984375" y="496.993927001953125"/>
-							<v x="279.43609619140625" y="495.519744873046875"/>
-							<v x="291.68218994140625" y="572.85302734375"/>
+							<v x="282.37298583984375" y="574.32720947265625"/>
+							<v x="270.12689208984375" y="496.993988037109375"/>
+							<v x="279.43609619140625" y="495.519805908203125"/>
+							<v x="291.68218994140625" y="572.85308837890625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -2735,8 +2735,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -2957,10 +2957,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.48868399858474731445">
-							<v x="223.967132568359375" y="616.10760498046875"/>
-							<v x="301.8494873046875" y="657.51751708984375"/>
-							<v x="297.855712890625" y="665.02886962890625"/>
-							<v x="219.97332763671875" y="623.61895751953125"/>
+							<v x="223.967132568359375" y="616.1075439453125"/>
+							<v x="301.849517822265625" y="657.5174560546875"/>
+							<v x="297.855682373046875" y="665.0289306640625"/>
+							<v x="219.97332763671875" y="623.6190185546875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -3159,10 +3159,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.684214472770690918">
-							<v x="211.5253753662109375" y="700.7686767578125"/>
-							<v x="202.6896514892578125" y="623.1990966796875"/>
-							<v x="216.0961761474609375" y="621.6719970703125"/>
-							<v x="224.9319000244140625" y="699.2415771484375"/>
+							<v x="211.525360107421875" y="700.76861572265625"/>
+							<v x="202.68963623046875" y="623.19903564453125"/>
+							<v x="216.09619140625" y="621.67193603515625"/>
+							<v x="224.931915283203125" y="699.24151611328125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -3358,8 +3358,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.47999999999999998224">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26000000000000000888"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -3981,8 +3981,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -4102,10 +4102,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.46250450611114501953">
-							<v x="207.177764892578125" y="452.530029296875"/>
-							<v x="269.640655517578125" y="483.6722412109375"/>
+							<v x="207.177764892578125" y="452.52996826171875"/>
+							<v x="269.640655517578125" y="483.67218017578125"/>
 							<v x="265.737274169921875" y="491.50128173828125"/>
-							<v x="203.2744140625" y="460.35906982421875"/>
+							<v x="203.274383544921875" y="460.35906982421875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -4304,10 +4304,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.53231650590896606445">
-							<v x="279.244110107421875" y="399.52813720703125"/>
-							<v x="339.700225830078125" y="435.1387939453125"/>
-							<v x="334.877777099609375" y="443.32586669921875"/>
-							<v x="274.421661376953125" y="407.7152099609375"/>
+							<v x="279.24407958984375" y="399.528106689453125"/>
+							<v x="339.7001953125" y="435.138763427734375"/>
+							<v x="334.87774658203125" y="443.325836181640625"/>
+							<v x="274.421630859375" y="407.715179443359375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -4604,8 +4604,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -4826,10 +4826,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.9321041107177734375">
-							<v x="210.1473541259765625" y="538.41595458984375"/>
-							<v x="141.5147247314453125" y="523.82415771484375"/>
-							<v x="143.4830474853515625" y="514.56610107421875"/>
-							<v x="212.1156768798828125" y="529.15789794921875"/>
+							<v x="210.147369384765625" y="538.416015625"/>
+							<v x="141.514739990234375" y="523.82421875"/>
+							<v x="143.483062744140625" y="514.566162109375"/>
+							<v x="212.115692138671875" y="529.157958984375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -5028,10 +5028,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.0089010298252105712891">
-							<v x="117.343048095703125" y="608.6361083984375"/>
-							<v x="193.457794189453125" y="607.9586181640625"/>
-							<v x="193.552459716796875" y="618.59326171875"/>
-							<v x="117.437713623046875" y="619.270751953125"/>
+							<v x="117.343048095703125" y="608.63604736328125"/>
+							<v x="193.457794189453125" y="607.95855712890625"/>
+							<v x="193.552459716796875" y="618.59320068359375"/>
+							<v x="117.437713623046875" y="619.27069091796875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -5129,10 +5129,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.2254319190979003906">
-							<v x="193.3029022216796875" y="602.81231689453125"/>
-							<v x="140.2235870361328125" y="533.65765380859375"/>
-							<v x="149.3545989990234375" y="526.64923095703125"/>
-							<v x="202.4339141845703125" y="595.80389404296875"/>
+							<v x="193.3029327392578125" y="602.8123779296875"/>
+							<v x="140.2235870361328125" y="533.65771484375"/>
+							<v x="149.3545989990234375" y="526.6492919921875"/>
+							<v x="202.4339447021484375" y="595.803955078125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -5202,8 +5202,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="1">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.066666666666666665741"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -5227,8 +5227,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -5349,8 +5349,8 @@
 						</Params>
 						<InputRect orientation="2.2776165008544921875">
 							<v x="109.503875732421875" y="408.7088623046875"/>
-							<v x="64.1771087646484375" y="461.7838134765625"/>
-							<v x="57.524593353271484375" y="456.10247802734375"/>
+							<v x="64.177093505859375" y="461.7838134765625"/>
+							<v x="57.524578094482421875" y="456.10247802734375"/>
 							<v x="102.8513641357421875" y="403.02752685546875"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -5825,8 +5825,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="2">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.13333333333333333148"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -5850,8 +5850,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -5971,10 +5971,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.56722247600555419922">
-							<v x="121.6480255126953125" y="391.10498046875"/>
-							<v x="180.5133514404296875" y="353.60443115234375"/>
-							<v x="185.7739715576171875" y="361.86212158203125"/>
-							<v x="126.9086456298828125" y="399.3626708984375"/>
+							<v x="121.64800262451171875" y="391.104949951171875"/>
+							<v x="180.513336181640625" y="353.604400634765625"/>
+							<v x="185.773956298828125" y="361.862091064453125"/>
+							<v x="126.90863800048828125" y="399.362640380859375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -6274,10 +6274,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.5568645000457763672">
-							<v x="259.29864501953125" y="401.2073974609375"/>
+							<v x="259.2987060546875" y="401.20745849609375"/>
 							<v x="200.789764404296875" y="362.47760009765625"/>
-							<v x="206.78765869140625" y="353.4166259765625"/>
-							<v x="265.29656982421875" y="392.14642333984375"/>
+							<v x="206.787689208984375" y="353.41656494140625"/>
+							<v x="265.296630859375" y="392.14642333984375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -6448,8 +6448,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="3">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2000000000000000111"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -6473,8 +6473,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -6594,10 +6594,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.2776165008544921875">
-							<v x="182.3661651611328125" y="347.21356201171875"/>
-							<v x="138.7355194091796875" y="296.12469482421875"/>
-							<v x="147.9144439697265625" y="288.2857666015625"/>
-							<v x="191.5450897216796875" y="339.3746337890625"/>
+							<v x="182.36614990234375" y="347.21356201171875"/>
+							<v x="138.735504150390625" y="296.12469482421875"/>
+							<v x="147.9144287109375" y="288.2857666015625"/>
+							<v x="191.545074462890625" y="339.3746337890625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -6695,10 +6695,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.7453000545501708984">
-							<v x="138.517486572265625" y="298.3753662109375"/>
-							<v x="123.20306396484375" y="385.24261474609375"/>
-							<v x="114.824951171875" y="383.76556396484375"/>
-							<v x="130.139373779296875" y="296.8983154296875"/>
+							<v x="138.517486572265625" y="298.375335693359375"/>
+							<v x="123.20306396484375" y="385.242584228515625"/>
+							<v x="114.8249359130859375" y="383.765533447265625"/>
+							<v x="130.139373779296875" y="296.898284912109375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -7071,8 +7071,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="4">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26666666666666666297"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -7096,8 +7096,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.47999999999999998224">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26000000000000000888"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -7218,8 +7218,8 @@
 						</Params>
 						<InputRect orientation="-1.3089749813079833984">
 							<v x="193.1931610107421875" y="337.591583251953125"/>
-							<v x="210.5429840087890625" y="272.846893310546875"/>
-							<v x="218.4248809814453125" y="274.959014892578125"/>
+							<v x="210.5429840087890625" y="272.846832275390625"/>
+							<v x="218.4248809814453125" y="274.958953857421875"/>
 							<v x="201.0750579833984375" y="339.703704833984375"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -7318,10 +7318,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.60212850570678710938">
-							<v x="225.46881103515625" y="264.925994873046875"/>
+							<v x="225.4688262939453125" y="264.925994873046875"/>
 							<v x="272.54559326171875" y="297.280242919921875"/>
 							<v x="266.26605224609375" y="306.417205810546875"/>
-							<v x="219.18927001953125" y="274.062957763671875"/>
+							<v x="219.1892852783203125" y="274.062957763671875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -7694,8 +7694,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="5">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.33333333333333331483"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -7719,8 +7719,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -7840,10 +7840,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.7191205024719238281">
-							<v x="290.524078369140625" y="231.9259796142578125"/>
-							<v x="280.209564208984375" y="300.955596923828125"/>
-							<v x="271.557342529296875" y="299.662750244140625"/>
-							<v x="281.871856689453125" y="230.6331634521484375"/>
+							<v x="290.524078369140625" y="231.925933837890625"/>
+							<v x="280.209564208984375" y="300.95556640625"/>
+							<v x="271.557342529296875" y="299.6627197265625"/>
+							<v x="281.871856689453125" y="230.63311767578125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8043,8 +8043,8 @@
 						</Params>
 						<InputRect orientation="1.7540265321731567383">
 							<v x="360.48565673828125" y="283.824462890625"/>
-							<v x="347.701171875" y="352.8145751953125"/>
-							<v x="338.3583984375" y="351.083251953125"/>
+							<v x="347.701171875" y="352.81463623046875"/>
+							<v x="338.3583984375" y="351.08331298828125"/>
 							<v x="351.14288330078125" y="282.0931396484375"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -8244,10 +8244,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.8761974573135375977">
-							<v x="423.76287841796875" y="340.891021728515625"/>
-							<v x="406.23974609375" y="396.473297119140625"/>
-							<v x="397.529541015625" y="393.727264404296875"/>
-							<v x="415.05267333984375" y="338.144989013671875"/>
+							<v x="423.76287841796875" y="340.8909912109375"/>
+							<v x="406.23974609375" y="396.4732666015625"/>
+							<v x="397.529541015625" y="393.72723388671875"/>
+							<v x="415.05267333984375" y="338.14495849609375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8342,8 +8342,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -8463,10 +8463,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.5744919776916503906">
-							<v x="287.96392822265625" y="226.3356475830078125"/>
+							<v x="287.96392822265625" y="226.335662841796875"/>
 							<v x="222.642059326171875" y="267.938232421875"/>
-							<v x="216.0457763671875" y="257.58111572265625"/>
-							<v x="281.36761474609375" y="215.9785614013671875"/>
+							<v x="216.045745849609375" y="257.58111572265625"/>
+							<v x="281.36761474609375" y="215.978546142578125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8665,10 +8665,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-3.1153604984283447266">
-							<v x="196.76641845703125" y="191.64349365234375"/>
-							<v x="125.90436553955078125" y="189.784210205078125"/>
-							<v x="126.13564300537109375" y="180.969482421875"/>
-							<v x="196.997711181640625" y="182.828765869140625"/>
+							<v x="196.7664337158203125" y="191.64349365234375"/>
+							<v x="125.90438079833984375" y="189.784210205078125"/>
+							<v x="126.13565826416015625" y="180.969482421875"/>
+							<v x="196.9977264404296875" y="182.828765869140625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8768,8 +8768,8 @@
 						<InputRect orientation="1.2651679515838623047">
 							<v x="113.2403106689453125" y="195.2356414794921875"/>
 							<v x="136.1436004638671875" y="267.826019287109375"/>
-							<v x="126.00130462646484375" y="271.026031494140625"/>
-							<v x="103.0980224609375" y="198.4356842041015625"/>
+							<v x="126.0012969970703125" y="271.026031494140625"/>
+							<v x="103.0980072021484375" y="198.4356842041015625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8867,10 +8867,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.95136302709579467773">
-							<v x="141.0194091796875" y="266.17340087890625"/>
+							<v x="141.0194091796875" y="266.173431396484375"/>
 							<v x="191.632080078125" y="195.1932373046875"/>
 							<v x="201.004180908203125" y="201.876068115234375"/>
-							<v x="150.391510009765625" y="272.856201171875"/>
+							<v x="150.391510009765625" y="272.856231689453125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -8940,8 +8940,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="1">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.066666666666666665741"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -8965,8 +8965,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -9491,8 +9491,8 @@
 						</Params>
 						<InputRect orientation="2.6441295146942138672">
 							<v x="303.795135498046875" y="143.7486572265625"/>
-							<v x="223.7853240966796875" y="187.19500732421875"/>
-							<v x="218.8077239990234375" y="178.02838134765625"/>
+							<v x="223.7853240966796875" y="187.195037841796875"/>
+							<v x="218.8077239990234375" y="178.028411865234375"/>
 							<v x="298.817535400390625" y="134.58203125"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -9563,8 +9563,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="2">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.13333333333333333148"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -9588,8 +9588,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -9709,10 +9709,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.68939352035522460938">
-							<v x="321.741180419921875" y="132.163970947265625"/>
-							<v x="375.597625732421875" y="176.55877685546875"/>
-							<v x="369.369842529296875" y="184.1138916015625"/>
-							<v x="315.513397216796875" y="139.719085693359375"/>
+							<v x="321.74114990234375" y="132.163970947265625"/>
+							<v x="375.59759521484375" y="176.55877685546875"/>
+							<v x="369.36981201171875" y="184.1138916015625"/>
+							<v x="315.51336669921875" y="139.719085693359375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -9811,8 +9811,8 @@
 						</Params>
 						<InputRect orientation="2.8186595439910888672">
 							<v x="372.0570068359375" y="196.4837188720703125"/>
-							<v x="299.94482421875" y="220.6158905029296875"/>
-							<v x="297.00390625" y="211.8278045654296875"/>
+							<v x="299.94482421875" y="220.6159210205078125"/>
+							<v x="297.00390625" y="211.8278350830078125"/>
 							<v x="369.1160888671875" y="187.6956329345703125"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -9912,8 +9912,8 @@
 						</Params>
 						<InputRect orientation="0.6283079981803894043">
 							<v x="294.722625732421875" y="221.3849029541015625"/>
-							<v x="352.870452880859375" y="263.630828857421875"/>
-							<v x="348.826080322265625" y="269.197540283203125"/>
+							<v x="352.870452880859375" y="263.630859375"/>
+							<v x="348.826080322265625" y="269.19757080078125"/>
 							<v x="290.678253173828125" y="226.9516143798828125"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -10186,8 +10186,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="3">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2000000000000000111"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -10211,8 +10211,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -10332,10 +10332,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.0210005044937133789">
-							<v x="383.396453857421875" y="175.91845703125"/>
-							<v x="418.501068115234375" y="118.6351318359375"/>
-							<v x="428.792938232421875" y="124.9422454833984375"/>
-							<v x="393.688323974609375" y="182.2255859375"/>
+							<v x="383.39642333984375" y="175.9184722900390625"/>
+							<v x="418.50103759765625" y="118.6351318359375"/>
+							<v x="428.79290771484375" y="124.9422454833984375"/>
+							<v x="393.68829345703125" y="182.2256011962890625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -10433,10 +10433,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="3.0019159317016601563">
-							<v x="416.293426513671875" y="119.123443603515625"/>
-							<v x="328.945526123046875" y="131.4038848876953125"/>
-							<v x="327.761077880859375" y="122.9792022705078125"/>
-							<v x="415.108978271484375" y="110.698760986328125"/>
+							<v x="416.29345703125" y="119.123443603515625"/>
+							<v x="328.945556640625" y="131.4038848876953125"/>
+							<v x="327.7611083984375" y="122.9792022705078125"/>
+							<v x="415.1090087890625" y="110.698760986328125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -10534,10 +10534,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.0908124446868896484">
-							<v x="316.5872802734375" y="114.57540130615234375"/>
-							<v x="351.4658203125" y="47.577358245849609375"/>
-							<v x="359.90313720703125" y="51.969745635986328125"/>
-							<v x="325.02459716796875" y="118.96779632568359375"/>
+							<v x="316.5872802734375" y="114.575408935546875"/>
+							<v x="351.4658203125" y="47.57736968994140625"/>
+							<v x="359.90313720703125" y="51.969757080078125"/>
+							<v x="325.02459716796875" y="118.967803955078125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -10635,10 +10635,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.82901751995086669922">
-							<v x="376.59271240234375" y="43.319713592529296875"/>
-							<v x="429.3377685546875" y="100.8792724609375"/>
-							<v x="419.3895263671875" y="109.9953765869140625"/>
-							<v x="366.64447021484375" y="52.435825347900390625"/>
+							<v x="376.59271240234375" y="43.3196868896484375"/>
+							<v x="429.3377685546875" y="100.879241943359375"/>
+							<v x="419.3895263671875" y="109.995391845703125"/>
+							<v x="366.64447021484375" y="52.4358367919921875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -10737,8 +10737,8 @@
 						</Params>
 						<InputRect orientation="1.0384534597396850586">
 							<v x="440.16363525390625" y="118.90012359619140625"/>
-							<v x="471.3641357421875" y="171.8659820556640625"/>
-							<v x="462.98553466796875" y="176.8015594482421875"/>
+							<v x="471.3641357421875" y="171.8659515380859375"/>
+							<v x="462.98553466796875" y="176.8015289306640625"/>
 							<v x="431.7850341796875" y="123.83571624755859375"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -10809,8 +10809,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="4">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26666666666666666297"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -10834,8 +10834,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.47999999999999998224">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26000000000000000888"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -11360,8 +11360,8 @@
 						</Params>
 						<InputRect orientation="-0.20943599939346313477">
 							<v x="367.84332275390625" y="263.3367919921875"/>
-							<v x="428.8525390625" y="250.369140625"/>
-							<v x="430.92193603515625" y="260.105072021484375"/>
+							<v x="428.85260009765625" y="250.3690948486328125"/>
+							<v x="430.9219970703125" y="260.10504150390625"/>
 							<v x="369.9127197265625" y="273.07275390625"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -11432,8 +11432,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="5">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.33333333333333331483"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -11457,8 +11457,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -11578,10 +11578,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="3.0193688869476318359">
-							<v x="528.08782958984375" y="245.790252685546875"/>
-							<v x="458.8123779296875" y="254.299774169921875"/>
-							<v x="457.74578857421875" y="245.616790771484375"/>
-							<v x="527.02130126953125" y="237.107269287109375"/>
+							<v x="528.087890625" y="245.7902374267578125"/>
+							<v x="458.8123779296875" y="254.2997589111328125"/>
+							<v x="457.74578857421875" y="245.6167755126953125"/>
+							<v x="527.0213623046875" y="237.1072540283203125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -11780,10 +11780,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="3.0280954837799072266">
-							<v x="502.125640869140625" y="326.494354248046875"/>
-							<v x="432.412139892578125" y="334.440765380859375"/>
-							<v x="431.336029052734375" y="324.999969482421875"/>
-							<v x="501.049530029296875" y="317.053558349609375"/>
+							<v x="502.12567138671875" y="326.49432373046875"/>
+							<v x="432.412109375" y="334.44073486328125"/>
+							<v x="431.33599853515625" y="324.99993896484375"/>
+							<v x="501.049560546875" y="317.05352783203125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -12080,8 +12080,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -12202,9 +12202,9 @@
 						</Params>
 						<InputRect orientation="-2.4521465301513671875">
 							<v x="532.645751953125" y="240.6434326171875"/>
-							<v x="472.88861083984375" y="191.379302978515625"/>
-							<v x="480.70306396484375" y="181.900421142578125"/>
-							<v x="540.460205078125" y="231.16455078125"/>
+							<v x="472.8885498046875" y="191.379302978515625"/>
+							<v x="480.7030029296875" y="181.900390625"/>
+							<v x="540.460205078125" y="231.164520263671875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -12605,10 +12605,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.30525296926498413086">
-							<v x="449.345977783203125" y="113.2025146484375"/>
+							<v x="449.34588623046875" y="113.20250701904296875"/>
 							<v x="532.49298095703125" y="139.402252197265625"/>
 							<v x="529.03363037109375" y="150.380859375"/>
-							<v x="445.886627197265625" y="124.181121826171875"/>
+							<v x="445.88653564453125" y="124.18111419677734375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -12678,8 +12678,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="1">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.066666666666666665741"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -12703,8 +12703,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -12824,10 +12824,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.492406010627746582">
-							<v x="628.72967529296875" y="221.4287109375"/>
-							<v x="634.19549560546875" y="151.846405029296875"/>
-							<v x="642.92193603515625" y="152.531890869140625"/>
-							<v x="637.45611572265625" y="222.11419677734375"/>
+							<v x="628.7296142578125" y="221.428741455078125"/>
+							<v x="634.1954345703125" y="151.846405029296875"/>
+							<v x="642.921875" y="152.531890869140625"/>
+							<v x="637.4560546875" y="222.114227294921875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -12925,10 +12925,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.9931895732879638672">
-							<v x="627.57366943359375" y="141.563262939453125"/>
-							<v x="553.61920166015625" y="152.61962890625"/>
-							<v x="552.33221435546875" y="144.010955810546875"/>
-							<v x="626.28668212890625" y="132.95458984375"/>
+							<v x="627.57373046875" y="141.563262939453125"/>
+							<v x="553.6192626953125" y="152.61962890625"/>
+							<v x="552.332275390625" y="144.010955810546875"/>
+							<v x="626.2867431640625" y="132.95458984375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -13127,10 +13127,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.06126002967357635498">
-							<v x="549.0302734375" y="231.40093994140625"/>
-							<v x="619.064208984375" y="227.10528564453125"/>
-							<v x="619.643310546875" y="236.547027587890625"/>
-							<v x="549.609375" y="240.842681884765625"/>
+							<v x="549.03021240234375" y="231.40093994140625"/>
+							<v x="619.06414794921875" y="227.10528564453125"/>
+							<v x="619.64324951171875" y="236.547027587890625"/>
+							<v x="549.60931396484375" y="240.842681884765625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -13301,8 +13301,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="2">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.13333333333333333148"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -13326,8 +13326,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -13649,10 +13649,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.8849239349365234375">
-							<v x="538.00628662109375" y="244.91754150390625"/>
+							<v x="538.00628662109375" y="244.9175262451171875"/>
 							<v x="515.79815673828125" y="313.274566650390625"/>
 							<v x="509.25396728515625" y="311.148468017578125"/>
-							<v x="531.46209716796875" y="242.791412353515625"/>
+							<v x="531.46209716796875" y="242.7913970947265625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -13750,10 +13750,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.043632499873638153076">
-							<v x="513.91229248046875" y="315.782012939453125"/>
-							<v x="584.01177978515625" y="312.721466064453125"/>
-							<v x="584.48577880859375" y="323.577484130859375"/>
-							<v x="514.38629150390625" y="326.638031005859375"/>
+							<v x="513.9122314453125" y="315.782012939453125"/>
+							<v x="584.01171875" y="312.721466064453125"/>
+							<v x="584.4857177734375" y="323.577484130859375"/>
+							<v x="514.38623046875" y="326.638031005859375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -13851,10 +13851,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.0420010089874267578">
-							<v x="597.90155029296875" y="326.632598876953125"/>
-							<v x="562.35784912109375" y="396.397003173828125"/>
-							<v x="553.95965576171875" y="392.118255615234375"/>
-							<v x="589.50335693359375" y="322.353851318359375"/>
+							<v x="597.901611328125" y="326.63262939453125"/>
+							<v x="562.35791015625" y="396.39703369140625"/>
+							<v x="553.959716796875" y="392.1182861328125"/>
+							<v x="589.50341796875" y="322.3538818359375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -13924,8 +13924,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="3">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2000000000000000111"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -13949,8 +13949,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -14070,10 +14070,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.23561549186706542969">
-							<v x="606.65155029296875" y="314.2255859375"/>
-							<v x="671.97955322265625" y="329.9091796875"/>
-							<v x="669.16168212890625" y="341.64666748046875"/>
-							<v x="603.83367919921875" y="325.96307373046875"/>
+							<v x="606.651611328125" y="314.2255859375"/>
+							<v x="671.9796142578125" y="329.9091796875"/>
+							<v x="669.1617431640625" y="341.64666748046875"/>
+							<v x="603.833740234375" y="325.96307373046875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -14272,10 +14272,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.16580349206924438477">
-							<v x="644.3450927734375" y="231.729461669921875"/>
-							<v x="718.8424072265625" y="244.195831298828125"/>
-							<v x="717.2724609375" y="253.577606201171875"/>
-							<v x="642.775146484375" y="241.111236572265625"/>
+							<v x="644.34503173828125" y="231.72943115234375"/>
+							<v x="718.84246826171875" y="244.19580078125"/>
+							<v x="717.27252197265625" y="253.577606201171875"/>
+							<v x="642.77508544921875" y="241.111236572265625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -14373,10 +14373,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.0856335163116455078">
-							<v x="730.65692138671875" y="266.776947021484375"/>
-							<v x="692.21502685546875" y="334.728302001953125"/>
-							<v x="680.47064208984375" y="328.084197998046875"/>
-							<v x="718.91253662109375" y="260.132843017578125"/>
+							<v x="730.65692138671875" y="266.77691650390625"/>
+							<v x="692.21502685546875" y="334.728271484375"/>
+							<v x="680.47064208984375" y="328.08416748046875"/>
+							<v x="718.91253662109375" y="260.1328125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -14474,9 +14474,9 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.2950694561004638672">
-							<v x="678.422119140625" y="350.59326171875"/>
+							<v x="678.422119140625" y="350.59320068359375"/>
 							<v x="637.6910400390625" y="396.63494873046875"/>
-							<v x="630.40771484375" y="390.191650390625"/>
+							<v x="630.40771484375" y="390.19171142578125"/>
 							<v x="671.1387939453125" y="344.14996337890625"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -14547,8 +14547,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="4">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26666666666666666297"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -14572,8 +14572,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.47999999999999998224">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26000000000000000888"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -14695,8 +14695,8 @@
 						<InputRect orientation="1.2042570114135742188">
 							<v x="603.4835205078125" y="326.711669921875"/>
 							<v x="627.505859375" y="389.288330078125"/>
-							<v x="619.8876953125" y="392.21282958984375"/>
-							<v x="595.8653564453125" y="329.63616943359375"/>
+							<v x="619.8875732421875" y="392.212890625"/>
+							<v x="595.865234375" y="329.63623046875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -14794,10 +14794,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="3.1153604984283447266">
-							<v x="620.0872802734375" y="404.47003173828125"/>
-							<v x="562.9840087890625" y="405.96832275390625"/>
-							<v x="562.6932373046875" y="394.88525390625"/>
-							<v x="619.7965087890625" y="393.386962890625"/>
+							<v x="620.08734130859375" y="404.47003173828125"/>
+							<v x="562.98406982421875" y="405.96832275390625"/>
+							<v x="562.69329833984375" y="394.88525390625"/>
+							<v x="619.79656982421875" y="393.386962890625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -14895,10 +14895,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="3.1153604984283447266">
-							<v x="548.7464599609375" y="403.05517578125"/>
-							<v x="478.6055908203125" y="404.89556884765625"/>
-							<v x="478.35638427734375" y="395.39678955078125"/>
-							<v x="548.4971923828125" y="393.556396484375"/>
+							<v x="548.74652099609375" y="403.05517578125"/>
+							<v x="478.605621337890625" y="404.89556884765625"/>
+							<v x="478.356414794921875" y="395.39678955078125"/>
+							<v x="548.49725341796875" y="393.556396484375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -15170,8 +15170,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="5">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.33333333333333331483"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -15195,8 +15195,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -15316,10 +15316,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.0596284866333007813">
-							<v x="589.6656494140625" y="475.108184814453125"/>
-							<v x="556.8892822265625" y="413.485687255859375"/>
-							<v x="564.6171875" y="409.375274658203125"/>
-							<v x="597.3935546875" y="470.997772216796875"/>
+							<v x="589.66558837890625" y="475.10821533203125"/>
+							<v x="556.88922119140625" y="413.4857177734375"/>
+							<v x="564.61712646484375" y="409.37530517578125"/>
+							<v x="597.39349365234375" y="470.997802734375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -15417,10 +15417,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="2.1468935012817382813">
-							<v x="557.22625732421875" y="411.976837158203125"/>
-							<v x="516.41510009765625" y="474.801361083984375"/>
-							<v x="508.280181884765625" y="469.516876220703125"/>
-							<v x="549.09136962890625" y="406.692352294921875"/>
+							<v x="557.22625732421875" y="411.976806640625"/>
+							<v x="516.41510009765625" y="474.8013916015625"/>
+							<v x="508.280181884765625" y="469.51690673828125"/>
+							<v x="549.09136962890625" y="406.69232177734375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -15720,10 +15720,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.8763719797134399414">
-							<v x="416.31170654296875" y="464.33917236328125"/>
-							<v x="398.7862548828125" y="408.783203125"/>
-							<v x="406.554443359375" y="406.33270263671875"/>
-							<v x="424.07989501953125" y="461.888671875"/>
+							<v x="416.311767578125" y="464.3392333984375"/>
+							<v x="398.78631591796875" y="408.78326416015625"/>
+							<v x="406.55450439453125" y="406.332763671875"/>
+							<v x="424.0799560546875" y="461.88873291015625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -15818,8 +15818,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -15939,10 +15939,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.1955305337905883789">
-							<v x="590.546630859375" y="475.62811279296875"/>
-							<v x="618.93212890625" y="403.57147216796875"/>
-							<v x="630.3621826171875" y="408.07415771484375"/>
-							<v x="601.9766845703125" y="480.13079833984375"/>
+							<v x="590.54656982421875" y="475.62811279296875"/>
+							<v x="618.93206787109375" y="403.57147216796875"/>
+							<v x="630.36224365234375" y="408.07415771484375"/>
+							<v x="601.97674560546875" y="480.13079833984375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -16343,10 +16343,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.5618689060211181641">
-							<v x="686.0059814453125" y="357.0216064453125"/>
-							<v x="686.7841796875" y="444.1953125"/>
-							<v x="675.2740478515625" y="444.298095703125"/>
-							<v x="674.495849609375" y="357.1243896484375"/>
+							<v x="686.00592041015625" y="357.0216064453125"/>
+							<v x="686.78411865234375" y="444.1953125"/>
+							<v x="675.27398681640625" y="444.298095703125"/>
+							<v x="674.49578857421875" y="357.1243896484375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -16416,8 +16416,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="1">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.066666666666666665741"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -16441,8 +16441,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -16664,8 +16664,8 @@
 						</Params>
 						<InputRect orientation="-2.0334489345550537109">
 							<v x="715.792236328125" y="534.91156005859375"/>
-							<v x="682.41748046875" y="467.99566650390625"/>
-							<v x="690.2113037109375" y="464.1083984375"/>
+							<v x="682.41748046875" y="467.99560546875"/>
+							<v x="690.2113037109375" y="464.10833740234375"/>
 							<v x="723.5860595703125" y="531.02435302734375"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -16967,7 +16967,7 @@
 						</Params>
 						<InputRect orientation="-1.1258929967880249023">
 							<v x="631.00860595703125" y="549.0975341796875"/>
-							<v x="670.19207763671875" y="466.91485595703125"/>
+							<v x="670.19207763671875" y="466.914794921875"/>
 							<v x="679.61346435546875" y="471.40679931640625"/>
 							<v x="640.42999267578125" y="553.5894775390625"/>
 						</InputRect>
@@ -17039,8 +17039,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="2">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.13333333333333333148"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -17064,8 +17064,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -17488,10 +17488,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.2129834890365600586">
-							<v x="512.86492919921875" y="481.69970703125"/>
-							<v x="537.43902587890625" y="547.4219970703125"/>
-							<v x="527.26092529296875" y="551.2276611328125"/>
-							<v x="502.68682861328125" y="485.50537109375"/>
+							<v x="512.86492919921875" y="481.69964599609375"/>
+							<v x="537.43902587890625" y="547.42193603515625"/>
+							<v x="527.26092529296875" y="551.22760009765625"/>
+							<v x="502.68682861328125" y="485.50531005859375"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -17589,10 +17589,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.9846374988555908203">
-							<v x="528.50201416015625" y="564.931396484375"/>
-							<v x="451.16650390625" y="552.6925048828125"/>
-							<v x="452.64068603515625" y="543.3775634765625"/>
-							<v x="529.97613525390625" y="555.616455078125"/>
+							<v x="528.5020751953125" y="564.93133544921875"/>
+							<v x="451.16650390625" y="552.69244384765625"/>
+							<v x="452.64068603515625" y="543.37750244140625"/>
+							<v x="529.9761962890625" y="555.61639404296875"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -17662,8 +17662,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="3">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2000000000000000111"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -17687,8 +17687,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.4000000000000000222">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.2999999999999999889"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -17808,10 +17808,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="1.4922314882278442383">
-							<v x="545.4786376953125" y="568.567626953125"/>
-							<v x="550.7515869140625" y="635.544677734375"/>
-							<v x="538.7174072265625" y="636.4920654296875"/>
-							<v x="533.4444580078125" y="569.5150146484375"/>
+							<v x="545.47869873046875" y="568.56756591796875"/>
+							<v x="550.75164794921875" y="635.54461669921875"/>
+							<v x="538.71734619140625" y="636.49200439453125"/>
+							<v x="533.44439697265625" y="569.51495361328125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -17909,10 +17909,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-0.76810652017593383789">
-							<v x="552.2493896484375" y="633.85235595703125"/>
-							<v x="615.690673828125" y="572.56793212890625"/>
-							<v x="621.60595703125" y="578.69146728515625"/>
-							<v x="558.1646728515625" y="639.97589111328125"/>
+							<v x="552.24932861328125" y="633.852294921875"/>
+							<v x="615.69061279296875" y="572.56787109375"/>
+							<v x="621.60589599609375" y="578.69140625"/>
+							<v x="558.16461181640625" y="639.975830078125"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -18111,10 +18111,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-2.9410049915313720703">
-							<v x="628.9276123046875" y="671.8402099609375"/>
-							<v x="552.4205322265625" y="656.28466796875"/>
-							<v x="555.110107421875" y="643.0562744140625"/>
-							<v x="631.6171875" y="658.61181640625"/>
+							<v x="628.9276123046875" y="671.84027099609375"/>
+							<v x="552.4205322265625" y="656.28472900390625"/>
+							<v x="555.110107421875" y="643.05633544921875"/>
+							<v x="631.6171875" y="658.61187744140625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -18213,8 +18213,8 @@
 						</Params>
 						<InputRect orientation="-2.7315690517425537109">
 							<v x="533.0712890625" y="648.064453125"/>
-							<v x="476.6934814453125" y="623.559326171875"/>
-							<v x="480.57159423828125" y="614.6370849609375"/>
+							<v x="476.69342041015625" y="623.559326171875"/>
+							<v x="480.571533203125" y="614.6370849609375"/>
 							<v x="536.949462890625" y="639.1422119140625"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -18285,8 +18285,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="4">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26666666666666666297"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>
@@ -18310,8 +18310,8 @@
 						<ValueRange name="minMax" min="0" max="1"/>
 						<ValueRange name="startStop" min="0" max="1"/>
 					</ParamRange>
-					<ParamRange name="Brightness" T="DOUBLE" default="0" value="-0.47999999999999998224">
-						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.26000000000000000888"/>
+					<ParamRange name="Brightness" T="DOUBLE" default="0" value="0">
+						<PhaseSourceStatic name="PhaseSourceStatic" phase="0.5"/>
 						<BehaviourDouble name="BehaviourDouble"/>
 						<ValueRange name="defaultRange" min="-1" max="1"/>
 						<ValueRange name="minMax" min="-1" max="1"/>
@@ -18633,10 +18633,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="-1.9112780094146728516">
-							<v x="441.98516845703125" y="542.22601318359375"/>
-							<v x="418.55389404296875" y="476.08807373046875"/>
-							<v x="427.5150146484375" y="472.913330078125"/>
-							<v x="450.9462890625" y="539.05133056640625"/>
+							<v x="441.9852294921875" y="542.22601318359375"/>
+							<v x="418.553955078125" y="476.08807373046875"/>
+							<v x="427.51507568359375" y="472.913330078125"/>
+							<v x="450.94635009765625" y="539.05133056640625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -18734,10 +18734,10 @@
 							</ParamRange>
 						</Params>
 						<InputRect orientation="0.13944946229457855225">
-							<v x="429.054443359375" y="461.94671630859375"/>
-							<v x="500.0650634765625" y="471.913818359375"/>
-							<v x="498.52496337890625" y="482.88616943359375"/>
-							<v x="427.51434326171875" y="472.9190673828125"/>
+							<v x="429.054443359375" y="461.946685791015625"/>
+							<v x="500.0650634765625" y="471.913787841796875"/>
+							<v x="498.52496337890625" y="482.886199951171875"/>
+							<v x="427.51434326171875" y="472.919097900390625"/>
 						</InputRect>
 						<OutputRect orientation="0">
 							<v x="-0.5" y="-0.5"/>
@@ -18836,8 +18836,8 @@
 						</Params>
 						<InputRect orientation="2.3037960529327392578">
 							<v x="504.228302001953125" y="490.978973388671875"/>
-							<v x="462.494842529296875" y="537.33233642578125"/>
-							<v x="455.097625732421875" y="530.67230224609375"/>
+							<v x="462.494781494140625" y="537.33233642578125"/>
+							<v x="455.097564697265625" y="530.67230224609375"/>
 							<v x="496.831085205078125" y="484.319000244140625"/>
 						</InputRect>
 						<OutputRect orientation="0">
@@ -18908,8 +18908,8 @@
 								<ValueRange name="minMax" min="0" max="15"/>
 								<ValueRange name="startStop" min="0" max="15"/>
 							</ParamRange>
-							<ParamRange name="Universe" T="DOUBLE" default="0" value="0">
-								<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+							<ParamRange name="Universe" T="DOUBLE" default="0" value="5">
+								<PhaseSourceStatic name="PhaseSourceStatic" phase="0.33333333333333331483"/>
 								<BehaviourDouble name="BehaviourDouble"/>
 								<ValueRange name="defaultRange" min="0" max="15"/>
 								<ValueRange name="minMax" min="0" max="15"/>

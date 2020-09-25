@@ -8,14 +8,16 @@ What's wired:
 Hardware:
 NETGEAR F5108 Fast Ethernet Switch (8 Ports)
 
-Name | Serial | IP 
-Motherbrain | 00-0A-97-BA | 169.254.18.32
-B1 | 169.254.18.33
-B1 | 169.254.18.34
-B1 | 169.254.18.35
-B1 | 169.254.18.36
+Name | IP 
+Red Jukebox (desktop) | 169.254.18.31
+Red Jukebox (laptop) | 169.254.231.56
+Orange | 169.254.18.32
+Yellow | 169.254.18.33
+Green Motherbrain | 169.254.18.34
+Blue | 169.254.18.35
+Purple | 169.254.18.36
 
-To change these, edit `ld-braincode::updateIp()`
+To change these and see serial numbers, edit `ld-braincode::updateIp()`
 Resolume -> Advanced Output needs these IPs
 
 ### Wireless

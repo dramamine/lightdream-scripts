@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Fixture name="Fixture" uuid="e5c1690d71184d1186492d28b22bc5e1" fixtureName="dmx line">
+  <versionInfo majorVersion="7" minorVersion="1" microVersion="0" revision="67353"/>
+  <Params name="Params">
+    <ParamFixturePixels storage="0" name="Pixels" xmlVersion="2">
+      <ParamRange name="Width" default="1" value="5">
+        <ValueRange name="defaultRange" min="1" max="512"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0.0078277886497064574911"/>
+      </ParamRange>
+      <ParamRange name="Height" default="1" value="5">
+        <ValueRange name="defaultRange" min="1" max="512"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0.0078277886497064574911"/>
+      </ParamRange>
+      <ParamChoice name="Color Format" default="rgb" value="rbg" storeChoices="0"/>
+      <ParamChoice name="Distribution" default="170" value="170" storeChoices="0"/>
+      <ParamRange name="Gamma" default="2.5" value="2.0588235294117644969">
+        <ValueRange name="defaultRange" min="1" max="3"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0.52941176470588224845"/>
+      </ParamRange>
+    </ParamFixturePixels>
+  </Params>
+</Fixture>

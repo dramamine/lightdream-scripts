@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Fixture name="Fixture" uuid="da12f7deea134278ad4150d78642b49b" fixtureName="WS2815B Reel (150)">
+  <versionInfo majorVersion="7" minorVersion="1" microVersion="0" revision="67353"/>
+  <Params name="Params">
+    <ParamFixturePixels storage="0" name="Pixels" xmlVersion="2">
+      <ParamRange name="Width" default="1" value="150">
+        <ValueRange name="defaultRange" min="1" max="512"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0.29158512720156554154"/>
+      </ParamRange>
+      <ParamRange name="Height" default="1" value="1">
+        <ValueRange name="defaultRange" min="1" max="512"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+      </ParamRange>
+      <ParamChoice name="Color Format" default="rgb" value="rgb" storeChoices="0"/>
+      <ParamChoice name="Distribution" default="170" value="170" storeChoices="0"/>
+      <ParamRange name="Gamma" default="2.5" value="2.5">
+        <ValueRange name="defaultRange" min="1" max="3"/>
+        <BehaviourDouble name="BehaviourDouble"/>
+        <PhaseSourceStatic name="PhaseSourceStatic" phase="0.75"/>
+      </ParamRange>
+    </ParamFixturePixels>
+  </Params>
+</Fixture>

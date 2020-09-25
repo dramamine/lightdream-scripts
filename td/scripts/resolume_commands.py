@@ -62,6 +62,14 @@ def default_init(column):
   send("/composition/layers/{}/clips/{}/connect".format(layer_pre, column), 1)  # pre
   return
 
+def do_autopilot(yes):
+  if yes:
+    send("/composition/layers/1/transition/duration", 0.5)
+    send("/composition/layers/1/autopilot", 3)
+  else:
+    send("/composition/layers/1/transition/duration", 0.0)
+    send("/composition/layers/1/autopilot", 1)
+  return
 
 def dashboardKnobPre(val, layer, column, link):
   send("/composition/layers/{}/clips/{}/dashboard/link{}".format(layer, column, link), val)

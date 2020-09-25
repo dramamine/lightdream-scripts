@@ -49,6 +49,10 @@ def onOffToOn(channel, sampleIndex, val, prev):
 # using the same function as above
 onOnToOff = onOffToOn
 
+# is this one of the decks where we want to turn on autopilot?
+def should_autopilot(val):
+  return val == 10
+
 # one of the values in our 'rename1' chop has changed.
 def onValueChange(channel, sampleIndex, val, prev):
   if channel.name == 'track_id':
@@ -63,6 +67,11 @@ def onValueChange(channel, sampleIndex, val, prev):
   
   if channel.name == 'deck':
     resolume_commands.update_deck(val)
+    if should_autopilot(val):
+      resolume_commands.do_autopilot(True)
+    elif should_autopilot(prev) and val != prev:
+      resolume_commands.do_autopilot(False)
+      
     return
   
   # NOTE: on 6/2, changed this from 'effects_column' since my pulses and knobs

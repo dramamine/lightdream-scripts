@@ -38,7 +38,7 @@ Return
 
 ; load USC
 #9::
-Run C:\git\lightdream-scripts\usc\bin\usc-game.exe
+Run C:\git\lightdream-scripts\usc\usc-game.exe
 WinWait USC-Game, , 60
 if ErrorLevel
 {
