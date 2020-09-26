@@ -222,5 +222,3 @@ const char* teensyUID64(void) {
 		}
 
 #endif
-
-
