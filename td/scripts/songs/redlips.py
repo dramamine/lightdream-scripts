@@ -18,37 +18,16 @@ outro_a = {**effects.heatinvert, 'bg_column': 14, }
 outro_b = {**effects.heatinvert, 'bg_column': 15, }
 end = {**effects.heatinvert, 'bg_column': 16, 'init': pulse_clear_init}
 
-controls = {
-    0: effects.clear,
-    1: intro,
-    2: buildup,
-    3: redlips_always_lie,
-    4: drop_a,
-    5: drop_wonk,
-    6: drop_a,
-    7: stealthy_prize,
-    8: drop_b,
-    9: drop_wonk,
-    10: drop_b,
-    11: stealthy_prize,
-    12: dontlet,
-    13: quiet,
-    14: buildup,
-    15: redlips_always_lie,
-    16: drop_c,
-    17: skreech_a,
-    18: drop_c,
-    19: skreech_a,
-    20: drop_c,
-    21: skreech_a,
-    22: stealthy_prize,
-    23: drop_c,
-    24: skreech_b,
-    25: drop_c,
-    26: skreech_b,
-    27: drop_d,
-    28: stealthy_prize,
-    29: outro_a,
-    30: outro_b,
-    31: end
+controls = [ 
+    effects.clear, intro, buildup, redlips_always_lie, 
+    drop_a, drop_wonk, drop_a, stealthy_prize, 
+    drop_b, drop_wonk, drop_b, stealthy_prize, 
+    
+    dontlet, quiet, buildup, redlips_always_lie, 
+    
+    drop_c, skreech_a, drop_c, skreech_a, 
+    drop_c, skreech_a, stealthy_prize, drop_c, skreech_b, 
+    drop_c, skreech_b, drop_d, stealthy_prize, 
+    
+    outro_a, outro_b, end
 }

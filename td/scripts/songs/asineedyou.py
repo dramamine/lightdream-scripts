@@ -22,67 +22,12 @@ pv_aprime = {**effects.heatinvert, 'bg_column': 16, }
 pv_dropoff = {**effects.heatinvert, 'bg_column': 17, }
 end = {**effects.heatinvert, 'bg_column': 18, 'init': pulse_clear_init}
  
-# intro quiet a
-# intro quiet b
-# intro quiet a
-# intro drums come in
-# verse a
-# verse hipass
-# verse b
-# verse hipass
-# vocals pre
-# vocals a
-# vocals b
-# vocals a
-# verse a
-# verse a'
-# verse b
-# verse hipass or '
-# verse a 
-# verse a'
-# verse singin
-# vocals dropout
-# post-verse a
-# post-verse b
-# post-verse hi
-# post-verse a
-# post-verse '
-# post-verse b
-# post-verse dropoff
-# intro quiet a
-# intro quiet b
-# end
-
-controls = {
-    0: effects.clear,
-    1: intro_quiet_a,
-    2: intro_quiet_b,
-    3: intro_quiet_a,
-    4: intro_drums,
-    5: verse_a,
-    6: verse_hipass,
-    7: verse_b,
-    8: verse_hipass,
-    9: vocals_pre,
-    10: vocals_a, 
-    11: vocals_b,
-    12: vocals_a,
-    13: verse_a,
-    14: verse_aprime,
-    15: verse_b,
-    16: verse_hipass,  # ??
-    17: verse_a,
-    18: verse_aprime,
-    19: verse_singin,
-    20: vocals_dropout,
-    21: pv_a,
-    22: pv_b,
-    23: pv_hipass,
-    24: pv_a,
-    25: pv_aprime,
-    26: pv_b,
-    27: pv_dropoff,
-    28: intro_quiet_a,
-    29: intro_quiet_b,
-    30: end
-}
+controls = [ effects.clear, 
+  intro_quiet_a, intro_quiet_b, intro_quiet_a, intro_drums, 
+  verse_a, verse_hipass, verse_b, verse_hipass, 
+  vocals_pre, vocals_a,  vocals_b, vocals_a, verse_a, verse_aprime, 
+  verse_b, verse_hipass,  
+  verse_a, verse_aprime, verse_singin, vocals_dropout, 
+  pv_a, pv_b, pv_hipass, pv_a, pv_aprime, pv_b, pv_dropoff, 
+  intro_quiet_a, intro_quiet_b, end
+]

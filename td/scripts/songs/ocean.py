@@ -24,36 +24,23 @@ bridge_a = {**effects.colorwheel_quiet, 'bg_column': 12}
 bridge_b = {**effects.colorwheel_loud, 'bg_column': 13}
 end = {**effects.blank, 'bg_column': 14}
 
-controls = {
-    0: effects.clear,
-    1: intro_a,
-    2: intro_shift,
-    3: intro_b,
-    4: intro_shift,
-    5: intro_a,
-    6: buildup_a,  # you could put an ocean
-    7: buildup_b,  # if im caught
-    8: pre_drop_a,  # 1 measure
-    9: pre_drop_b,  # 1 measure
-    10: drop_a,
-    11: drop_b,
-    12: drop_end,
-    13: drop_a,
-    14: drop_b,
-    15: drop_end,
-    16: mid,
-    17: bridge_a,
-    18: bridge_b,
-    19: intro_a,  # when my echos..
-    20: buildup_a,  # you could put  an ocean
-    21: buildup_b,
-    22: pre_drop_a,  # 1 measure
-    23: pre_drop_b,  # 1 measure
-    24: drop_a,
-    25: drop_b,
-    26: drop_end,
-    27: drop_a,
-    28: drop_b,
-    29: drop_end,
-    30: end
-}
+controls = [
+  effects.clear,
+  intro_a, intro_shift, intro_b, intro_shift, intro_a,
+  buildup_a,  # you could put an ocean
+  buildup_b,  # if im caught
+  pre_drop_a,  # 1 measure
+  pre_drop_b,  # 1 measure
+  drop_a, drop_b, drop_end,
+  drop_a, drop_b, drop_end,
+  mid,
+  bridge_a, bridge_b,
+  intro_a,  # when my echos..
+  buildup_a,  # you could put  an ocean
+  buildup_b,
+  pre_drop_a,  # 1 measure
+  pre_drop_b,  # 1 measure
+  drop_a, drop_b, drop_end,
+  drop_a, drop_b, drop_end,
+  end
+]

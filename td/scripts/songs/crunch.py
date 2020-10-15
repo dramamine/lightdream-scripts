@@ -15,33 +15,9 @@ space_b = {**effects.heatinvert, 'bg_column': 9, }
 outro = {**effects.heatinvert, 'bg_column': 10, }
 end = {**effects.heatinvert, 'bg_column': 11, 'init': pulse_clear_init}
 
-# intro (w pulses)
-# intro offbeats
-# intro basswonk
-# verse a
-# verse b
-# intro offbeats?
-# intro basswonk
-# verse c
-# verse d
-# space a
-# space b
-# outro
-
-
-controls = {
-    0: effects.clear,
-    1: intro,
-    2: intro_offbeats,
-    3: intro_basswonk,
-    4: verse_a,
-    5: verse_b,
-    6: intro_offbeats,
-    7: intro_basswonk,
-    8: verse_c,
-    9: verse_d,
-    10: space_a,
-    11: space_b,
-    12: outro,
-    13: end
-}
+controls = [ 
+    effects.clear, intro, intro_offbeats, intro_basswonk, 
+    verse_a, verse_b, intro_offbeats, intro_basswonk, 
+    verse_c, verse_d, 
+    space_a, space_b, outro, end
+]

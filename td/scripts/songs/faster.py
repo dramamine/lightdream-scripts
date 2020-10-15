@@ -16,23 +16,10 @@ outro_a = {**effects.heatinvert, 'bg_column': 10, 'init': pulse_clear_init}
 outro_b = {**effects.heatinvert, 'bg_column': 11, }
 end = {**effects.heatinvert, 'bg_column': 12, 'init': pulse_clear_init}
 
-controls = {
-  0: effects.blank,
-  1: intro,
-  2: verse_a,
-  3: verse_b,
-  4: buildup_a,
-  5: buildup_b,
-  6: drop_a,
-  7: drop_b,
-  8: honk,
-  9: drop_a,
-  10: drop_b,
-  11: drop_c,
-  12: honk,
-  13: drop_c,
-  14: honk,
-  15: outro_a,
-  16: outro_b,
-  17: end
-}
+controls = [ 
+  effects.blank, intro, verse_a, verse_b, buildup_a, buildup_b, 
+  drop_a, drop_b, honk, 
+  drop_a, drop_b, drop_c, honk, 
+  drop_c, honk, 
+  outro_a, outro_b, end
+]

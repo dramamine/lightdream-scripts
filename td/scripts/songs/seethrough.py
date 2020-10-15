@@ -15,24 +15,16 @@ endriff_a = {**effects.blank, 'bg_column': 12, }
 endriff_b = {**effects.blank, 'bg_column': 13, }
 end = {**effects.blank, 'bg_column': 14, }
 
-controls = {
-    0: effects.clear,
-    1: intro_a,
-    2: intro_b,
-    3: pre_verse,
-    4: verse_a,
-    5: verse_b,
-    6: verse_a,
-    7: verse_b,
-    8: pre_chorus,
-    9: drop_into_chorus,
-    10: chorus_a,
-    11: chorus_b,
-    12: chorus_a,
-    13: chorus_b,
-    14: postchorus_a,
-    15: postchorus_b,
-    16: endriff_a,
-    17: endriff_b,
-    18: end
-}
+controls = [
+  effects.clear,
+  intro_a, intro_b,
+  pre_verse,
+  verse_a, verse_b,
+  verse_a, verse_b,
+  pre_chorus, drop_into_chorus,
+  chorus_a, chorus_b,
+  chorus_a, chorus_b,
+  postchorus_a, postchorus_b,
+  endriff_a, endriff_b,
+  end
+]
