@@ -38,5 +38,6 @@ style_piano = {
 }
 
 style_clear = {
-    'init': clear
+    'init': clear,
+    'pulse': partial(simple_effects_hit, layer=6),
 }
