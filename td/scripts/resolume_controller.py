@@ -32,7 +32,7 @@ print("after load_song_by_index")
 # or released.
 def onOffToOn(channel, sampleIndex, val, prev):
   is_on = 1 - int(val)
-  # print("offToOn index:" + str(channel.index) + " (" + channel.name + ")" + str(val))
+  print("offToOn index:" + str(channel.index) + " (" + channel.name + ")" + str(val))
   column = controls[section]['effects_column']
 
   ctrlname = channel.name[:6]

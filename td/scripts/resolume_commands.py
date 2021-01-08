@@ -1,24 +1,25 @@
 # background layer. note these are 1-indexed.
 layer_bg = 1
 # pre- buttons layer. ex. effects that only affect the BG layer
-layer_pre = 2
+# layer_pre = 2
+
+layer_pulses = 2
+
 # which layer contains the first button?
 layer_button_first = 3
 
-layer_post = 10
+# layer_post = 10
 
 def send(loc, val):
   op('resolume').sendOSC(loc, [val])
 
-# just run the clip.
-# column (int): which column are we using?
-# blayer (idx): which button was pressed? should be 0-index
+# # just run the clip.
+# # column (int): which column are we using?
+# # blayer (idx): which button was pressed? should be 0-index
 def simple_effects_hit(layer, column):
   if column <= 0:
     print("WARN: simple_effects_hit called with column <= 0")
-
-  button_layer = layer_button_first + layer
-  send("/composition/layers/{}/clips/{}/connect".format(button_layer, column), 1)
+  send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)
 
 def clip_piano_on(layer, column=0):
   button_layer = layer_button_first + layer
@@ -55,11 +56,11 @@ def simple_bg_update(idx):
   send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, idx), 1)
   return
 
-# load pre- and post- duders
+# just clear out the last pulse.
 def default_init(column):
   # print("INFO: default init with column:", column)
-  send("/composition/layers/{}/clips/{}/connect".format(layer_post, column), 1)  # pre
-  send("/composition/layers/{}/clips/{}/connect".format(layer_pre, column), 1)  # pre
+  # send("/composition/layers/{}/clips/{}/connect".format(# layer_post, column), 1)  # post
+  # send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)  # pre
   return
 
 def do_autopilot(yes):
@@ -71,32 +72,32 @@ def do_autopilot(yes):
     send("/composition/layers/1/autopilot", 1)
   return
 
-def dashboardKnobPre(val, layer, column, link):
-  send("/composition/layers/{}/clips/{}/dashboard/link{}".format(layer, column, link), val)
-  return
+# def dashboardKnobPre(val, layer, column, link):
+#   send("/composition/layers/{}/clips/{}/dashboard/link{}".format(layer, column, link), val)
+#   return
 
-# in layer 'Pre', control the 1st dashboard knob
-def dashboardKnobPre1(val, column):
-  if column <= 0:
-    print("WARN: dashboardKnobPre1 called with column <= 0")
-  dashboardKnobPre(val, layer_pre, column, 1)
-  return 
+# # in layer 'Pre', control the 1st dashboard knob
+# def dashboardKnobPre1(val, column):
+#   if column <= 0:
+#     print("WARN: dashboardKnobPre1 called with column <= 0")
+#   dashboardKnobPre(val, layer_pre, column, 1)
+#   return 
 
-# in layer 'Pre', control the 1st dashboard knob
-def dashboardKnobPre2(val, column):
-  if column <= 0:
-    print("WARN: dashboardKnobPre1 called with column <= 0")
-  dashboardKnobPre(val, layer_pre, column, 2)
-  return
+# # in layer 'Pre', control the 1st dashboard knob
+# def dashboardKnobPre2(val, column):
+#   if column <= 0:
+#     print("WARN: dashboardKnobPre1 called with column <= 0")
+#   dashboardKnobPre(val, layer_pre, column, 2)
+#   return
 
 
-def dashboardKnobBG1(val, column):
-  dashboardKnobPre(val, layer_bg, column, 1)
-  return
+# def dashboardKnobBG1(val, column):
+#   dashboardKnobPre(val, layer_bg, column, 1)
+#   return
 
-def dashboardKnobBG2(val, column):
-  dashboardKnobPre(val, layer_bg, column, 2)
-  return
+# def dashboardKnobBG2(val, column):
+#   dashboardKnobPre(val, layer_bg, column, 2)
+#   return
 
 # keeping it simple:
 # controlid refers to the integer of "knob1"-"knob6"
@@ -111,28 +112,28 @@ def updated_knob_handler(val, column, controlid, left):
 def clear(opt=0):
   send('/composition/layers/1/clear', 1)
   send('/composition/layers/2/clear', 1)
-  send('/composition/layers/3/clear', 1)
-  send('/composition/layers/4/clear', 1)
-  send('/composition/layers/5/clear', 1)
-  send('/composition/layers/6/clear', 1)
-  send('/composition/layers/7/clear', 1)
-  send('/composition/layers/8/clear', 1)
-  send('/composition/layers/9/clear', 1)
+  # send('/composition/layers/3/clear', 1)
+  # send('/composition/layers/4/clear', 1)
+  # send('/composition/layers/5/clear', 1)
+  # send('/composition/layers/6/clear', 1)
+  # send('/composition/layers/7/clear', 1)
+  # send('/composition/layers/8/clear', 1)
+  # send('/composition/layers/9/clear', 1)
   send('/composition/layers/1/clear', 0)
   send('/composition/layers/2/clear', 0)
-  send('/composition/layers/3/clear', 0)
-  send('/composition/layers/4/clear', 0)
-  send('/composition/layers/5/clear', 0)
-  send('/composition/layers/6/clear', 0)
-  send('/composition/layers/7/clear', 0)
-  send('/composition/layers/8/clear', 0)
-  send('/composition/layers/9/clear', 0)
+  # send('/composition/layers/3/clear', 0)
+  # send('/composition/layers/4/clear', 0)
+  # send('/composition/layers/5/clear', 0)
+  # send('/composition/layers/6/clear', 0)
+  # send('/composition/layers/7/clear', 0)
+  # send('/composition/layers/8/clear', 0)
+  # send('/composition/layers/9/clear', 0)
   return
 
 # clears any active pulses
 def pulse_clear_init(column):
-  send('/composition/layers/9/clear', 1)
-  send('/composition/layers/9/clear', 0)
+  send("/composition/layers/{}/clear".format(layer_pulses), 1)
+  send("/composition/layers/{}/clear".format(layer_pulses), 0)
   default_init(column)
   return
 
