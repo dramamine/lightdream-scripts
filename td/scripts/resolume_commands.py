@@ -17,6 +17,7 @@ def send(loc, val):
 # # column (int): which column are we using?
 # # blayer (idx): which button was pressed? should be 0-index
 def simple_effects_hit(layer, column):
+  print("DEPRECATED: simple_effects_hit")
   if column <= 0:
     print("WARN: simple_effects_hit called with column <= 0")
   send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)
@@ -47,13 +48,15 @@ def opacity_piano_off(layer, column=0):
   return
 
 # update the bg.
-def simple_bg_update(idx):
-  # print("INFO: simple_bg_update: ", idx)
-  if (idx <= 0):
-    send('/composition/layers/1/clear', 1)
-    send('/composition/layers/1/clear', 0)
-    return
-  send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, idx), 1)
+def activate_bg_column(column_id):
+  print("INFO: activate_bg_column!: ", column_id)
+  if (column_id <= 0):
+    print("DEPRECATED: used to clear cuz column_id <= 0 but I dont think i do that anymore")
+    # send('/composition/layers/1/clear', 1)
+    # send('/composition/layers/1/clear', 0)
+    # return
+  
+  send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, column_id), 1)
   return
 
 # just clear out the last pulse.
@@ -110,33 +113,28 @@ def updated_knob_handler(val, column, controlid, left):
   return
 
 def clear(opt=0):
+  print("TODO DEPRECATE: regular clear")
   send('/composition/layers/1/clear', 1)
   send('/composition/layers/2/clear', 1)
-  # send('/composition/layers/3/clear', 1)
-  # send('/composition/layers/4/clear', 1)
-  # send('/composition/layers/5/clear', 1)
-  # send('/composition/layers/6/clear', 1)
-  # send('/composition/layers/7/clear', 1)
-  # send('/composition/layers/8/clear', 1)
-  # send('/composition/layers/9/clear', 1)
   send('/composition/layers/1/clear', 0)
   send('/composition/layers/2/clear', 0)
-  # send('/composition/layers/3/clear', 0)
-  # send('/composition/layers/4/clear', 0)
-  # send('/composition/layers/5/clear', 0)
-  # send('/composition/layers/6/clear', 0)
-  # send('/composition/layers/7/clear', 0)
-  # send('/composition/layers/8/clear', 0)
-  # send('/composition/layers/9/clear', 0)
   return
 
-# clears any active pulses
 def pulse_clear_init(column):
-  send("/composition/layers/{}/clear".format(layer_pulses), 1)
-  send("/composition/layers/{}/clear".format(layer_pulses), 0)
+  print("DEPRECATED FN: pulse_clear_init")
+  pulse_clear()
   default_init(column)
   return
 
+# clears any active pulses
+def pulse_clear():
+  send("/composition/layers/{}/clear".format(layer_pulses), 1)
+  send("/composition/layers/{}/clear".format(layer_pulses), 0)
+  return
+
+def pulse_hit(column):
+  send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)
+  return
 
 def update_tempo(bpm):
     send('/composition/tempocontroller/tempo', bpm)
