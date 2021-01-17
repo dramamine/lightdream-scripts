@@ -1,20 +1,17 @@
-#from functools import partial
-from resolume_commands import pulse_clear_init
-# import sequences
 import effects
 
-intro = {**effects.heatinvert, 'bg_column': 1, 'init': pulse_clear_init}
-verse_a = {**effects.heatinvert, 'bg_column': 2, }
-verse_b = {**effects.heatinvert, 'bg_column': 3, 'init': pulse_clear_init}
-buildup_a = {**effects.heatinvert, 'bg_column': 4, 'init': pulse_clear_init}
-buildup_b = {**effects.heatinvert, 'bg_column': 5, 'init': pulse_clear_init}
-drop_a = {**effects.heatinvert, 'bg_column': 6, 'init': pulse_clear_init}
-drop_b = {**effects.heatinvert, 'bg_column': 7, 'init': pulse_clear_init}
-honk = {**effects.heatinvert, 'bg_column': 8, 'init': pulse_clear_init}
-drop_c = {**effects.heatinvert, 'bg_column': 9, 'init': pulse_clear_init}
-outro_a = {**effects.heatinvert, 'bg_column': 10, 'init': pulse_clear_init}
-outro_b = {**effects.heatinvert, 'bg_column': 11, }
-end = {**effects.heatinvert, 'bg_column': 12, 'init': pulse_clear_init}
+intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
+verse_a = {'bg_column': 2, }
+verse_b = {'bg_column': 3, 'pulse_clear': True}
+buildup_a = {'bg_column': 4, 'pulse_clear': True}
+buildup_b = {'bg_column': 5, 'pulse_clear': True}
+drop_a = {'bg_column': 6, 'pulse_clear': True}
+drop_b = {'bg_column': 7, 'pulse_clear': True}
+honk = {'bg_column': 8, 'pulse_clear': True}
+drop_c = {'bg_column': 9, 'pulse_clear': True}
+outro_a = {'bg_column': 10, 'pulse_clear': True}
+outro_b = {'bg_column': 11, }
+end = {'bg_column': 12, 'pulse_clear': True}
 
 controls = [ 
   effects.blank, intro, verse_a, verse_b, buildup_a, buildup_b, 

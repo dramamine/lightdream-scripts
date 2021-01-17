@@ -1,33 +1,19 @@
 import effects
-from resolume_commands import pulse_clear_init
 
-intro = {
-    **effects.heatinvert,
-    'bg_column': 1,
-}
+intro = {'bg_column': 1, 'resync': True}
 
-verse_a = {
-    **effects.heatinvert,
-    'bg_column': 2,
-    'init': pulse_clear_init
-}
-verse_b = {
-    **effects.heatinvert,
-    'bg_column': 3,
-}
-wonk = {
-    **effects.heatinvert,
-    'bg_column': 4,
-}
-quiet_a = {**effects.heatinvert, 'bg_column': 5, }
-quiet_b = {**effects.heatinvert, 'bg_column': 6, }
-quiet_c = {**effects.heatinvert, 'bg_column': 7, }
-verseplus_a = {**effects.heatinvert, 'bg_column': 8, }
-verseplus_b = {**effects.heatinvert, 'bg_column': 9, }
-verseplus_c = {**effects.heatinvert, 'bg_column': 10, }
-verseplus_d = {**effects.heatinvert, 'bg_column': 11, }
-pre_end = {**effects.heatinvert, 'bg_column': 12, }
-end = {**effects.heatinvert, 'bg_column': 13, 'init': pulse_clear_init}
+verse_a = {'bg_column': 2, 'pulse_clear': True}
+verse_b = {'bg_column': 3}
+wonk = {'bg_column': 4}
+quiet_a = {'bg_column': 5}
+quiet_b = {'bg_column': 6}
+quiet_c = {'bg_column': 7}
+verseplus_a = {'bg_column': 8}
+verseplus_b = {'bg_column': 9}
+verseplus_c = {'bg_column': 10}
+verseplus_d = {'bg_column': 11}
+pre_end = {'bg_column': 12}
+end = {'bg_column': 13, 'pulse_clear': True}
 
 controls = [
   effects.clear,

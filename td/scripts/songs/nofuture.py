@@ -1,4 +1,3 @@
-from resolume_commands import pulse_clear_init
 import effects
 
 intro_a = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
@@ -28,6 +27,3 @@ controls = [
     wows_a, wows_b, wows_c,
     intro_a, intro_b, end
 ]
-
-# Aquilam Seethrough "Ocean (Goja Remix)" "Put the runes on u" "Gone For Never -Crunch Mix-" "As I Need You" "HaPPY FaSTeR" "Red Lips (Skrillex RMX)" "Girl Blunt" "Chillmode" "Hustle Bones" "Vroom Vroom" "Hot Pink" "Rage" "Nofuture"
-# Aquilam Seethrough Ocean Runes Crunch Asineedyou Faster Redlips Girlblunt CHILLMODE Bones Vroom Hotpink Rage Nofuture

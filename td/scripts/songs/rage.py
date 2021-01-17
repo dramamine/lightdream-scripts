@@ -1,15 +1,14 @@
-from resolume_commands import pulse_clear_init
 import effects
 
-intro = {**effects.clear, 'bg_column': 1, 'init': pulse_clear_init}
-verse_a = {**effects.clear, 'bg_column': 2, 'init': pulse_clear_init}
-verse_b = {**effects.blank, 'bg_column': 3, 'init': pulse_clear_init}
-verse_c = {**effects.blank, 'bg_column': 4}
-verse_d = {**effects.blank, 'bg_column': 5}
-ragin = {**effects.blank, 'bg_column': 6}
-dropout = {**effects.blank, 'bg_column': 7}
-outro = {**effects.blank, 'bg_column': 8}
-end = {**effects.blank, 'bg_column': 9}
+intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
+verse_a = {'bg_column': 2, 'pulse_clear': True}
+verse_b = {'bg_column': 3, 'pulse_clear': True}
+verse_c = {'bg_column': 4}
+verse_d = {'bg_column': 5}
+ragin = {'bg_column': 6}
+dropout = {'bg_column': 7}
+outro = {'bg_column': 8}
+end = {'bg_column': 9}
 
 controls = [
     effects.blank, intro,

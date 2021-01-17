@@ -1,19 +1,19 @@
 import effects
 
-intro_a = {**effects.blank, 'bg_column': 1, }
-intro_b = {**effects.blank, 'bg_column': 2, }
-pre_verse = {**effects.blank, 'bg_column': 3, }
-verse_a = {**effects.blank, 'bg_column': 4, }
-verse_b = {**effects.blank, 'bg_column': 5, }
-pre_chorus = {**effects.blank, 'bg_column': 6, }
-drop_into_chorus = {**effects.blank, 'bg_column': 7, }
-chorus_a = {**effects.blank, 'bg_column': 8, }
-chorus_b = {**effects.blank, 'bg_column': 9, }
-postchorus_a = {**effects.blank, 'bg_column': 10, }
-postchorus_b = {**effects.blank, 'bg_column': 11, }
-endriff_a = {**effects.blank, 'bg_column': 12, }
-endriff_b = {**effects.blank, 'bg_column': 13, }
-end = {**effects.blank, 'bg_column': 14, }
+intro_a = {'bg_column': 1, 'resync': True}
+intro_b = {'bg_column': 2}
+pre_verse = {'bg_column': 3}
+verse_a = {'bg_column': 4}
+verse_b = {'bg_column': 5}
+pre_chorus = {'bg_column': 6}
+drop_into_chorus = {'bg_column': 7}
+chorus_a = {'bg_column': 8}
+chorus_b = {'bg_column': 9}
+postchorus_a = {'bg_column': 10}
+postchorus_b = {'bg_column': 11}
+endriff_a = {'bg_column': 12}
+endriff_b = {'bg_column': 13}
+end = {'bg_column': 14}
 
 controls = [
   effects.clear,
