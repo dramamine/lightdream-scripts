@@ -1,7 +1,4 @@
-import effects
-
 intro = {'bg_column': 1, 'resync': True}
-
 verse_a = {'bg_column': 2, 'pulse_clear': True}
 verse_b = {'bg_column': 3}
 wonk = {'bg_column': 4}
@@ -16,7 +13,7 @@ pre_end = {'bg_column': 12}
 end = {'bg_column': 13, 'pulse_clear': True}
 
 controls = [
-  effects.clear,
+  None,
   intro,
   verse_a, verse_b,
   verse_a, verse_b,

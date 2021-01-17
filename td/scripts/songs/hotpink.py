@@ -1,5 +1,3 @@
-import effects
-
 verse_a = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 verse_a_prime = {'bg_column': 2}
 verse_b = {'bg_column': 3}
@@ -19,7 +17,7 @@ outro = {'bg_column': 16}
 end = {'bg_column': 17}
 
 controls = [
-    effects.blank, verse_a, verse_a_prime,
+    None, verse_a, verse_a_prime,
     verse_b, verse_b_prime,
     prechorus, chorus_a, chorus_a_prime, 
     bridge_a, bridge_a_prime, bridge_b, bridge_b_prime,

@@ -1,5 +1,3 @@
-import effects
-
 intro = {'bg_column': 1, 'resync': True}
 buildup = {'bg_column': 2}
 redlips_always_lie = {'bg_column': 3}
@@ -18,7 +16,7 @@ outro_b = {'bg_column': 15}
 end = {'bg_column': 16, 'pulse_clear': True}
 
 controls = [ 
-    effects.clear, intro, buildup, redlips_always_lie, 
+    None, intro, buildup, redlips_always_lie,
     drop_a, drop_wonk, drop_a, stealthy_prize, 
     drop_b, drop_wonk, drop_b, stealthy_prize, 
     

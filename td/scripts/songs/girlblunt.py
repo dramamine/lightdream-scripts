@@ -1,5 +1,3 @@
-import effects
-
 intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 chorus_a = {'bg_column': 2}
 chorus_b = {'bg_column': 3}
@@ -16,7 +14,7 @@ outro = {'bg_column': 13}
 end = {'bg_column': 14}
 
 controls = [ 
-  effects.blank, intro, 
+  None, intro,
   chorus_a, chorus_b, chorus_a, chorus_b, 
   verse_a, verse_b, 
   chorus_a, chorus_b, chorus_a, chorus_b, 

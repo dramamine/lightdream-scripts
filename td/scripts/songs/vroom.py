@@ -1,7 +1,3 @@
-# copied from some other file... can/should probably get rid of everything
-from resolume_commands import pulse_clear_init
-import effects
-
 intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 buildup_a = {'bg_column': 2}
 buildup_b = {'bg_column': 3}
@@ -19,7 +15,7 @@ end = {'bg_column': 14, 'pulse_clear': True}
 
 
 controls = [
-    effects.blank, intro, 
+    None, intro, 
     
     buildup_a, buildup_b, throwdown,
     verse_a, verse_b, verse_c,

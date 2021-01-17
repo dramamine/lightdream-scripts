@@ -1,5 +1,3 @@
-import effects
-
 intro_a = {'bg_column': 1, 'resync': True}
 intro_b = {'bg_column': 2}
 pre_verse = {'bg_column': 3}
@@ -16,7 +14,7 @@ endriff_b = {'bg_column': 13}
 end = {'bg_column': 14}
 
 controls = [
-  effects.clear,
+  None,
   intro_a, intro_b,
   pre_verse,
   verse_a, verse_b,

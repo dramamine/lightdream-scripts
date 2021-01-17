@@ -118,7 +118,13 @@ def onSectionChange(new_section):
   global section
   section = new_section
 
+  if section <= 0:
+    resolume_commands.clear()
+    return
+
   data = controls[section]
+
+
   # print("hello from onSectionChange", section)
   try:
     resolume_commands.activate_bg_column(data['bg_column'])

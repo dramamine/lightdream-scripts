@@ -1,5 +1,3 @@
-import effects
-
 intro_a = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 intro_b = {'bg_column': 2}
 wubs_a = {'bg_column': 3}
@@ -17,7 +15,7 @@ wows_c = {'bg_column': 14}
 end = {'bg_column': 15}
 
 controls = [
-    effects.blank, 
+    None,
     intro_a, intro_b,
     wubs_a, wubs_b,
     hits_a, hits_b,

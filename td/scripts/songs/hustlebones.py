@@ -1,5 +1,3 @@
-import effects
-
 intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 verse_a = {'bg_column': 2}
 verse_b = {'bg_column': 3}
@@ -23,7 +21,7 @@ end = {'bg_column': 20, 'pulse_clear': True}
 
 
 controls = [
-  effects.blank, intro, verse_a, duba, verse_b, bones, duba, 
+  None, intro, verse_a, duba, verse_b, bones, duba,
 
   chorus_a, chorus_duba, chorus_b, chorus_eeee, 
   chorus_a, chorus_duba, chorus_b, chorus_eeee, chorus_duba, 

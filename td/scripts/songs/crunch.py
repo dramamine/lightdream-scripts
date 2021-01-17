@@ -1,5 +1,3 @@
-import effects
-
 intro = {'bg_column': 1, 'pulse_clear': True, 'resync': True}
 intro_offbeats = { 'bg_column': 2, }
 intro_basswonk = { 'bg_column': 3, }
@@ -13,7 +11,7 @@ outro = {'bg_column': 10, }
 end = {'bg_column': 11, 'pulse_clear': True}
 
 controls = [ 
-    effects.clear, intro, intro_offbeats, intro_basswonk, 
+    None, intro, intro_offbeats, intro_basswonk,
     verse_a, verse_b, intro_offbeats, intro_basswonk, 
     verse_c, verse_d, 
     space_a, space_b, outro, end

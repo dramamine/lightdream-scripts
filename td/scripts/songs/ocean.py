@@ -1,5 +1,3 @@
-import effects
-
 intro_a = {'bg_column': 1, 'resync': True}
 intro_shift = {'bg_column': 2}
 intro_b = {'bg_column': 3}
@@ -18,7 +16,7 @@ bridge_b = {'bg_column': 13}
 end = {'bg_column': 14}
 
 controls = [
-  effects.clear,
+  None,
   intro_a, intro_shift, intro_b, intro_shift, intro_a,
   buildup_a,  # you could put an ocean
   buildup_b,  # if im caught
