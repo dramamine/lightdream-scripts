@@ -136,6 +136,11 @@ def pulse_hit(column):
   send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)
   return
 
+def set_pulse_playback_direction(colun, reversed):
+  val = 0 if reversed else 2
+  send("/composition/layers/{}/clips/{}/transport/position/behaviour/playdirection".format(layer_pulses, column), val)
+  return
+
 def update_tempo(bpm):
     send('/composition/tempocontroller/tempo', bpm)
     return

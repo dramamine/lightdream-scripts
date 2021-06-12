@@ -12,6 +12,8 @@ module = None
 controls = None
 section = 0
 
+direction_is_reversed = False
+
 def load_song_by_index(row):
   load_song(op('track_info')[row, 'module_name'])
   return
@@ -58,6 +60,8 @@ def should_autopilot(val):
 
 # one of the values in our 'rename1' chop has changed.
 def onValueChange(channel, sampleIndex, val, prev):
+  global direction_is_reversed
+
   if channel.name == 'track_id':
     module_name = op('track_info')[int(val), 'module_name']
     print("retreived module", module_name, "for track id", val)
@@ -78,34 +82,14 @@ def onValueChange(channel, sampleIndex, val, prev):
       
     return
   
-  # # NOTE: on 6/2, changed this from 'effects_column' since my pulses and knobs
-  # # have all been connected to the bg column I'm using.
-  # try:
-  #   column = controls[section]['bg_column']
-  # except (IndexError, KeyError):
-  #   print("ERR: could not find required entry bg_column in controls section:", section)
-  #   return
-
-  # if channel.name[:4] == 'knob':
-  #   # knob 0 through 5
-  #   controlid = int(channel.name[4:5])
-  #   left = channel.name[5:6] == 'a'
-  #   try:
-  #     # controls[eg]['knobs'] is an array of knob functions, so
-  #     # controls[eg]['knobs'][controlid] should access one of em.
-  #     controls[section]['knobs'](
-  #       val=val, 
-  #       column=controls[section]['effects_column'],
-  #       controlid=controlid,
-  #       left=left
-  #     )
-  #   except (IndexError, KeyError):
-  #     pass
-  #   return
-
   if (channel.name == 'hit' and val > prev) or channel.name == 'pulse' and val > 0:
     try:
       column = controls[section]['bg_column']
+
+      if ('direction_swap' in controls[section]):
+        direction_is_reversed = not direction_is_reversed
+        resolume_commands.set_pulse_playback_direction(column, direction_is_reversed)
+        return
       resolume_commands.pulse_hit(column)
     except (IndexError, KeyError):
       pass
@@ -114,7 +98,6 @@ def onValueChange(channel, sampleIndex, val, prev):
   return
 
 def onSectionChange(new_section):
-  # update global, in case I need it
   global section
   section = new_section
 
@@ -124,8 +107,6 @@ def onSectionChange(new_section):
 
   data = controls[section]
 
-
-  # print("hello from onSectionChange", section)
   try:
     resolume_commands.activate_bg_column(data['bg_column'])
   except (IndexError, KeyError):
@@ -149,6 +130,12 @@ def onSectionChange(new_section):
     if data['resync']:
       print("INFO: resyncin")
       resolume_commands.resync()
+  except (IndexError, KeyError):
+    pass
+
+  try:
+    if data['pulse_toggle_on_load']:
+      resolume_commands.pulse_hit()
   except (IndexError, KeyError):
     pass
   return
