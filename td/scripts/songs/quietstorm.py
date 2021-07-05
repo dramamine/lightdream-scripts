@@ -36,3 +36,6 @@ controls = [
     spacey_a, spacey_b,
     end    
 ]
+
+# snips a & b: sync to beat and envelope
+# spacey a and be seem broken

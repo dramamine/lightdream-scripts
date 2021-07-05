@@ -20,7 +20,7 @@ controls = [
   drums_a, drums_b, drums_c, drums_d,
   waah_a, waah_b, waah_c,
   drums_a, drums_b, drums_c,
-  quiet_a, quiet_b
+  quiet_a, quiet_b, end
 ]
 
 ## Intro video start is weird since the scale is at 100-0  or whatever
