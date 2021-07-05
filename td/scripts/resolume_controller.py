@@ -26,33 +26,7 @@ def load_song(module_name):
   section = int(op('rename1').chan('section'))
   return
 
-# print("before load_song_by_index")
 load_song_by_index( int(op('rename1').chan('track_id')) )
-# print("after load_song_by_index")
-
-# checking to see when buttons (button1-button6) are pressed,
-# or released.
-def onOffToOn(channel, sampleIndex, val, prev):
-  # @TODO un-check in TouchDesigner
-
-  # is_on = 1 - int(val)
-  # print("offToOn index:" + str(channel.index) + " (" + channel.name + ")" + str(val))
-  # column = controls[section]['effects_column']
-
-  # ctrlname = channel.name[:6]
-  # if ctrlname == 'button':
-  #   # get the control id
-  #   # assume it's named 'button1' etc... or things will break
-  #   controlid = int(channel.name[6:]) - 1;
-  #   try:
-  #     controls[section]['buttons'][controlid][is_on](column=column)
-  #   except (IndexError, KeyError):
-  #     pass
-  return
-
-# using the same function as above
-# @TODO remove
-onOnToOff = onOffToOn
 
 # is this one of the decks where we want to turn on autopilot?
 def should_autopilot(val):
@@ -73,17 +47,17 @@ def onValueChange(channel, sampleIndex, val, prev):
     return
   
   if channel.name == 'deck':
-    print("update deck is here:", val)
     resolume_commands.update_deck(val)
+    resolume_commands.clear()
+
     if should_autopilot(val):
       resolume_commands.do_autopilot(True)
       resolume_commands.update_transition_time(0.5)
     elif should_autopilot(prev) and val != prev:
       resolume_commands.do_autopilot(False)
-      
+
     # for safety, re-init the transition times
     resolume_commands.update_transition_time(0.)
-
     return
   
   if (channel.name == 'hit' and val > prev) or channel.name == 'pulse' and val > 0:
@@ -111,7 +85,6 @@ def onSectionChange(new_section):
   section = new_section
 
   if section <= 0:
-    resolume_commands.clear()
     return
 
   data = controls[section]
@@ -120,24 +93,15 @@ def onSectionChange(new_section):
     resolume_commands.activate_bg_column(data['bg_column'])
   except (IndexError, KeyError):
     pass
-
-  # old
-  try:
-    data['init'](data['bg_column'])
-  except (IndexError, KeyError):
-    pass
   
-  # new
   try:
     if data['pulse_clear']:
-      print("INFO: clearin")
       resolume_commands.pulse_clear()
   except (IndexError, KeyError):
     pass
 
   try:
     if data['resync']:
-      print("INFO: resyncin")
       resolume_commands.resync()
   except (IndexError, KeyError):
     pass
