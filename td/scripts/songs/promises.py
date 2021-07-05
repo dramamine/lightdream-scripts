@@ -14,9 +14,7 @@ ep = {'bg_column': 5, 'pulse_toggle_on_load': True}
 fp = {'bg_column': 6, 'pulse_toggle_on_load': True}
 gp = {'bg_column': 7, 'pulse_toggle_on_load': True}
 hp = {'bg_column': 8, 'pulse_toggle_on_load': True}
-end = {'bg_column': 9, 'transition_time': 0.0}
-
-# 40 then the end
+end = {'bg_column': 9}
 
 controls = [
   None,

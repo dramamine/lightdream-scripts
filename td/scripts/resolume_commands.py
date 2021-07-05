@@ -67,12 +67,14 @@ def default_init(column):
   return
 
 def do_autopilot(yes):
-  if yes:
-    send("/composition/layers/1/transition/duration", 0.5)
-    send("/composition/layers/1/autopilot", 3)
-  else:
-    send("/composition/layers/1/transition/duration", 0.0)
-    send("/composition/layers/1/autopilot", 1)
+  val = 3 if yes else 1
+  send("/composition/layers/1/autopilot", val)
+  return
+
+# update transition time for pulses/bgs layer
+def update_transition_time(val):
+  for i in range(1, 3):
+    send("/composition/layers/{}/transition/duration".format(i), val)
   return
 
 # def dashboardKnobPre(val, layer, column, link):
@@ -142,13 +144,13 @@ def set_pulse_playback_direction(column, reversed):
   return
 
 def update_tempo(bpm):
-    send('/composition/tempocontroller/tempo', bpm)
-    return
+  send('/composition/tempocontroller/tempo', bpm)
+  return
 
 def resync():
-    send('/composition/tempocontroller/resync', 1)
-    send('/composition/tempocontroller/resync', 0)
-    return
+  send('/composition/tempocontroller/resync', 1)
+  send('/composition/tempocontroller/resync', 0)
+  return
 
 def update_deck(idx):
   print("update deck called.")

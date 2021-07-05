@@ -77,9 +77,13 @@ def onValueChange(channel, sampleIndex, val, prev):
     resolume_commands.update_deck(val)
     if should_autopilot(val):
       resolume_commands.do_autopilot(True)
+      resolume_commands.update_transition_time(0.5)
     elif should_autopilot(prev) and val != prev:
       resolume_commands.do_autopilot(False)
       
+    # for safety, re-init the transition times
+    resolume_commands.update_transition_time(0.)
+
     return
   
   if (channel.name == 'hit' and val > prev) or channel.name == 'pulse' and val > 0:
@@ -97,6 +101,11 @@ def onValueChange(channel, sampleIndex, val, prev):
 
   return
 
+# 'section' (i.e. section of the song) is used as an index to 'controls'.
+# take the data from the section and make any resolume calls it designates.
+#
+# @param int new_section
+#
 def onSectionChange(new_section):
   global section
   section = new_section
@@ -138,4 +147,11 @@ def onSectionChange(new_section):
       resolume_commands.pulse_hit(data['bg_column'])
   except (IndexError, KeyError):
     pass
+
+  try:
+    if data['transition_time'] is not None:
+      resolume_commands.update_transition_time(data['transition_time'])
+  except (IndexError, KeyError):
+    pass
+
   return
