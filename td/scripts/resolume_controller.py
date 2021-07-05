@@ -86,7 +86,7 @@ def onValueChange(channel, sampleIndex, val, prev):
     try:
       column = controls[section]['bg_column']
 
-      if ('direction_swap' in controls[section]):
+      if ('direction_swap' in controls[section] and controls[section]['direction_swap']):
         direction_is_reversed = not direction_is_reversed
         resolume_commands.set_pulse_playback_direction(column, direction_is_reversed)
         return
@@ -135,7 +135,7 @@ def onSectionChange(new_section):
 
   try:
     if data['pulse_toggle_on_load']:
-      resolume_commands.pulse_hit()
+      resolume_commands.pulse_hit(data['bg_column'])
   except (IndexError, KeyError):
     pass
   return

@@ -1,44 +1,7 @@
-## refactor: new abstractions
-
-- a TRACK uses a DECK
-- a TRACK is divided into SECTIONS
-- each SECTION has EFFECTS
-- each SECTION has a BG
-- each SECTION has OPTIONS such as:
-  - resync: sync to the beat when this section starts
-  - knobs: 
-    - dashboardKnobPre1 (default)
-    - dashboardKnobBG1
-    - dashboardKnobPost1
-  - pulse: what to do on pulses/hits
-- EFFECTS are named in a data file; 
-  - use enums?
-  - names should match column names
-  - effects layers in Resolume should be persistent across decks
-
-
-## DATA SOURCES
-
-UDP (from svdx, or from console)
-- `udp_recent_values` stores most recent values sent
-- ONLY udp calls update `udp_recent_values`! (control flow)
-- `udp_callbacks` (filename: `udp_callbacks.py`) handles changes to these values
-
-TRACK INFO
-- table `track_info` stores track names from svdx; use it to look up module names and deck #s
-
-PROTOTYPE CONTROLS V2
-- handle button presses and knob turns
-- show SECTIONS dropdown
-- show (and/or allow clicks for) BG and EFFECTS sets
-
-UDP => RESOLUME_CONTROLLER
-- track changes
-- section changes
-- pulses
 
 ## REQUIRED SOFTWARE
 - AutoHotKey - not really necessary if you chose to compile it as .exe on host machine
+  + Win+6 through Win+9 opens all the softwares individually
 - AHK script needs to be added to Windows Start scripts as appropriate
 - OBS latest with obs-ndi plugin
 - Resolume 7.1.0
@@ -54,6 +17,17 @@ UDP => RESOLUME_CONTROLLER
       - Documents\Resolume Arena\Presets\Advanced Output
 - USC: zip up on host, unzip on target, check AHK destinations
 
+## TOUCHSCREEN
+- in Control Panel, go to Tablet PC Settings to configure display options
+- in Control Panel, Pen and Tablet settings also look helpful
+- Update Main.cfg fullscreen settings ex.
+```
+ScreenWidth = 1280
+ScreenHeight = 800
+Fullscreen = True
+FullscreenMonitorIndex = 1
+```
+
 ## UPDATING FILES
 - Resolume
   - Move anything you need from LD Testing to LD Final
@@ -68,6 +42,12 @@ Knobs to use:
 GRID (adds negative space)
 FRAGMENT (adds negative space)
 ROTATE (spin 2 win)
+
+## SONG BRAINSTORMING 6/30
+Foodman
+Floating Points need some of these tracks
+Max Cooper
+Contortionist
 
 
 

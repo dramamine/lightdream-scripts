@@ -136,7 +136,7 @@ def pulse_hit(column):
   send("/composition/layers/{}/clips/{}/connect".format(layer_pulses, column), 1)
   return
 
-def set_pulse_playback_direction(colun, reversed):
+def set_pulse_playback_direction(column, reversed):
   val = 0 if reversed else 2
   send("/composition/layers/{}/clips/{}/transport/position/behaviour/playdirection".format(layer_pulses, column), val)
   return
