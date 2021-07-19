@@ -27,5 +27,3 @@ controls = [
   e, f, d, c, a, b,
   end
 ]
-
-## TODO change transition times to what you need, then change them back at the end.
