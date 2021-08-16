@@ -63,7 +63,8 @@ uint8_t serial[4];
 void updateIp()
 {
   teensySN(serial);
-  Serial.printf("Serialnumber: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
+  Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
+  Serial.println("Version: 2021.8");
   uint8_t serials[5] = {
       0xFE, // 00-0C-35-FE orange
       0x5E, // 00-0C-46-5E yellow
@@ -77,7 +78,7 @@ void updateIp()
   {
     if (serials[i] == serial[3])
     {
-      Serial.println("got em");
+      Serial.println("Used serial to figure out which brain I am.");
       ip[3] = hardcoded_addresses[i];
       fakemac[5] = hardcoded_addresses[i];
     }
@@ -91,16 +92,30 @@ void setup()
   Serial.begin(115200);
 
   leds.begin();
+  Serial.printf("LED counter: %d pixels, %d LEDs \n", leds.numPixels(), numLeds);
+
   rainbowSetup();
+  constellationLoop(7);
+  leds.show();
+
+  delay(5000);
+  for (int i = 0; i < 201; i += 25)
+  {
+    whileNetworking(i);
+    delay(500);
+  }
+  delay(1000);
 
   updateIp();
 
-  Serial.println(ip[3]);
-  Serial.println("setting up artnet..");
+  Serial.println("Setting up Artnet via Ethernet cable...");
+  Serial.print("Link status (should be 2): ");
   Serial.println(Ethernet.linkStatus());
+  Serial.print("Server ip: ");
   Serial.println(Ethernet.dhcpServerIP());
   artnet.begin(fakemac, ip);
-  Serial.println("set up.");
+  Serial.println("Set up Artnet.");
+  Serial.print("Local ip: ");
   Serial.println(Ethernet.localIP());
 }
 
@@ -206,6 +221,7 @@ void handleDmxFrame()
 #define PINK 0x120009
 #define ORANGE 0x100400
 #define WHITE 0x101010
+#define BLACK 0x000000
 
 const long colors[6] = {
     WHITE,
@@ -271,7 +287,6 @@ long interpolateColor(byte start, byte end, byte idx)
 
 void rainbowSetup()
 {
-  Serial.printf("running led test 2: %d pixels, %d LEDs \n", leds.numPixels(), numLeds);
   for (int i = 0; i < 256; i++)
   {
     hues[i] = setLedColorHSV(i, 255, 255);
@@ -279,22 +294,20 @@ void rainbowSetup()
 }
 
 byte demo = 0;
-byte ticks = 0;
 byte timeOffset = 0;
+
 void demoRunner()
 {
   if (timeOffset == 0)
-    ticks++;
-  if (timeOffset == 0 && ticks % 10 == 0)
   {
-    Serial.print("switchin: ");
-    demo = 1 - demo;
-    Serial.println(demo);
+    // this just runs the constellation loop once and then runs rainbow forever
+    demo = demo + 1;
   }
 
-  if (demo == 0)
+  if (demo == 1)
   {
-    constellationLoop();
+    byte sequence = (byte)timeOffset / 32;
+    constellationLoop(sequence);
   }
   else
   {
@@ -302,21 +315,32 @@ void demoRunner()
   }
 
   leds.show();
-  timeOffset--;
-  delay(500);
+  timeOffset++;
+  delay(90);
 }
+// 63 is green
 // silver, blue, green, purple, orange, yellow
-long cHues[6] = {180, 205, 43, 190, 4, 30};
-void constellationLoop()
+long cHues[6] = {180, 170, 67, 220, 4, 30};
+void constellationLoop(byte sequence)
 {
+  long pcolor;
   for (int i = 0; i < numLeds; i++)
   {
-    byte uni = (int)i / (35 * 5);
-    Serial.print(uni);
-    // byte pixel = i % 35;
-    byte hue = cHues[0] + (i % 170);
-    byte satch = uni = 0 ? 0 : 255;
-    long pcolor = setLedColorHSV(hue, satch, 255);
+    byte constellation = (int)i / (35 * 5);
+
+    if (sequence == 0 or sequence == 7 or constellation == sequence - 1)
+    {
+      byte hue = cHues[constellation]; // + (i % 170);
+      byte satch = constellation = 0 ? 0 : 255;
+      pcolor = setLedColorHSV(hue, satch, 255);
+      // this is a deprecated method - less code but colors aren't as good
+      // pcolor = colors[constellation];
+    }
+    else
+    {
+      pcolor = BLACK;
+    }
+
     leds.setPixel(i, pcolor);
   }
   Serial.println();
@@ -335,6 +359,15 @@ void rainbowLoop()
     // Serial.printf("doing math for %d: strip %d pixel %d hue %d\n", i, strip, pixel, hue);
     leds.setPixel(i, hues[hue]);
   }
+}
+
+void whileNetworking(byte offset)
+{
+  for (int i = 0; i < numLeds; i++)
+  {
+    leds.setPixel(i, hues[(byte)(i * 19 + offset)]);
+  }
+  leds.show();
 }
 
 void initTest()
