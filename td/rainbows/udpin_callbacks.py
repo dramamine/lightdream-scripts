@@ -39,3 +39,13 @@ def onReceive(dat, rowIndex, message, bytes, peer):
   flipAt(y, z, flip)
   
   return
+
+def onRowChange(dat, rows):
+  for target in rows:
+    val = int(dat[target, 0])
+    if val == 0 or val == 1:
+        y = math.floor(target/9)
+        z = target % 9
+        flipAt(y, z, val)
+
+  return
