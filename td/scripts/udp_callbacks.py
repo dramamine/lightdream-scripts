@@ -36,6 +36,9 @@ def onReceive(dat, rowIndex, message, bytes, peer):
     update_title(value)
     update_section(0)
 
+  if action == 'song_playing':
+    update_song_playing(value)
+
   return
 
 def update_title(title):
@@ -58,3 +61,6 @@ def update_title(title):
 
 def update_section(value):
     op('udp_recent_values')['section', 1] = value
+
+def update_song_playing(value):
+    op('udp_recent_values')['song_playing', 1] = value
