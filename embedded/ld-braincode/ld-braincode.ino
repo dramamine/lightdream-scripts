@@ -298,24 +298,8 @@ byte timeOffset = 0;
 
 void demoRunner()
 {
-  if (timeOffset == 0)
-  {
-    // this just runs the constellation loop once and then runs rainbow forever
-    demo = demo + 1;
-  }
-
-  if (demo == 1)
-  {
-    byte sequence = (byte)timeOffset / 32;
-    constellationLoop(sequence);
-  }
-  else
-  {
-    rainbowLoop();
-  }
-
+  rainbowLoop();
   leds.show();
-  timeOffset++;
   delay(90);
 }
 // 63 is green
@@ -361,11 +345,12 @@ void rainbowLoop()
   }
 }
 
+// do a rainbow-y pattern
 void whileNetworking(byte offset)
 {
   for (int i = 0; i < numLeds; i++)
   {
-    leds.setPixel(i, hues[(byte)(i * 19 + offset)]);
+    leds.setPixel(i, hues[(byte)(i * 17 + offset)]);
   }
   leds.show();
 }
