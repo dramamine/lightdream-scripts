@@ -26,7 +26,7 @@ Return
 ; @TODO: TD standalone EXE? this should show the "physical" controls and
 ; generally be nicer
 #8::
-Run %A_ProgramFiles%\Derivative\TouchDesigner\bin\TouchDesigner099.exe "C:\git\lightdream-scripts\td\LightdreamOSC.toe"
+Run %A_ProgramFiles%\Derivative\TouchDesigner\bin\TouchDesigner.exe "C:\git\lightdream-scripts\td\LightdreamComplete.toe"
 WinWait TouchDesigner, , 120
 if ErrorLevel
 {

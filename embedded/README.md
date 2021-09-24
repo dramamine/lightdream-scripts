@@ -21,17 +21,34 @@ Received as space-delimited message.
 address: 0-44
 message: 1 for presses, 0 for releases
 
-### 1b. Circular touch interface.
+<!-- ### 1b. Circular touch interface.
 3 touchpads.
 
 address: 50-52
 message: 1 for presses, 0 for releases
+ -->
 
-### 1c. Bees interface
+
+### 1b. Bees interface
 1 motion sensor. When active, play bees animation.
 
 address: 60
 1 for motion, 0 for stillness
+
+### 1c. Wedges / Bananas interface
+10 touchpads.
+
+address: 70-79
+message: 1 for presses, 0 for releases
+
+lights: 25 lights
+
+### 1c. Colorwheel interface
+6 touchpads.
+
+address: 80-85
+message: 1 for presses, 0 for releases
+
 
 
 ## 2. TouchDesigner sends serial data back to Arduino.

@@ -38,4 +38,6 @@ controls = [
 ]
 
 # snips a & b: sync to beat and envelope
-# spacey a and be seem broken
+# nomelody a and b look the same
+# pulse_toggle_on_load not happenin'
+# direction_swap

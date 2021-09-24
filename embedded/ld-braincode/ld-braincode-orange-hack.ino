@@ -28,11 +28,11 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 
 // OctoWS2811 settings
 const int ledsPerStrip = 35 * 5; // change for your setup
-const byte numStrips = 6;        // change for your setup
+const byte numStrips = 7;        // change for your setup
 const int numLeds = ledsPerStrip * numStrips;
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
-DMAMEM int displayMemory[ledsPerStrip * 6];
-int drawingMemory[ledsPerStrip * 6];
+DMAMEM int displayMemory[ledsPerStrip * 7];
+int drawingMemory[ledsPerStrip * 7];
 const int config = WS2811_GRB | WS2811_800kHz;
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory, config);
 // @TODO not sure I need this really.
@@ -64,9 +64,9 @@ void updateIp()
 {
   teensySN(serial);
   Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
-  Serial.println("Version: 2021.9");
+  Serial.println("Version: 2021.8");
   uint8_t serials[5] = {
-      0xDA, // 00-10-16-DA orange
+      0xFE, // 00-0C-35-FE orange
       0x5E, // 00-0C-46-5E yellow
       0x5D, // 00-0C-46-5D green - motherbrain
       0x92, // 00-0C-46-92 blue
@@ -209,6 +209,13 @@ void handleDmxFrame()
   }
   if (sendFrame)
   {
+    // HACK to duplicate output #5 (second ethernet orange wire) to output #7 (second ethernet green wire)
+    // copy uni 4 to uni 6
+    for (int i = 4 * ledsPerStrip; i < 5 * ledsPerStrip; i++)
+    {
+      leds.setPixel(i + 2 * ledsPerStrip, leds.getPixel(i));
+    }
+
     leds.show();
     memset(universesReceived, 0, maxUniverses);
   }
