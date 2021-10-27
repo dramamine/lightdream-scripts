@@ -14,38 +14,19 @@
 #   peer.port       #network port associated with the peer
 #
 
-def flipAt(y,z,flip):
-  network_target = "quadrant" + str(y+1) + "/add" + str(z+1)
-  op(network_target).bypass = not flip
-  return
-
-def toggleAll(flip):
-  for y in range(0, 5):
-    for z in range(0, 9):
-      flipAt(y, z, flip)
-  return
-
-def onReceive(dat, rowIndex, message, bytes, peer):
-  print(message)
-  x = message.split(',')
-  target = int(x[0])
-  flip = bool(int(x[1]))
-  if target == 99:
-    toggleAll(flip)
-    return
-
-  y = math.floor(target/9)
-  z = target % 9
-  flipAt(y, z, flip)
-  
-  return
-
 def onRowChange(dat, rows):
   for target in rows:
-    val = int(dat[target, 0])
-    if val == 0 or val == 1:
-        y = math.floor(target/9)
-        z = target % 9
-        flipAt(y, z, val)
+    fingerId = dat[target, 0]
+    spotlight = op("spotlight" + str(target))
+    if not fingerId:
+      spotlight.par.centerx = -1
+      spotlight.par.centery = -1
+    else:
+      spotlight.par.centerx = float(dat[target, 1]) - 0.5
+      spotlight.par.centery = float(dat[target, 2]) - 0.5
 
+  return
+
+def onSizeChange(dat):
+  onRowChange(dat, range(0, dat.numRows))
   return

@@ -32,6 +32,18 @@ def onReceive(dat, rowIndex, message, bytes, peer):
   if action == 's':
     update_section(int(value))
 
+  if action == 'f':
+    fingerId = vals[2]
+    x = vals[3]
+    y = vals[4]
+    if value == '1':
+      op('fifo1').appendRow([fingerId, x, y])
+    elif value == '2':
+      op('fifo1').replaceRow(str(fingerId), [fingerId, x, y])
+    elif value == '0':
+      op('fifo1').deleteRow(str(fingerId))
+
+
   if action == 'title':
     update_title(value)
     update_section(0)
@@ -57,6 +69,7 @@ def update_title(title):
         'track_info')[row, 'module_name']
     op('udp_recent_values')['deck', 1] = op('track_info')[row, 'deck']
     op('udp_recent_values')['section', 1] = 0
+    op('fifo1').clear()
     return
 
 def update_section(value):
