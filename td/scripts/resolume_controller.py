@@ -118,4 +118,10 @@ def onSectionChange(new_section):
   except (IndexError, KeyError):
     pass
 
+  try:
+    if data['effects_column']:
+      resolume_commands.activate_effects_column(data['effects_column'])
+  except (IndexError, KeyError):
+    pass
+
   return

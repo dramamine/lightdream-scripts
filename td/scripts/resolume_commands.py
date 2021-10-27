@@ -1,6 +1,7 @@
 # background layer. note these are 1-indexed.
 layer_bg = 1
 layer_pulses = 2
+layer_effects = 4
 
 def send(loc, val):
   op('resolume').sendOSC(loc, [val])
@@ -9,6 +10,11 @@ def send(loc, val):
 def activate_bg_column(column_id):
   send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, column_id), 1)
   return
+
+def activate_effects_column(column_id):
+  send('/composition/layers/{}/clips/{}/connect'.format(layer_effects, column_id), 1)
+  return
+
 
 def do_autopilot(yes):
   val = 3 if yes else 1
