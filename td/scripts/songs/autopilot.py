@@ -1,6 +1,6 @@
 import random
 total_clips = 82
-total_effects = 29 # 21 + 8 blanks
+total_effects = 29  # 21 + 8 blanks
 intro = {'bg_column': 30, 'pulse_clear': True, 'transition_time': 0.5}
 
 clips = [
@@ -13,24 +13,24 @@ clips = [
 ]
 
 effects = [
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects),
-  *range(1,total_effects)
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects),
+  *range(1, total_effects)
 ]
 
 random.shuffle(clips)
@@ -45,6 +45,3 @@ controls = [
   intro,
   *map(turn_into_column, clips, effects)
 ]
-
-print(controls)
-print('done generating autopilot. length:', len(controls))

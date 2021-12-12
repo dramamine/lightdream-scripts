@@ -17,7 +17,8 @@ def onReceive(dat, rowIndex, message, bytes, peer):
 
   if vals[0][:3] == 'bpm':
     op('udp_recent_values')[action, 1] = value
-    tempo = float(vals[1])
+    tempo = max(float(vals[1]), 100)
+    # print("using tempo:", tempo)
     # convert from range 20-500 to 0-1
     to_send = (tempo - 20) / 480
     resolume_commands.update_tempo(to_send)
