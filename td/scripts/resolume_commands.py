@@ -22,8 +22,9 @@ def do_autopilot(yes):
   return
 
 # update transition time for pulses/bgs layer
-def update_transition_time(val):
-  for i in range(1, 3):
+def update_transition_time(val, layers=2):
+  for i in range(1, layers+1):
+    print("updating duration:", i, val)
     send("/composition/layers/{}/transition/duration".format(i), val)
   return
 

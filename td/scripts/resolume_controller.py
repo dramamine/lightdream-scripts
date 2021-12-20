@@ -96,6 +96,7 @@ def onSectionChange(new_section):
   
   try:
     if data['pulse_clear']:
+      print("clearing pulse")
       resolume_commands.pulse_clear()
   except (IndexError, KeyError):
     pass
@@ -115,6 +116,11 @@ def onSectionChange(new_section):
   try:
     if data['transition_time'] is not None:
       resolume_commands.update_transition_time(data['transition_time'])
+  except (IndexError, KeyError):
+    pass
+  try:
+    if data['transition_time_first_layer'] is not None:
+      resolume_commands.update_transition_time(data['transition_time_first_layer'], 1)
   except (IndexError, KeyError):
     pass
 

@@ -25,7 +25,7 @@ end = {'bg_column': 23}
 controls = [
     None, intro, build_a,
     noodles, straight_a, straight_b, quiet_a,
-    verse_a, verse_b, verse_a, verse_b,
+    verse_a, verse_b, verse_c, verse_b,
     verse_a, verse_b, verse_c, verse_d,
     verse_e, quiet_a, verse_e, quiet_b,
     verse_e, quiet_a, verse_e, buildup,
@@ -38,5 +38,5 @@ controls = [
     verse_a, verse_b, verse_c, 
     chill_a,
     verse_a, noodles, verse_b, riff,
-    verse_a, noodles, end
+    verse_e, noodles, end
 ]
