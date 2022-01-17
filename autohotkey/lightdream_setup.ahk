@@ -1,5 +1,26 @@
-; load resolume, turn on Advanced Output
+; open all the programs
+; GoSub #7
+; GoSub #8
+; GoSub #9
+
+; load touchdesigner
 #7::
+Run G:\TouchDesigner\bin\TouchDesigner.exe "E:\git\lightdream-scripts\td\LightdreamTouchscreen.toe"
+SetTitleMatchMode 2
+WinWait LightdreamTouchscreen, , 120
+if ErrorLevel
+{
+    MsgBox, Timed out waiting for TouchDesigner to open.
+    return
+}
+WinActivate, LightdreamTouchscreen
+WinWaitActive, LightdreamTouchscreen
+; Sleep 1000
+; Send, {F1}
+Return
+
+; load resolume, turn on Advanced Output
+#8::
 Run, %A_ProgramFiles%\Resolume Arena 6\Arena.exe
 WinWait Resolume Arena, , 120
 if ErrorLevel
@@ -14,26 +35,12 @@ if ErrorLevel
     MsgBox, Timed out waiting for Resolume with our comp loaded.
     return
 }
-Sleep 8000
+Sleep 2500
 WinActivate, Resolume Arena
 WinWaitActive, Resolume Arena
-Send, +^a
-Sleep 1000
-WinMinimize, Advanced Output
-Return
-
-; load touchdesigner
-; @TODO: TD standalone EXE? this should show the "physical" controls and
-; generally be nicer
-#8::
-Run G:\TouchDesigner\bin\TouchDesigner.exe "E:\git\lightdream-scripts\td\LightdreamTouchscreen.toe"
-WinWait TouchDesigner, , 120
-if ErrorLevel
-{
-    MsgBox, Timed out waiting for TouchDesigner to open.
-    return
-}
-WinMinimize TouchDesigner
+; Send, +^a
+; Sleep 2500
+; WinMinimize, Advanced Output
 Return
 
 ; load USC
@@ -47,29 +54,33 @@ if ErrorLevel
 }
 WinActivate, USC-Game
 WinWaitActive, USC-Game
-Send, 1
+Sleep 1000
+WinGetPos, X, Y, Width, Height, USC-Game
+MouseMove, X+Width/2, Y+Height/2.1
+MouseClick, Left
 Return
 
 ; load OBS
-#0::
-; Run %A_ProgramFiles%\obs-studio\bin\64bit\obs64.exe %A_ProgramFiles%\obs-studio\bin\64bit
-obs_window_name := "OBS 25"
-Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OBS Studio\OBS Studio (64bit).lnk
-WinWait %obs_window_name%, , 120
-if ErrorLevel
-{
-    MsgBox, Timed out waiting for OBS to open.
-    return
-}
-Sleep 2000
-WinActivate, %obs_window_name%
-WinWaitActive, %obs_window_name%
-WinGetPos, X, Y, Width, Height, %obs_window_name%
-; MouseMove, X+Width/2, Y+Height/2
-MouseClick, Right, Width/2, Height/2
-Send {Down}{Down}{Down}{Down}{Right}{Down}
-Sleep 1000
-Send {Enter}
-Sleep 1000
-WinMinimize %obs_window_name%
-Return
+; #0::
+; ; Run %A_ProgramFiles%\obs-studio\bin\64bit\obs64.exe %A_ProgramFiles%\obs-studio\bin\64bit
+; obs_window_name := "OBS 25"
+; Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OBS Studio\OBS Studio (64bit).lnk
+; WinWait %obs_window_name%, , 120
+; if ErrorLevel
+; {
+;     MsgBox, Timed out waiting for OBS to open.
+;     return
+; }
+; Sleep 2000
+; WinActivate, %obs_window_name%
+; WinWaitActive, %obs_window_name%
+; WinGetPos, X, Y, Width, Height, %obs_window_name%
+; ; MouseMove, X+Width/2, Y+Height/2
+; MouseClick, Right, Width/2, Height/2
+; Send {Down}{Down}{Down}{Down}{Right}{Down}
+; Sleep 1000
+; Send {Enter}
+; Sleep 1000
+; WinMinimize %obs_window_name%
+; Return
+

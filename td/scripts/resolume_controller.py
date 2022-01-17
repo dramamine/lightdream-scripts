@@ -104,6 +104,8 @@ def onSectionChange(new_section):
   try:
     if data['resync']:
       resolume_commands.resync()
+      # also wanna resync the clips animations
+      op('/project1/clips_touch/movie_index_lfo').par.resetpulse.pulse()
   except (IndexError, KeyError):
     pass
 
