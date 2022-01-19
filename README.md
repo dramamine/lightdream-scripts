@@ -22,24 +22,47 @@ FullscreenMonitorIndex = 1
 ```
 
 ## UPDATING FILES
-- lightdream-scripts folder
-  - copy and move to C:\git
-- Resolume
-  - To use new files:
-    - Copy this Resolume\ folder into [destination]\Documents\Resolume Arena
-    - Collect video clips etc. to SSD
-  - To collect files:
+### 1. COLLECTION
+a. Resolume
+  - To collect files: (load up lightdream-scripts/resolume subfolders and git commit them)
     - Extra Effects dlls: need to check Video Preferences for locations: 
       - e:\shaders\plugins
       - e:\git\resolume-ffgl\binaries\x64
-    - Collect media using Media Manager
     - Advanced mapping
       - Documents\Resolume Arena\Presets\Advanced Output
+    - Collect media using Media Manager
 
-  - Move anything you need from LD Testing to LD Final
-  - LD Final: Media Manager => Collect Media.. to H:\ld-campsite-v8 (external hdd named ROTTEN)
+  - LD Testing to LD Final: remove unused decks, columns, rows
+  - LD Final: Media Manager => Collect Media.. to H:\lightdream-vxx (external hdd named ROTTEN)
+b. USC
+  - Add C:\git\usc4\bin to an archive and move to lightdream-scripts\usc
+c. lightdream-scripts folder
+  - copy and move to C:\git
+
+
+### 2. PROPAGATION
+- Resolume
+  * Copy this Resolume\ folder into [destination]\Documents\Resolume Arena
+  * Move collected video clips etc. to folder on SSD ex. C:\lightdream-vxx
+  * In Resolume, Relocate Files
+  * Open new file in Resolume (so that it's the last loaded)
+  * Confirm the Advanced Output looks good
 - TouchDesigner
-  - Confirm the udp packet IPs and the Resolume OSC ip & port
+  * Confirm the udp packet IPs and the Resolume OSC ip & port
+- USC
+  * Unpack archive
+  * Remove any songs inappropriate for the venue
+  * Confirm config settings: should be fullscreen 1920x1080 on second monitor
+
+Double-check:
+- Autohotkey script runs on startup for the domegod user because there's a shortcut to the script here:
+  C:\Users\domegod\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+- Touchscreen behavior should be correct
+- @TODO try doing audio out from the U-PHORIA
+- Bios (F2 at startup) -> Power Management -> AC Behavior -> Wake on AC (should be on)
+
+
+## DEBUGGING / WHAT COULD GO WRONG?
 
 
 

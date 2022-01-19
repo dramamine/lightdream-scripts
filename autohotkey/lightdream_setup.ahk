@@ -45,7 +45,7 @@ Return
 
 ; load USC
 #9::
-Run E:\git\usc4\bin\usc-game.exe
+Run E:\git\usc4\bin\usc-game.exe -notitle
 WinWait USC-Game, , 60
 if ErrorLevel
 {
@@ -54,33 +54,4 @@ if ErrorLevel
 }
 WinActivate, USC-Game
 WinWaitActive, USC-Game
-Sleep 1000
-WinGetPos, X, Y, Width, Height, USC-Game
-MouseMove, X+Width/2, Y+Height/2.1
-MouseClick, Left
 Return
-
-; load OBS
-; #0::
-; ; Run %A_ProgramFiles%\obs-studio\bin\64bit\obs64.exe %A_ProgramFiles%\obs-studio\bin\64bit
-; obs_window_name := "OBS 25"
-; Run C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OBS Studio\OBS Studio (64bit).lnk
-; WinWait %obs_window_name%, , 120
-; if ErrorLevel
-; {
-;     MsgBox, Timed out waiting for OBS to open.
-;     return
-; }
-; Sleep 2000
-; WinActivate, %obs_window_name%
-; WinWaitActive, %obs_window_name%
-; WinGetPos, X, Y, Width, Height, %obs_window_name%
-; ; MouseMove, X+Width/2, Y+Height/2
-; MouseClick, Right, Width/2, Height/2
-; Send {Down}{Down}{Down}{Down}{Right}{Down}
-; Sleep 1000
-; Send {Enter}
-; Sleep 1000
-; WinMinimize %obs_window_name%
-; Return
-
