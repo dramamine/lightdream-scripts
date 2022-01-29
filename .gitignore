@@ -2,3 +2,5 @@
 Backup/
 *.*.toe
 usc/*.zip
+usc/*.rar
+deps/

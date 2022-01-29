@@ -1,9 +1,8 @@
 
 ## REQUIRED SOFTWARE
 - AutoHotKey - not really necessary if you chose to compile it as .exe on host machine
-  + Win+6 through Win+9 opens all the softwares individually
+  + Win+7 through Win+9 opens all the softwares individually
 - AHK script needs to be added to Windows Start scripts as appropriate
-- OBS latest with obs-ndi plugin
 - Resolume 7.3.3
 
 - USC: zip up on host, unzip on target, check AHK destinations
@@ -15,10 +14,11 @@
 - in Control Panel, Pen and Tablet settings also look helpful
 - Update Main.cfg fullscreen settings ex.
 ```
-ScreenWidth = 1280
-ScreenHeight = 800
+ScreenWidth = 1920
+ScreenHeight = 1080
 Fullscreen = True
 FullscreenMonitorIndex = 1
+ShowFPS = False
 ```
 
 ## UPDATING FILES
@@ -58,8 +58,10 @@ Double-check:
 - Autohotkey script runs on startup for the domegod user because there's a shortcut to the script here:
   C:\Users\domegod\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 - Touchscreen behavior should be correct
-- @TODO try doing audio out from the U-PHORIA
+- Audio Device (speaker icon in taskbar) is OUT 1-2 (BEHRINGER UMC...)
 - Bios (F2 at startup) -> Power Management -> AC Behavior -> Wake on AC (should be on)
+- Control Panel/Hardware and Sound -> Tablet PC Settings -> Other -> Pen & Touch
+  * Disable all touch actions and visual feedback
 
 
 ## DEBUGGING / WHAT COULD GO WRONG?

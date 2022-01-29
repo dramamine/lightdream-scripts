@@ -51,7 +51,6 @@ def onReceive(dat, rowIndex, message, bytes, peer):
 
   if action == 'song_playing':
     update_song_playing(value)
-
   return
 
 def update_title(title):
@@ -71,6 +70,13 @@ def update_title(title):
     op('udp_recent_values')['deck', 1] = op('track_info')[row, 'deck']
     op('udp_recent_values')['section', 1] = 0
     op('fifo1').clear()
+
+    if title == " EXTERNAL AUDIO":
+      op('/project1/audiodevin1').bypass = 0
+      op('/project1/switch1').par.index = 1
+    else:
+      op('/project1/audiodevin1').bypass = 1
+      op('/project1/switch1').par.index = 0    
     return
 
 def update_section(value):
@@ -78,3 +84,6 @@ def update_section(value):
 
 def update_song_playing(value):
     op('udp_recent_values')['song_playing', 1] = value
+    if value == 0:
+      resolume_commands.clear()
+      op('fifo1').clear()

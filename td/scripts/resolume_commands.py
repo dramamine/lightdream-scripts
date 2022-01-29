@@ -31,8 +31,10 @@ def update_transition_time(val, layers=2):
 def clear():
   send('/composition/layers/1/clear', 1)
   send('/composition/layers/2/clear', 1)
+  send('/composition/layers/4/clear', 1)
   send('/composition/layers/1/clear', 0)
   send('/composition/layers/2/clear', 0)
+  send('/composition/layers/4/clear', 0)
   return
 
 # clears any active pulses
