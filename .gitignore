@@ -4,3 +4,7 @@ Backup/
 usc/*.zip
 usc/*.rar
 deps/
+td/video/*
+*.avi
+*.mp4
+*.mov
