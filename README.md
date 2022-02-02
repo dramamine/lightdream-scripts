@@ -7,6 +7,7 @@
 
 - USC: zip up on host, unzip on target, check AHK destinations
   - should be in git\lightdream-scripts\usc
+  - https://github.com/dramamine/unnamed-sdvx-clone/tree/lightdream-0.4
 
 
 ## TOUCHSCREEN
@@ -35,9 +36,9 @@ a. Resolume
   - LD Testing to LD Final: remove unused decks, columns, rows
   - LD Final: Media Manager => Collect Media.. to H:\lightdream-vxx (external hdd named ROTTEN)
 b. USC
-  - Add C:\git\usc4\bin to an archive and move to lightdream-scripts\usc
+  - Add git\usc4\bin files to an archive and move to lightdream-scripts\usc
 c. lightdream-scripts folder
-  - copy and move to C:\git
+  - copy and move to external drive
 
 
 ### 2. PROPAGATION
@@ -47,6 +48,11 @@ c. lightdream-scripts folder
   * In Resolume, Relocate Files
   * Open new file in Resolume (so that it's the last loaded)
   * Confirm the Advanced Output looks good
+  * Confirm audio input is "IN 1-2 (BEHRINGER...)"
+  * Confirm Layer 3 - TDSyphonSpoutOut is active on start
+  * Confirm Layer 5 - Kaleidoscope is active on start
+    - if not, edit layer - play first clip on load
+    - and set clip to Persistent
 - TouchDesigner
   * Confirm the udp packet IPs and the Resolume OSC ip & port
 - USC
