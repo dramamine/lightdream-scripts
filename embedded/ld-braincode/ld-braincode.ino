@@ -3,15 +3,22 @@ Accept Artnet data and display it, through an OctoWS2811 / Teensy / Wiz850io
 
 Install Teensyduino and set board to "Teensy 4.1"
 
-9/12: fixed the 34=>35 conversion bug that I found at the campsite
+8/14/2022: just adding Teensy ID for the spare Teensy
+
+9/12/2021: fixed the 34=>35 conversion bug that I found at the campsite
 added constellations but haven't tested or made fancy yet
 
-from 7/23: updated the Artnet library to use NativeEthernet and NativeEthernetUdp
+from 7/23/2021: updated the Artnet library to use NativeEthernet and NativeEthernetUdp
 it "just works" after that. tried to use #define TEENSY41 to conditionally load
 those specific libraries but that wasn't working for me, was still trying to load
-the normal Ethernat library.
-After warming up, this was getting 40 fps with 3 universes.
+the normal Ethernat library. Not sure what the status of that is but I def added
+these lines to Artnet.h:
+  #elif defined(TEENSY41)
+    #include <NativeEthernet.h>
+    #include <NativeEthernetUdp.h>
 
+From looking at the latest library, seems like I just needed to define ARDUINO_TEENSY41
+so maybe there's been a library update since then.
 
 MIT License
 
@@ -71,6 +78,7 @@ void updateIp()
       0x5D, // 00-0C-46-5D green - motherbrain
       0x92, // 00-0C-46-92 blue
       0x70, // 00-0C-46-70 purple
+      // 0xFE, // 00-0C-35-FE: the spare one. insert this id above when replacing a microcontroller
   };
   // byte hardcoded_addresses[6] = {32, 33, 34, 35, 36};
   byte hardcoded_addresses[5] = {32, 33, 34, 35, 36};
