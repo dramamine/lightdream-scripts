@@ -172,7 +172,7 @@ void handleDmxFrame()
     if (lastTiming > 0)
     {
       unsigned long fps = 100000 / (currentTiming - lastTiming);
-      Serial.print(fps);
+      Serial.print(F(fps));
       Serial.print(" fps.  ");
     }
     lastTiming = currentTiming;
@@ -351,7 +351,6 @@ void constellationLoop(byte sequence)
 
     leds.setPixel(i, pcolor);
   }
-  Serial.println();
 }
 
 void rainbowLoop()
