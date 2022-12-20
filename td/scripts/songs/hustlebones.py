@@ -33,8 +33,7 @@ controls = [
   chorus_a_prime, chorus_duba, chorus_b_prime, chorus_eeee, chorus_duba, 
 
   verse_e, duba, verse_f, duba,
-  verse_e, duba, verse_f, duba,
-  verse_e,
+  verse_e, duba, verse_f,
 
   chorus_c, chorus_duba_prime, chorus_d, chorus_duba_prime, 
   chorus_c, chorus_duba_prime, chorus_d, chorus_duba_prime, end
