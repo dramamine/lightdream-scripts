@@ -26,7 +26,7 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 #include "TeensyID.h"
 
 // OctoWS2811 settings
-const int ledsPerStrip = 500; // change for your setup
+const int ledsPerStrip = 550; // change for your setup
 const byte numStrips = 8;        // change for your setup
 const int numLeds = ledsPerStrip * numStrips;
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
@@ -193,10 +193,29 @@ void updateLeds() {
   int start = uni * ledsPerStrip;
   int frameIdx = 0;
   int usage = 0;
+  
+  int groupsPerLine = 24;
+  int groupIdx = 0;
+  int blackIdx = 0;
   for (int target = start; target < start + ledsPerStrip; target++) {
+    if (blackIdx >= 6) {
+      blackIdx = 0;
+      groupIdx = 0;
+      groupsPerLine = max(0, groupsPerLine - 2);
+    }
+
     if (usage >= 3) {
       frameIdx += 3;
       usage = 0;
+      groupIdx += 1;
+    }
+
+    // entering black zone
+    if (groupIdx >= groupsPerLine) {
+      // Serial.println("Finally got to black idx code.");
+      blackIdx += 1;
+      leds.setPixel(target, 0,0,0);
+      continue;
     }
 
     // safety
@@ -205,10 +224,9 @@ void updateLeds() {
       return;
     }
 
-    leds.setPixel(target, frame[frameIdx], frame[frameIdx + 1], frame[frameIdx + 2]);
+    leds.setPixel(target, hues[(timeOffset+target) % 256]);
     usage++;
   }
-  Serial.printf("ending funtion: idx %d, length %d\n", frameIdx, length);
 }
 
 // call setPixel using frame data
@@ -342,7 +360,7 @@ void rainbowSetup()
 {
   for (int i = 0; i < 256; i++)
   {
-    hues[i] = setLedColorHSV(i, 255, 5);
+    hues[i] = setLedColorHSV(i, 255, 100);
   }
 }
 
@@ -385,6 +403,51 @@ void constellationLoop(byte sequence)
 }
 
 void rainbowLoop()
+{
+  int length = 512;
+  // uint8_t *frame = artnet.getDmxFrame();
+  int uni = 0;
+
+  int start = uni * ledsPerStrip;
+  int frameIdx = 0;
+  int usage = 0;
+  
+  int groupsPerLine = 24;
+  int groupIdx = 0;
+  int blackIdx = 0;
+  for (int target = start; target < start + ledsPerStrip; target++) {
+    if (blackIdx >= 6) {
+      blackIdx = 0;
+      groupIdx = 0;
+      groupsPerLine = max(0, groupsPerLine - 2);
+    }
+
+    if (usage >= 3) {
+      frameIdx += 3;
+      usage = 0;
+      groupIdx += 1;
+    }
+
+    // entering black zone
+    if (groupIdx >= groupsPerLine) {
+      // Serial.println("Finally got to black idx code.");
+      blackIdx += 1;
+      leds.setPixel(target, 0,0,0);
+      continue;
+    }
+
+    // safety
+    if (frameIdx+2 > length) {
+      Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
+      return;
+    }
+
+    leds.setPixel(target, hues[(timeOffset+target) % 256]);
+    usage++;
+  }
+}
+
+void DEPRECATED_rainbowLoop()
 {
   // Serial.println("running rainbow loop");
   for (int i = 0; i < numLeds; i++)
