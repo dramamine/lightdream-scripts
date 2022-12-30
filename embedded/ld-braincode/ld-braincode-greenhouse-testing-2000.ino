@@ -26,6 +26,7 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 #include "TeensyID.h"
 
 // OctoWS2811 settings
+const int BRIGHTNESS = 50;
 const int ledsPerStrip = 550; // change for your setup
 const byte numStrips = 8;        // change for your setup
 const int numLeds = ledsPerStrip * numStrips;
@@ -55,6 +56,8 @@ bool isConnected = false;
 byte ip[] = {169, 254, 18, 0};
 byte broadcast[] = {192, 168, 2, 255};
 byte fakemac[] = {0x04, 0xE9, 0xE5, 0x00, 0x69, 0xEC};
+
+long hues[256];
 
 uint8_t serial[4];
 
@@ -182,6 +185,8 @@ void handleDmxFrame()
   }
 }
 
+byte timeOffset = 0;
+
 // call setPixel using frame data.
 // @TODO blocklist for LEDS on the edges
 void updateLeds() {
@@ -303,8 +308,6 @@ const long colors[6] = {
     0x202400  // yellow
 };
 
-long hues[256];
-
 const byte chart[30][2] = {
     // saw
     {3, 2},
@@ -360,12 +363,12 @@ void rainbowSetup()
 {
   for (int i = 0; i < 256; i++)
   {
-    hues[i] = setLedColorHSV(i, 255, 100);
+    hues[i] = setLedColorHSV(i, 255, BRIGHTNESS);
   }
 }
 
 byte demo = 0;
-byte timeOffset = 0;
+
 
 void demoRunner()
 {
