@@ -187,9 +187,78 @@ void handleDmxFrame()
 
 byte timeOffset = 0;
 
+byte ledsPerLayer[] = {
+  24 * 3,
+  22 * 3,
+  20 * 3 + 1,
+  18 * 3 + 2,
+  16 * 3 + 2,
+  14 * 3 + 3,
+  12 * 3 + 3,
+  10 * 3 + 4,
+  8 * 3 + 4,
+  6 * 3 + 5,
+  4 * 3 + 5,
+  2 * 3 + 6,
+  0 * 3 + 6
+};
+uint8_t layers = 13;
+
 // call setPixel using frame data.
 // @TODO blocklist for LEDS on the edges
 void updateLeds() {
+  int length = artnet.getLength();
+  uint8_t *frame = artnet.getDmxFrame();
+  int uni = artnet.getUniverse();
+
+  int start = uni * ledsPerStrip;
+  int frameIdx = 0;
+  int usage = 0;
+  
+  int layer = 0;
+  int pixel = 0;
+  int blackIdx = 0;
+  for (int target = start; target < start + ledsPerStrip; target++) {
+
+    // starting the next layer
+    if (pixel >= ledsPerLayer[layer] + 6) {
+      layer += 1;
+      pixel = 0;
+      usage = 0;
+      frameIdx += 3;
+    }
+
+    // entering black zone
+    if (pixel >= ledsPerLayer[layer]) {
+      // Serial.println("Finally got to black idx code.");
+      leds.setPixel(target, 0,0,0);
+      pixel++;
+      continue;
+    }
+
+    if (usage >= 3) {
+      // are there pixels left?
+      if (pixel <= ledsPerLayer[layer]-3) {
+        frameIdx += 3;
+        usage = 0;
+      }
+    }
+
+    // safety
+    if (frameIdx+2 > length) {
+      Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
+      return;
+    }
+
+    leds.setPixel(target, hues[(timeOffset+target) % 256]);
+    pixel++;
+    usage++;
+  }
+}
+
+// call setPixel using frame data.
+// @TODO blocklist for LEDS on the edges
+void OLD_updateLeds() {
   int stripNumber = 0;
   int length = artnet.getLength();
   uint8_t *frame = artnet.getDmxFrame();
