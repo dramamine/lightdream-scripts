@@ -27,7 +27,7 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 
 // OctoWS2811 settings
 const int BRIGHTNESS = 50;
-const int ledsPerStrip = 550; // change for your setup
+const int ledsPerStrip = 581; // change for your setup
 const byte numStrips = 8;        // change for your setup
 const int numLeds = ledsPerStrip * numStrips;
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
@@ -100,7 +100,6 @@ void setup()
   Serial.println();
 
   rainbowSetup();
-  // constellationLoop(7);
   leds.show();
 
   // delay(5000);
@@ -116,9 +115,7 @@ void setup()
   Serial.println("Setting up Artnet via Ethernet cable...");
   Serial.print("Link status (should be 2): ");
   Serial.println(Ethernet.linkStatus());
-  // @TODO broken
-  //Serial.print("Server ip: ");
-  //Serial.println(Ethernet.dhcpServerIP());
+
   artnet.begin(fakemac, ip);
   Serial.println("Set up Artnet.");
   Serial.print("Local ip: ");
@@ -205,7 +202,6 @@ byte ledsPerLayer[] = {
 uint8_t layers = 13;
 
 // call setPixel using frame data.
-// @TODO blocklist for LEDS on the edges
 void updateLeds() {
   int length = artnet.getLength();
   uint8_t *frame = artnet.getDmxFrame();
@@ -217,7 +213,7 @@ void updateLeds() {
   
   int layer = 0;
   int pixel = 0;
-  int blackIdx = 0;
+
   for (int target = start; target < start + ledsPerStrip; target++) {
 
     // starting the next layer
@@ -256,78 +252,6 @@ void updateLeds() {
   }
 }
 
-// call setPixel using frame data.
-// @TODO blocklist for LEDS on the edges
-void OLD_updateLeds() {
-  int stripNumber = 0;
-  int length = artnet.getLength();
-  uint8_t *frame = artnet.getDmxFrame();
-  int uni = artnet.getUniverse();
-
-  int start = uni * ledsPerStrip;
-  int frameIdx = 0;
-  int usage = 0;
-  
-  int groupsPerLine = 24;
-  int groupIdx = 0;
-  int blackIdx = 0;
-  for (int target = start; target < start + ledsPerStrip; target++) {
-    if (blackIdx >= 6) {
-      blackIdx = 0;
-      groupIdx = 0;
-      groupsPerLine = max(0, groupsPerLine - 2);
-    }
-
-    if (usage >= 3) {
-      frameIdx += 3;
-      usage = 0;
-      groupIdx += 1;
-    }
-
-    // entering black zone
-    if (groupIdx >= groupsPerLine) {
-      // Serial.println("Finally got to black idx code.");
-      blackIdx += 1;
-      leds.setPixel(target, 0,0,0);
-      continue;
-    }
-
-    // safety
-    if (frameIdx+2 > length) {
-      Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
-      return;
-    }
-
-    leds.setPixel(target, hues[(timeOffset+target) % 256]);
-    usage++;
-  }
-}
-
-// call setPixel using frame data
-// DEPRECATED: this was for lightdream
-void DEPRECATED_updateLeds() {
-  int stripNumber = 0;
-  int length = artnet.getLength();
-  uint8_t *frame = artnet.getDmxFrame();
-  int uni = artnet.getUniverse();
-
-  for (int i = 0; i < length / 3; i++)
-  {
-    // add uni to expand 34 data to 35 LEDs
-    int led = i + ledsPerStrip * uni + stripNumber;
-
-    if (led < numLeds)
-    {
-      leds.setPixel(led, frame[i * 3], frame[i * 3 + 1], frame[i * 3 + 2]);
-    }
-    if (led % 34 == 0 && led > 0)
-    {
-      stripNumber++;
-      leds.setPixel(led + 1, frame[i * 3], frame[i * 3 + 1], frame[i * 3 + 2]);
-    }
-  }
-}
-
 uint32_t lastTiming = 0;
 void printFps() {
   int uni = artnet.getUniverse();
@@ -359,75 +283,6 @@ void printFps() {
   }
 }  
 
-#define RED 0x160000
-#define GREEN 0x001600
-#define BLUE 0x000016
-#define YELLOW 0x101400
-#define PINK 0x120009
-#define ORANGE 0x100400
-#define WHITE 0x101010
-#define BLACK 0x000000
-
-const long colors[6] = {
-    WHITE,
-    0x0066FF, // blue
-    0x00CC99, // seagreen
-    0xFF33CC, // purple
-    0x300B00, // orange
-    0x202400  // yellow
-};
-
-const byte chart[30][2] = {
-    // saw
-    {3, 2},
-    {2, 2},
-    {2, 1},
-    {1, 1},
-    {1, 0},
-    // mermaid
-    {3, 3},
-    {3, 4},
-    {4, 5},
-    {5, 4},
-    {4, 4},
-    // diamond
-    {4, 5},
-    {5, 4},
-    {4, 3},
-    {3, 4},
-    {4, 4},
-    // omega
-    {4, 3},
-    {3, 3},
-    {3, 2},
-    {2, 3},
-    {3, 2},
-    // uvula
-    {3, 4},
-    {4, 4},
-    {4, 5},
-    {5, 4},
-    {4, 3},
-    // holmes
-    {3, 3},
-    {3, 2},
-    {2, 1},
-    {1, 2},
-    {2, 2}};
-
-/**
- * start: section of color to start in
- * end: section of color to end in
- * idx: 0 is start, 34 is end.
- **/
-long interpolateColor(byte start, byte end, byte idx)
-{
-  byte startHue = start * 35;
-  byte endHue = end * 35;
-  int diff = endHue - startHue;
-  return (byte)(startHue + diff * idx / 35);
-}
-
 void rainbowSetup()
 {
   for (int i = 0; i < 256; i++)
@@ -447,121 +302,60 @@ void demoRunner()
   timeOffset++;
   delay(90);
 }
-// 63 is green
-// silver, blue, green, purple, orange, yellow
-long cHues[6] = {180, 170, 67, 220, 4, 30};
-void constellationLoop(byte sequence)
-{
-  long pcolor;
-  for (int i = 0; i < numLeds; i++)
-  {
-    byte constellation = (int)i / (35 * 5);
-
-    if (sequence == 0 or sequence == 7 or constellation == sequence - 1)
-    {
-      byte hue = cHues[constellation]; // + (i % 170);
-      byte satch = constellation = 0 ? 0 : 255;
-      pcolor = setLedColorHSV(hue, satch, 255);
-      // this is a deprecated method - less code but colors aren't as good
-      // pcolor = colors[constellation];
-    }
-    else
-    {
-      pcolor = BLACK;
-    }
-
-    leds.setPixel(i, pcolor);
-  }
-}
 
 void rainbowLoop()
 {
-  int length = 512;
-  // uint8_t *frame = artnet.getDmxFrame();
   int uni = 0;
 
   int start = uni * ledsPerStrip;
   int frameIdx = 0;
   int usage = 0;
   
-  int groupsPerLine = 24;
-  int groupIdx = 0;
-  int blackIdx = 0;
-  for (int target = start; target < start + ledsPerStrip; target++) {
-    if (blackIdx >= 6) {
-      blackIdx = 0;
-      groupIdx = 0;
-      groupsPerLine = max(0, groupsPerLine - 2);
-    }
+  int layer = 0;
+  int pixel = 0;
 
-    if (usage >= 3) {
-      frameIdx += 3;
+  for (int target = start; target < start + ledsPerStrip; target++) {
+
+    // starting the next layer
+    if (pixel >= ledsPerLayer[layer] + 6) {
+      layer += 1;
+      pixel = 0;
       usage = 0;
-      groupIdx += 1;
+      frameIdx += 3;
     }
 
     // entering black zone
-    if (groupIdx >= groupsPerLine) {
+    if (pixel >= ledsPerLayer[layer]) {
       // Serial.println("Finally got to black idx code.");
-      blackIdx += 1;
       leds.setPixel(target, 0,0,0);
+      pixel++;
       continue;
     }
 
-    // safety
-    if (frameIdx+2 > length) {
-      Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
-      return;
+    if (usage >= 3) {
+      // are there pixels left?
+      if (pixel <= ledsPerLayer[layer]-3) {
+        frameIdx += 3;
+        usage = 0;
+      }
     }
 
     leds.setPixel(target, hues[(timeOffset+target) % 256]);
+    pixel++;
     usage++;
   }
 }
 
-void DEPRECATED_rainbowLoop()
-{
-  // Serial.println("running rainbow loop");
-  for (int i = 0; i < numLeds; i++)
-  {
-    // // pick the right chart
-    // byte strip = (int)i / 35;
 
-    // byte pixel = i % 35;
-    byte hue = timeOffset;
-    // Serial.printf("doing math for %d: strip %d pixel %d hue %d\n", i, strip, pixel, hue);
-    leds.setPixel(i, hues[(hue+i) % 256]);
-  }
-}
+// void whileNetworking(byte offset)
+// {
+//   for (int i = 0; i < numLeds; i++)
+//   {
+//     leds.setPixel(i, hues[(byte)(i * 19 + offset)]);
+//   }
+//   leds.show();
+// }
 
-void whileNetworking(byte offset)
-{
-  for (int i = 0; i < numLeds; i++)
-  {
-    leds.setPixel(i, hues[(byte)(i * 19 + offset)]);
-  }
-  leds.show();
-}
-
-void initTest()
-{
-  Serial.printf("running led test: %d pixels, %d LEDs \n", leds.numPixels(), numLeds);
-  for (int i = 0; i < leds.numPixels(); i++)
-  {
-
-    if (i % ledsPerStrip == 0)
-      leds.setPixel(i, GREEN);
-    else if (i % ledsPerStrip == ledsPerStrip - 1)
-      leds.setPixel(i, RED);
-    else
-    {
-      int stripNumber = round(i / ledsPerStrip);
-      leds.setPixel(i, colors[stripNumber]);
-    }
-  }
-
-  leds.show();
-}
 
 long setLedColorHSV(byte h, byte s, byte v)
 {
