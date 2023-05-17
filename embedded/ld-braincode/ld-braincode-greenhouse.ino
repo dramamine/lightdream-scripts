@@ -27,8 +27,8 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 
 // OctoWS2811 settings
 const int BRIGHTNESS = 50;
-const int ledsPerStrip = 581; // change for your setup
-const byte numStrips = 8;        // change for your setup
+const int ledsPerStrip = 581; // change for your setup // should be 581
+const byte numStrips = 5;        // change for your setup
 const int numLeds = ledsPerStrip * numStrips;
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
 DMAMEM int displayMemory[ledsPerStrip * 6];
@@ -43,7 +43,7 @@ Artnet artnet;
 const int startUniverse = 0; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
 
 // Check if we got all universes
-const int maxUniverses = 1;
+const int maxUniverses = 1; // @TODO update to more universes
 bool universesReceived[maxUniverses];
 int universesReceivedTotal[maxUniverses]; // for debugging lost universes
 bool sendFrame = 1;
@@ -66,7 +66,7 @@ void updateIp()
 {
   teensySN(serial);
   Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
-  Serial.println("Version: 2021.9");
+  Serial.println("Version: 2023.5");
   uint8_t serials[5] = {
       //0xDA, // 00-10-16-DA orange
       0xFE, // replacing this for prototyping
@@ -148,11 +148,13 @@ void handleDmxFrame()
   int uni = artnet.getUniverse();
   if (!receiving)
   {
+    Serial.println("receiving.");
     receiving = true;
   }
   // Serial.println(uni);
   if (universesReceived[uni] > 0)
     return;
+
   universesReceived[uni] = 1;
   sendFrame = 1;
 
@@ -188,18 +190,52 @@ byte ledsPerLayer[] = {
   24 * 3,
   22 * 3,
   20 * 3 + 1,
-  18 * 3 + 2,
-  16 * 3 + 2,
-  14 * 3 + 3,
+  18 * 3 + 2 - 1,
+  16 * 3 + 2 + 1,
+  14 * 3 + 3 - 1,
   12 * 3 + 3,
-  10 * 3 + 4,
+  10 * 3 + 4 - 1,
   8 * 3 + 4,
   6 * 3 + 5,
   4 * 3 + 5,
   2 * 3 + 6,
   0 * 3 + 6
 };
+
+byte blanksPerLayer[] = {
+  5,
+  7,
+  5,
+  6,
+  6,
+  6,
+  6,
+  6,
+  5,
+  5,
+  6,
+  5,
+  5
+};
+
 uint8_t layers = 13;
+
+byte lpl[] = {
+  24 * 3,
+  22 * 3,
+  20 * 3 + 1,
+  18 * 3 + 2 - 1,
+  16 * 3 + 2 + 1,
+  14 * 3 + 3 - 1,
+  12 * 3 + 3,
+  10 * 3 + 4 - 1,
+  8 * 3 + 4,
+  6 * 3 + 5,
+  4 * 3 + 5,
+  2 * 3 + 6,
+  0 * 3 + 6
+};
+int ledsPerUniverse = 581;
 
 // call setPixel using frame data.
 void updateLeds() {
@@ -214,10 +250,10 @@ void updateLeds() {
   int layer = 0;
   int pixel = 0;
 
-  for (int target = start; target < start + ledsPerStrip; target++) {
+  for (int target = start; target < start + ledsPerUniverse; target++) {
 
     // starting the next layer
-    if (pixel >= ledsPerLayer[layer] + 6) {
+    if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
       layer += 1;
       pixel = 0;
       usage = 0;
@@ -228,6 +264,9 @@ void updateLeds() {
     if (pixel >= ledsPerLayer[layer]) {
       // Serial.println("Finally got to black idx code.");
       leds.setPixel(target, 0,0,0);
+      // for (int i=0; i<numStrips; i++) {
+      //   leds.setPixel(target+ledsPerStrip*i, 0,0,0);
+      // }
       pixel++;
       continue;
     }
@@ -246,7 +285,7 @@ void updateLeds() {
       return;
     }
 
-    leds.setPixel(target, hues[(timeOffset+target) % 256]);
+    leds.setPixel(target, frame[frameIdx], frame[frameIdx+1], frame[frameIdx+2]);
     pixel++;
     usage++;
   }
@@ -303,6 +342,32 @@ void demoRunner()
   delay(90);
 }
 
+// hue 0 = green
+// hue 32 = yellow
+// hue 64 = yellow/red
+// hue 96 = purple
+// hue 128 = bright purple
+// hue 160 = blue
+// hue 192 = light blue
+void whichTriangleAmI()
+{
+  // int i = 7;
+  for (int i=0; i<numStrips; i++) {
+    for (int j=0; j<ledsPerStrip; j++) {
+      //byte hue = ((i-4) * 64) % 256;
+      if (i > 3) {
+        leds.setPixel(j+ledsPerStrip*i, hues[(160 + timeOffset) % 256]);
+      } else {
+        leds.setPixel(j+ledsPerStrip*i, hues[(32 + timeOffset) % 256]);
+      }
+      
+    }
+    
+  }
+
+
+}
+
 void rainbowLoop()
 {
   int uni = 0;
@@ -317,7 +382,7 @@ void rainbowLoop()
   for (int target = start; target < start + ledsPerStrip; target++) {
 
     // starting the next layer
-    if (pixel >= ledsPerLayer[layer] + 6) {
+    if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
       layer += 1;
       pixel = 0;
       usage = 0;
@@ -327,7 +392,10 @@ void rainbowLoop()
     // entering black zone
     if (pixel >= ledsPerLayer[layer]) {
       // Serial.println("Finally got to black idx code.");
-      leds.setPixel(target, 0,0,0);
+      for (int i=0; i<numStrips; i++) {
+        leds.setPixel(target+ledsPerStrip*i, 0,0,0);
+      }
+      
       pixel++;
       continue;
     }
@@ -340,10 +408,66 @@ void rainbowLoop()
       }
     }
 
-    leds.setPixel(target, hues[(timeOffset+target) % 256]);
+    for (int i=0; i<numStrips; i++) {
+      leds.setPixel(target+ledsPerStrip*i, hues[(timeOffset+target) % 256]);
+    }
     pixel++;
     usage++;
   }
+
+
+}
+
+void rainbowLoop_old()
+{
+  int uni = 0;
+
+  int start = uni * ledsPerStrip;
+  int frameIdx = 0;
+  int usage = 0;
+  
+  int layer = 0;
+  int pixel = 0;
+
+
+
+  for (int target = start; target < start + ledsPerStrip; target++) {
+
+    // starting the next layer
+    if (pixel >= ledsPerLayer[layer] + 6) {
+      layer += 1;
+      pixel = 0;
+      usage = 0;
+      frameIdx += 3;
+    }
+
+    // entering black zone
+    if (pixel >= ledsPerLayer[layer]) {
+      // Serial.println("Finally got to black idx code.");
+      for (int i=0; i<numStrips; i++) {
+        leds.setPixel(target+ledsPerStrip*i, 0,0,0);
+      }
+      
+      pixel++;
+      continue;
+    }
+
+    if (usage >= 3) {
+      // are there pixels left?
+      if (pixel <= ledsPerLayer[layer]-3) {
+        frameIdx += 3;
+        usage = 0;
+      }
+    }
+
+    for (int i=0; i<numStrips; i++) {
+      leds.setPixel(target+ledsPerStrip*i, hues[(timeOffset+target) % 256]);
+    }
+    pixel++;
+    usage++;
+  }
+
+
 }
 
 
