@@ -43,7 +43,7 @@ Artnet artnet;
 const int startUniverse = 0; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
 
 // Check if we got all universes
-const int maxUniverses = 1; // @TODO update to more universes
+const int maxUniverses = 8; // @TODO update to more universes
 bool universesReceived[maxUniverses];
 int universesReceivedTotal[maxUniverses]; // for debugging lost universes
 bool sendFrame = 1;
@@ -164,10 +164,10 @@ void handleDmxFrame()
   printFps();
 
   // LD timing: 15-17 microseconds to set pixels
-  uint32_t beginTime = micros();
+  //uint32_t beginTime = micros();
   updateLeds();
-  uint32_t elapsedTime = micros() - beginTime;
-  // Serial.printf("elapsed microseconds: %lu \n", elapsedTime);
+  //uint32_t elapsedTime = micros() - beginTime;
+  //Serial.printf("elapsed microseconds: %lu \n", elapsedTime);
 
   for (int i = 0; i < maxUniverses; i++)
   {
@@ -190,11 +190,11 @@ byte ledsPerLayer[] = {
   24 * 3,
   22 * 3,
   20 * 3 + 1,
-  18 * 3 + 2 - 1,
-  16 * 3 + 2 + 1,
-  14 * 3 + 3 - 1,
-  12 * 3 + 3,
-  10 * 3 + 4 - 1,
+  18 * 3 + 1,
+  16 * 3 + 2, // was 3
+  14 * 3 + 3, // was 2
+  12 * 3 + 4,
+  10 * 3 + 4,
   8 * 3 + 4,
   6 * 3 + 5,
   4 * 3 + 5,
@@ -202,14 +202,30 @@ byte ledsPerLayer[] = {
   0 * 3 + 6
 };
 
-byte blanksPerLayer[] = {
+byte ledDataPerLayer[] = {
+  24,
+  22,
+  20,
+  18,
+  16,
+  15,
+  13,
+  11,
+  9,
+  7,
   5,
+  4,
+  2
+};
+
+byte blanksPerLayer[] = {
+  7,
   7,
   5,
   6,
   6,
-  6,
-  6,
+  4,
+  5,
   6,
   5,
   5,
@@ -220,22 +236,20 @@ byte blanksPerLayer[] = {
 
 uint8_t layers = 13;
 
-byte lpl[] = {
-  24 * 3,
-  22 * 3,
-  20 * 3 + 1,
-  18 * 3 + 2 - 1,
-  16 * 3 + 2 + 1,
-  14 * 3 + 3 - 1,
-  12 * 3 + 3,
-  10 * 3 + 4 - 1,
-  8 * 3 + 4,
-  6 * 3 + 5,
-  4 * 3 + 5,
-  2 * 3 + 6,
-  0 * 3 + 6
-};
 int ledsPerUniverse = 581;
+
+// uint8_t blended(uint8_t usage, uint8_t *frame, uint8_t frameIdx) {
+//   uint8_t current_value = frame[frameIdx];
+//   if (usage == 0) {
+//     if (frameIdx >= 3) {
+//       return 0.6667 * current_value + 0.3333 * frame[frameIdx - 3];
+//     }
+//   } else if (usage == 2) {
+//     // not checking frames because we should have enough blank data at the end
+//     return 0.6667 * current_value + 0.3333 * frame[frameIdx + 3];
+//   }
+//   return current_value;
+// }
 
 // call setPixel using frame data.
 void updateLeds() {
@@ -245,51 +259,111 @@ void updateLeds() {
 
   int start = uni * ledsPerStrip;
   int frameIdx = 0;
-  int usage = 0;
+  uint8_t ledDataWidth = 3;
+
+  int target = start;
   
-  int layer = 0;
-  int pixel = 0;
+  // iterate through each layer
+  for (uint8_t i=0; i<13; i++) {
+    uint8_t extension = ledsPerLayer[i] - 3*ledDataPerLayer[i];
+    //Serial.printf("using extension %d for layer %d\n", extension, i);
+    if (uni == 0) {
+      Serial.printf("layer %d; target %d; leds in layer %d; data per layer %d extension %d \n", i, target, ledsPerLayer[i], ledDataPerLayer[i], extension);
+    }
 
-  for (int target = start; target < start + ledsPerUniverse; target++) {
+    uint8_t handledExtension = 0;
 
-    // starting the next layer
-    if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
-      layer += 1;
-      pixel = 0;
-      usage = 0;
+    // iterate through each color in this layer
+    for (uint8_t j=0; j<ledDataPerLayer[i]; j++) {
+      uint8_t width = 3;
+      // extend the midpoint by however many filler pixels we need
+      if (j == 12-i) {
+        width = width + extension;
+      }
+      // set 3 (or more) pixels to the current color at frameIdx
+      for (uint8_t k=0; k<width; k++) {
+        leds.setPixel(
+          target, 
+          frame[frameIdx],
+          frame[frameIdx+1],
+          frame[frameIdx+2]
+        );
+        target++;
+      }
+      // move frameIdx to the next color
       frameIdx += 3;
     }
-
-    // entering black zone
-    if (pixel >= ledsPerLayer[layer]) {
-      // Serial.println("Finally got to black idx code.");
+    
+    // add blanks
+    for (uint8_t j=0; j<blanksPerLayer[i]; j++) {
       leds.setPixel(target, 0,0,0);
-      // for (int i=0; i<numStrips; i++) {
-      //   leds.setPixel(target+ledsPerStrip*i, 0,0,0);
-      // }
-      pixel++;
-      continue;
+      target++;
     }
-
-    if (usage >= 3) {
-      // are there pixels left?
-      if (pixel <= ledsPerLayer[layer]-3) {
-        frameIdx += 3;
-        usage = 0;
-      }
-    }
-
-    // safety
-    if (frameIdx+2 > length) {
-      Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
-      return;
-    }
-
-    leds.setPixel(target, frame[frameIdx], frame[frameIdx+1], frame[frameIdx+2]);
-    pixel++;
-    usage++;
+    
   }
 }
+
+// // call setPixel using frame data.
+// void updateLeds() {
+//   int length = artnet.getLength();
+//   uint8_t *frame = artnet.getDmxFrame();
+//   int uni = artnet.getUniverse();
+
+//   int start = uni * ledsPerStrip;
+//   int frameIdx = 0;
+//   // how many times have we used this value? ex. 0 is the first, 2 is the third.
+//   // this is for reusing pixel data i.e. one data maps to three LEDs
+//   uint8_t usage = 0;
+  
+//   int layer = 0;
+//   int pixel = 0;
+
+//   for (int target = start; target < start + ledsPerUniverse; target++) {
+
+//     // starting the next layer
+//     if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
+//       layer += 1;
+//       pixel = 0;
+//       usage = 0;
+//       frameIdx += 3;
+//     }
+
+//     // entering black zone
+//     if (pixel >= ledsPerLayer[layer]) {
+//       // Serial.println("Finally got to black idx code.");
+//       leds.setPixel(target, 0,0,0);
+//       // for (int i=0; i<numStrips; i++) {
+//       //   leds.setPixel(target+ledsPerStrip*i, 0,0,0);
+//       // }
+//       pixel++;
+//       continue;
+//     }
+
+//     if (usage >= 3) {
+//       // are there pixels left?
+//       if (pixel <= ledsPerLayer[layer]-3) {
+//         frameIdx += 3;
+//         usage = 0;
+//       }
+//     }
+
+//     // safety
+//     if (frameIdx+2 > length) {
+//       Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
+//       return;
+//     }
+
+//     leds.setPixel(
+//       target, 
+//       frame[frameIdx],
+//       frame[frameIdx+1],
+//       frame[frameIdx+2]
+//     );
+
+//     pixel++;
+//     usage++;
+//   }
+// }
 
 uint32_t lastTiming = 0;
 void printFps() {
