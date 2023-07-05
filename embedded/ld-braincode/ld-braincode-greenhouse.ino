@@ -303,68 +303,6 @@ void updateLeds() {
   }
 }
 
-// // call setPixel using frame data.
-// void updateLeds() {
-//   int length = artnet.getLength();
-//   uint8_t *frame = artnet.getDmxFrame();
-//   int uni = artnet.getUniverse();
-
-//   int start = uni * ledsPerStrip;
-//   int frameIdx = 0;
-//   // how many times have we used this value? ex. 0 is the first, 2 is the third.
-//   // this is for reusing pixel data i.e. one data maps to three LEDs
-//   uint8_t usage = 0;
-  
-//   int layer = 0;
-//   int pixel = 0;
-
-//   for (int target = start; target < start + ledsPerUniverse; target++) {
-
-//     // starting the next layer
-//     if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
-//       layer += 1;
-//       pixel = 0;
-//       usage = 0;
-//       frameIdx += 3;
-//     }
-
-//     // entering black zone
-//     if (pixel >= ledsPerLayer[layer]) {
-//       // Serial.println("Finally got to black idx code.");
-//       leds.setPixel(target, 0,0,0);
-//       // for (int i=0; i<numStrips; i++) {
-//       //   leds.setPixel(target+ledsPerStrip*i, 0,0,0);
-//       // }
-//       pixel++;
-//       continue;
-//     }
-
-//     if (usage >= 3) {
-//       // are there pixels left?
-//       if (pixel <= ledsPerLayer[layer]-3) {
-//         frameIdx += 3;
-//         usage = 0;
-//       }
-//     }
-
-//     // safety
-//     if (frameIdx+2 > length) {
-//       Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
-//       return;
-//     }
-
-//     leds.setPixel(
-//       target, 
-//       frame[frameIdx],
-//       frame[frameIdx+1],
-//       frame[frameIdx+2]
-//     );
-
-//     pixel++;
-//     usage++;
-//   }
-// }
-
 uint32_t lastTiming = 0;
 void printFps() {
   int uni = artnet.getUniverse();
@@ -543,16 +481,6 @@ void rainbowLoop_old()
 
 
 }
-
-
-// void whileNetworking(byte offset)
-// {
-//   for (int i = 0; i < numLeds; i++)
-//   {
-//     leds.setPixel(i, hues[(byte)(i * 19 + offset)]);
-//   }
-//   leds.show();
-// }
 
 
 long setLedColorHSV(byte h, byte s, byte v)
