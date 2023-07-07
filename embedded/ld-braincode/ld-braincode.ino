@@ -3,6 +3,21 @@ Accept Artnet data and display it, through an OctoWS2811 / Teensy / Wiz850io
 
 Install Teensyduino and set board to "Teensy 4.1"
 
+7/4/2023: Updated install instructions:
+
+Teensy board support:
+Add https://www.pjrc.com/teensy/package_teensy_index.json under Preferences -> Addl sources
+Add "Teensy" under Board Manager
+ref: https://www.pjrc.com/teensy/td_download.html
+
+Update these lines in Artnet.h library:
+\AppData\Local\Arduino15\packages\teensy\hardware\avr\1.58.1\libraries\Artnet
+
+line 33:
+#elif defined(ARDUINO_TEENSY41)
+  #include <NativeEthernet.h>
+  #include <NativeEthernetUdp.h>
+
 8/14/2022: just adding Teensy ID for the spare Teensy
 
 9/12/2021: fixed the 34=>35 conversion bug that I found at the campsite
@@ -13,7 +28,7 @@ it "just works" after that. tried to use #define TEENSY41 to conditionally load
 those specific libraries but that wasn't working for me, was still trying to load
 the normal Ethernat library. Not sure what the status of that is but I def added
 these lines to Artnet.h:
-  #elif defined(TEENSY41)
+  #elif defined(ARDUINO_TEENSY41)
     #include <NativeEthernet.h>
     #include <NativeEthernetUdp.h>
 
@@ -27,7 +42,6 @@ https://www.pjrc.com/teensy/td_libs_OctoWS2811.html
 */
 // for the artnet library to load the right ethernet stuff.
 // due to edits I made, it now loads NativeEthernet and NativeEthernetUDP
-#define TEENSY41
 #include <Artnet.h>
 #include <SPI.h>
 #include <OctoWS2811.h>
@@ -42,8 +56,6 @@ DMAMEM int displayMemory[ledsPerStrip * 6];
 int drawingMemory[ledsPerStrip * 6];
 const int config = WS2811_GRB | WS2811_800kHz;
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory, config);
-// @TODO not sure I need this really.
-// const bool hasReceivedArtnet = false;
 
 // Artnet settings
 Artnet artnet;
@@ -71,7 +83,7 @@ void updateIp()
 {
   teensySN(serial);
   Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
-  Serial.println("Version: 2021.9");
+  Serial.println("Version: 2023.7");
   uint8_t serials[5] = {
       0xDA, // 00-10-16-DA orange
       0x5E, // 00-0C-46-5E yellow
@@ -119,8 +131,8 @@ void setup()
   Serial.println("Setting up Artnet via Ethernet cable...");
   Serial.print("Link status (should be 2): ");
   Serial.println(Ethernet.linkStatus());
-  Serial.print("Server ip: ");
-  Serial.println(Ethernet.dhcpServerIP());
+  // Serial.print("Server ip: ");
+  // Serial.println(Ethernet.dhcpServerIP());
   artnet.begin(fakemac, ip);
   Serial.println("Set up Artnet.");
   Serial.print("Local ip: ");
@@ -172,8 +184,7 @@ void handleDmxFrame()
     if (lastTiming > 0)
     {
       unsigned long fps = 100000 / (currentTiming - lastTiming);
-      Serial.print(F(fps));
-      Serial.print(" fps.  ");
+      Serial.printf("%d fps.  ", fps);
     }
     lastTiming = currentTiming;
 
@@ -228,17 +239,8 @@ void handleDmxFrame()
 #define YELLOW 0x101400
 #define PINK 0x120009
 #define ORANGE 0x100400
-#define WHITE 0x101010
+#define WHITE 0x000000
 #define BLACK 0x000000
-
-const long colors[6] = {
-    WHITE,
-    0x0066FF, // blue
-    0x00CC99, // seagreen
-    0xFF33CC, // purple
-    0x300B00, // orange
-    0x202400  // yellow
-};
 
 long hues[256];
 
@@ -297,7 +299,7 @@ void rainbowSetup()
 {
   for (int i = 0; i < 256; i++)
   {
-    hues[i] = setLedColorHSV(i, 255, 255);
+    hues[i] = setLedColorHSV(i, 255, 100);
   }
 }
 
@@ -306,29 +308,15 @@ byte timeOffset = 0;
 
 void demoRunner()
 {
-  if (timeOffset == 0)
-  {
-    // this just runs the constellation loop once and then runs rainbow forever
-    demo = demo + 1;
-  }
-
-  if (demo == 1)
-  {
-    byte sequence = (byte)timeOffset / 32;
-    constellationLoop(sequence);
-  }
-  else
-  {
-    rainbowLoop();
-  }
+  rainbowLoop();
 
   leds.show();
   timeOffset++;
   delay(90);
 }
-// 63 is green
+
 // silver, blue, green, purple, orange, yellow
-long cHues[6] = {180, 170, 67, 220, 4, 30};
+long cHues[6] = {195, 170, 67, 220, 4, 30};
 void constellationLoop(byte sequence)
 {
   long pcolor;
@@ -338,11 +326,12 @@ void constellationLoop(byte sequence)
 
     if (sequence == 0 or sequence == 7 or constellation == sequence - 1)
     {
-      byte hue = cHues[constellation]; // + (i % 170);
-      byte satch = constellation = 0 ? 0 : 255;
-      pcolor = setLedColorHSV(hue, satch, 255);
-      // this is a deprecated method - less code but colors aren't as good
-      // pcolor = colors[constellation];
+      byte hue = cHues[constellation];
+      if (constellation == 0) {
+        pcolor = setLedColorHSV(hue, 0, 50);
+      } else {
+        pcolor = setLedColorHSV(hue, 255, 50);
+      }
     }
     else
     {
@@ -377,25 +366,6 @@ void whileNetworking(byte offset)
   leds.show();
 }
 
-void initTest()
-{
-  Serial.printf("running led test: %d pixels, %d LEDs \n", leds.numPixels(), numLeds);
-  for (int i = 0; i < leds.numPixels(); i++)
-  {
-
-    if (i % ledsPerStrip == 0)
-      leds.setPixel(i, GREEN);
-    else if (i % ledsPerStrip == ledsPerStrip - 1)
-      leds.setPixel(i, RED);
-    else
-    {
-      int stripNumber = round(i / ledsPerStrip);
-      leds.setPixel(i, colors[stripNumber]);
-    }
-  }
-
-  leds.show();
-}
 
 long setLedColorHSV(byte h, byte s, byte v)
 {
