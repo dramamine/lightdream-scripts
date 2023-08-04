@@ -52,6 +52,8 @@ int previousDataLength = 0;
 bool receiving = false;
 bool isConnected = false;
 
+bool isNetworkingRequired = false;
+
 // Change ip and mac address for your setup
 byte ip[] = {169, 254, 18, 0};
 byte broadcast[] = {192, 168, 2, 255};
@@ -66,7 +68,7 @@ void updateIp()
 {
   teensySN(serial);
   Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
-  Serial.println("Version: 2023.5");
+  Serial.println("Version: 2023.7");
   uint8_t serials[5] = {
       //0xDA, // 00-10-16-DA orange
       0xFE, // replacing this for prototyping
@@ -116,19 +118,24 @@ void setup()
   Serial.print("Link status (should be 2): ");
   Serial.println(Ethernet.linkStatus());
 
-  artnet.begin(fakemac, ip);
-  Serial.println("Set up Artnet.");
-  Serial.print("Local ip: ");
-  Serial.println(Ethernet.localIP());
+  if (isNetworkingRequired) {
+    artnet.begin(fakemac, ip);
+    Serial.println("Set up Artnet.");
+    Serial.print("Local ip: ");
+    Serial.println(Ethernet.localIP());
+  }
 }
 
 void loop()
 {
-  // we call the read function inside the loop
-  uint16_t r = artnet.read();
-  if (r == ART_DMX)
-  {
-    handleDmxFrame();
+  if (isNetworkingRequired) {
+
+    // we call the read function inside the loop
+    uint16_t r = artnet.read();
+    if (r == ART_DMX)
+    {
+      handleDmxFrame();
+    }
   }
 
   if (!receiving)
@@ -219,7 +226,7 @@ byte ledDataPerLayer[] = {
 };
 
 byte blanksPerLayer[] = {
-  7,
+  5,
   7,
   5,
   6,
@@ -267,9 +274,9 @@ void updateLeds() {
   for (uint8_t i=0; i<13; i++) {
     uint8_t extension = ledsPerLayer[i] - 3*ledDataPerLayer[i];
     //Serial.printf("using extension %d for layer %d\n", extension, i);
-    if (uni == 0) {
-      Serial.printf("layer %d; target %d; leds in layer %d; data per layer %d extension %d \n", i, target, ledsPerLayer[i], ledDataPerLayer[i], extension);
-    }
+    // if (uni == 0) {
+    //   Serial.printf("layer %d; target %d; leds in layer %d; data per layer %d extension %d \n", i, target, ledsPerLayer[i], ledDataPerLayer[i], extension);
+    // }
 
     uint8_t handledExtension = 0;
 
@@ -302,6 +309,68 @@ void updateLeds() {
     
   }
 }
+
+// // call setPixel using frame data.
+// void updateLeds() {
+//   int length = artnet.getLength();
+//   uint8_t *frame = artnet.getDmxFrame();
+//   int uni = artnet.getUniverse();
+
+//   int start = uni * ledsPerStrip;
+//   int frameIdx = 0;
+//   // how many times have we used this value? ex. 0 is the first, 2 is the third.
+//   // this is for reusing pixel data i.e. one data maps to three LEDs
+//   uint8_t usage = 0;
+  
+//   int layer = 0;
+//   int pixel = 0;
+
+//   for (int target = start; target < start + ledsPerUniverse; target++) {
+
+//     // starting the next layer
+//     if (pixel >= ledsPerLayer[layer] + blanksPerLayer[layer]) {
+//       layer += 1;
+//       pixel = 0;
+//       usage = 0;
+//       frameIdx += 3;
+//     }
+
+//     // entering black zone
+//     if (pixel >= ledsPerLayer[layer]) {
+//       // Serial.println("Finally got to black idx code.");
+//       leds.setPixel(target, 0,0,0);
+//       // for (int i=0; i<numStrips; i++) {
+//       //   leds.setPixel(target+ledsPerStrip*i, 0,0,0);
+//       // }
+//       pixel++;
+//       continue;
+//     }
+
+//     if (usage >= 3) {
+//       // are there pixels left?
+//       if (pixel <= ledsPerLayer[layer]-3) {
+//         frameIdx += 3;
+//         usage = 0;
+//       }
+//     }
+
+//     // safety
+//     if (frameIdx+2 > length) {
+//       Serial.printf("WARN: was about to access more artnet data than I have. idx %d, length %d\n", frameIdx, length);
+//       return;
+//     }
+
+//     leds.setPixel(
+//       target, 
+//       frame[frameIdx],
+//       frame[frameIdx+1],
+//       frame[frameIdx+2]
+//     );
+
+//     pixel++;
+//     usage++;
+//   }
+// }
 
 uint32_t lastTiming = 0;
 void printFps() {
@@ -481,7 +550,6 @@ void rainbowLoop_old()
 
 
 }
-
 
 long setLedColorHSV(byte h, byte s, byte v)
 {
