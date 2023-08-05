@@ -68,7 +68,7 @@ void updateIp()
 {
   teensySN(serial);
   Serial.printf("Serial number: %02X-%02X-%02X-%02X \n", serial[0], serial[1], serial[2], serial[3]);
-  Serial.println("Version: 2023.7");
+  Serial.println("Version: 2023.8");
   uint8_t serials[5] = {
       //0xDA, // 00-10-16-DA orange
       0xFE, // replacing this for prototyping
@@ -193,17 +193,18 @@ void handleDmxFrame()
 
 byte timeOffset = 0;
 
+
 byte ledsPerLayer[] = {
   24 * 3,
   22 * 3,
   20 * 3 + 1,
   18 * 3 + 1,
   16 * 3 + 2, // was 3
-  14 * 3 + 3, // was 2
-  12 * 3 + 4,
-  10 * 3 + 4,
-  8 * 3 + 4,
-  6 * 3 + 5,
+  14 * 3 + 2, // was 2
+  12 * 3 + 3,
+  10 * 3 + 3,
+  8 * 3 + 3,
+  6 * 3 + 4,
   4 * 3 + 5,
   2 * 3 + 6,
   0 * 3 + 6
@@ -226,17 +227,17 @@ byte ledDataPerLayer[] = {
 };
 
 byte blanksPerLayer[] = {
-  5,
-  7,
-  5,
-  6,
-  6,
   4,
+  6,
   5,
   6,
   5,
   5,
+  5,
   6,
+  5,
+  5,
+  5,
   5,
   5
 };
