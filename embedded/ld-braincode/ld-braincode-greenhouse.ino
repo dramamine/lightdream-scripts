@@ -52,7 +52,7 @@ int previousDataLength = 0;
 bool receiving = false;
 bool isConnected = false;
 
-bool isNetworkingRequired = false;
+bool isNetworkingRequired = true;
 
 // Change ip and mac address for your setup
 byte ip[] = {169, 254, 18, 0};
@@ -200,11 +200,11 @@ byte ledsPerLayer[] = {
   20 * 3 + 1,
   18 * 3 + 1,
   16 * 3 + 2, // was 3
-  14 * 3 + 2, // was 2
-  12 * 3 + 3,
-  10 * 3 + 3,
-  8 * 3 + 3,
-  6 * 3 + 4,
+  14 * 3 + 3, // was 2
+  12 * 3 + 4,
+  10 * 3 + 4,
+  8 * 3 + 4,
+  6 * 3 + 5,
   4 * 3 + 5,
   2 * 3 + 6,
   0 * 3 + 6
@@ -227,17 +227,17 @@ byte ledDataPerLayer[] = {
 };
 
 byte blanksPerLayer[] = {
+  5,
+  7,
+  5,
+  6,
+  6,
   4,
-  6,
   5,
   6,
   5,
   5,
-  5,
   6,
-  5,
-  5,
-  5,
   5,
   5
 };
