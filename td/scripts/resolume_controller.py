@@ -14,9 +14,11 @@ section = 0
 
 direction_is_reversed = False
 
+
 def load_song_by_index(row):
   load_song(op('track_info')[row, 'module_name'])
   return
+
 
 def load_song(module_name):
   global module, controls, section
@@ -26,13 +28,18 @@ def load_song(module_name):
   section = int(op('rename1').chan('section'))
   return
 
-load_song_by_index( int(op('rename1').chan('track_id')) )
+
+load_song_by_index(int(op('rename1').chan('track_id')))
 
 # is this one of the decks where we want to turn on autopilot?
+
+
 def should_autopilot(val):
   return val == 10
 
 # one of the values in our 'rename1' chop has changed.
+
+
 def onValueChange(channel, sampleIndex, val, prev):
   global direction_is_reversed
 
@@ -45,7 +52,7 @@ def onValueChange(channel, sampleIndex, val, prev):
   if channel.name == 'section':
     onSectionChange(int(val))
     return
-  
+
   if channel.name == 'deck':
     resolume_commands.update_deck(val)
     resolume_commands.clear()
@@ -59,14 +66,15 @@ def onValueChange(channel, sampleIndex, val, prev):
     # for safety, re-init the transition times
     resolume_commands.update_transition_time(0.)
     return
-  
+
   if (channel.name == 'hit' and val > prev) or channel.name == 'pulse' and val > 0:
     try:
       column = controls[section]['bg_column']
 
       if ('direction_swap' in controls[section] and controls[section]['direction_swap']):
         direction_is_reversed = not direction_is_reversed
-        resolume_commands.set_pulse_playback_direction(column, direction_is_reversed)
+        resolume_commands.set_pulse_playback_direction(
+            column, direction_is_reversed)
         return
       resolume_commands.pulse_hit(column)
     except (IndexError, KeyError):
@@ -80,6 +88,8 @@ def onValueChange(channel, sampleIndex, val, prev):
 #
 # @param int new_section
 #
+
+
 def onSectionChange(new_section):
   global section
   section = new_section
@@ -93,7 +103,7 @@ def onSectionChange(new_section):
     resolume_commands.activate_bg_column(data['bg_column'])
   except (IndexError, KeyError):
     pass
-  
+
   try:
     if data['pulse_clear']:
       print("clearing pulse")
@@ -123,7 +133,8 @@ def onSectionChange(new_section):
     pass
   try:
     if data['transition_time_first_layer'] is not None:
-      resolume_commands.update_transition_time(data['transition_time_first_layer'], 1)
+      resolume_commands.update_transition_time(
+          data['transition_time_first_layer'], 1)
   except (IndexError, KeyError):
     pass
 
