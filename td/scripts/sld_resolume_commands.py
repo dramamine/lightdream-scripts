@@ -36,8 +36,6 @@ def deactivate_effect(layer, effect_name):
 
 
 
-
-
 # update the bg.
 def activate_bg_column(column_id):
   send('/composition/layers/{}/clips/{}/connect'.format(layer_bg, column_id), 1)
@@ -125,7 +123,7 @@ def heartbeat():
 
 
 def first_layer_only_instant_fadeout_others(first_clip_idx = 1):
-  print("doing stuff")
+  print("first_layer_only_instant_fadeout_others")
   send('/composition/layers/2/clear', 0)
   send('/composition/layers/3/clear', 0)
   send('/composition/layers/4/clear', 0)

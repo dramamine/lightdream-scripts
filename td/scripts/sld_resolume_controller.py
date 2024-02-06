@@ -16,19 +16,21 @@ LAYER_BG = 1
 LAYER_MASK = 2
 LAYER_TOP = 3
 
-v = [1, 6, 11, 16]
+# these numbers match up with empty clips in the resolume composition
+v = [0, 17, 26, 29]
 bg_clips_by_intensity = [
-  range(v[0], v[1]),
-  # range(v[0], v[2]),
-  range(v[1], v[2]),
-  # range(v[1], v[3]),
-  range(v[2], v[3]),
+  range(v[0]+1, v[1]),
+  range(v[1]+1, v[2]),
+  range(v[2]+1, v[3]),
 ]
 
+# these numbers match up with empty clips in the resolume composition
+
+m = [0, 6, 16, 24]
 mask_clips_by_intensity = [
-  range(1, 6),
-  range(6, 11),
-  range(11, 16),
+  range(m[0]+1, m[1]),
+  range(m[1]+1, m[2]),
+  range(m[2]+1, m[3]),
 ]
 
 top_clips_by_intensity = [
@@ -175,15 +177,23 @@ effects_state = ""
 class ActiveStuff:
   def __init__(self, mb):
     self.mb = mb
+
     # fx is a list of tuples (layer, effect_name) which correspond to the OSC
     # commands used to trigger those effects
     # layer is 1-indexed
     self.fx = []
+
     # clips is a list of tuples (layer, clip_idx) which correspond to the OSC
     # commands used to trigger those clips.
     # layer is 1-indexed
     # clip_idx is 1-indexed
     self.clips = []
+
+    self.section = 0
+
+    # some random number to decide what to do with the section changes
+    # TODO hardcoded to 0 for now for huerotate on BG layer
+    self.incremental_section_effect = 0
 
   def load(self, mb):
     self.mb = mb
@@ -210,6 +220,10 @@ class ActiveStuff:
       fx.append( (layer+1, chosen_effect) )
 
     self.fx = fx
+
+    self.section = 0
+    op('section').par.Value0 = self.section
+
     return
 
   def activate(self):
@@ -225,6 +239,49 @@ class ActiveStuff:
 
       self.pretty_print()
       return
+
+  def increment_section(self):
+    self.section = (self.section + 1) % NUM_SECTIONS
+    op('section').par.Value0 = self.section
+
+    # switch statement based on section
+    if self.section == 0:
+      self.prepare()
+      self.activate()
+    elif self.section == 1:
+      # add a variation
+      if self.incremental_section_effect == 0:
+        self.fx.append( (LAYER_BG, "huerotate2") )
+        resolume_commands.activate_effect(LAYER_BG, "huerotate2")
+        resolume_commands.send(
+            "/composition/layers/1/video/effects/huerotate2/effect/huerotate", 0.0
+          )
+        # FUN INFO: in Resolume, set the effect Start Settings -> Clip Trigger OFF to prevent re-animation when switching clips
+        print("added huerotate2 to top layer since we incremented section")
+    elif self.section == 2:
+      # update bg clip
+      print("clips was:", self.clips[0])
+
+      clips_intensity = get_clips_intensity(self.mb.active_layers, self.mb.clip_intensity)
+      bg_clip_intensity = clips_intensity[0]
+      # get a random choice that is not the current choice
+      chosen_clip = random.choice(bg_clips_by_intensity[bg_clip_intensity])
+      while chosen_clip == self.clips[0][1]:
+        chosen_clip = random.choice(bg_clips_by_intensity[bg_clip_intensity])
+
+      self.clips[0] = (LAYER_BG, chosen_clip)
+      resolume_commands.activate_clip(LAYER_BG, chosen_clip)
+
+
+      print("clips now:", self.clips[0])
+      pass
+    elif self.section == 3:
+      # turn off the variation
+      if self.incremental_section_effect == 0:
+        self.fx.append( (LAYER_BG, "huerotate2") )
+        resolume_commands.deactivate_effect(LAYER_BG, "huerotate2")
+        print("turned off huerotate2 cuz of section 3")
+    return
 
   # debug string about current state of ActiveStuff
   def pretty_print(self):
@@ -277,65 +334,74 @@ def full_reset():
 
   return
 
-def choose_and_activate_template(intensity):
-  print("using intensity", intensity)
-  # choose a pattern
-  assert intensity < len(intensity_templates), "intensity out of range"
-  ast.deactivate()
+# def choose_and_activate_template(intensity):
+#   print("using intensity", intensity)
+#   # choose a pattern
+#   assert intensity < len(intensity_templates), "intensity out of range"
+#   ast.deactivate()
 
-  pattern = random.choice(intensity_templates[intensity])
-  ast.load(pattern)
-  ast.prepare()
-  ast.activate()
-  return
-
-
-# some range
-intensity = 0
-
-# section of song; 0-3
-section = 0
-
-active_template_fn = None
-
-first_layer_ranges = {
-  'light': range(1, 5)
-}
-
-transitions = []
-
-def gradually_add_mask():
-  print("gradually_add_mask called")
-  if section == 0:
-    # update transition
-    resolume_commands.update_transition_time(LAYER_BG, 2.0)
-    resolume_commands.update_blend_mode(LAYER_BG, 10)
-
-    range = first_layer_ranges['light']
-    idx = random.choice(range)
-    resolume_commands.first_layer_only_instant_fadeout_others(idx)
-  return
+#   pattern = random.choice(intensity_templates[intensity])
+#   ast.load(pattern)
+#   ast.prepare()
+#   ast.activate()
+#   return
 
 
+# # some range
+# intensity = 0
 
-allowed_templates_by_intensity = [
-  [gradually_add_mask]
-]
+# # section of song; 0-3
+# section = 0
+
+# active_template_fn = None
+
+# # first_layer_ranges = {
+# #   'light': range(1, 5)
+# # }
+
+# transitions = []
+
+# def gradually_add_mask():
+#   print("gradually_add_mask called")
+#   if section == 0:
+#     # update transition
+#     resolume_commands.update_transition_time(LAYER_BG, 2.0)
+#     resolume_commands.update_blend_mode(LAYER_BG, 10)
+
+#     range = first_layer_ranges['light']
+#     idx = random.choice(range)
+#     resolume_commands.first_layer_only_instant_fadeout_others(idx)
+#   return
+
+
+
+# allowed_templates_by_intensity = [
+#   [gradually_add_mask]
+# ]
 
 def set_intensity(num):
-  global intensity
-  intensity = num
+  # global intensity
+  # intensity = num
   return
 
-def update_section(num):
-  global section
-  section = num
-  op('section').par.Value0 = section
-  return
 
+# old
+# def update_section(num):
+#   global section
+#   section = num
+#   op('section').par.Value0 = section
+#   return
+
+# handler for the button to increment section
 def increment_section():
-  update_section((section + 1) % NUM_SECTIONS)
+  ast.increment_section()
+
+  # old
+  # update_section((section + 1) % NUM_SECTIONS)
   return
+
+
+
 
 def choose_template():
   global active_template_fn
@@ -345,18 +411,21 @@ def choose_template():
   op('active_template_display').par.Value0 = active_template_fn.__name__
   return
 
+# TODO rethink what "next" does.
 def next():
-  increment_section()
-  if section == 0:
-    choose_template()
-  if active_template_fn:
-    active_template_fn()
+  print("not sure what NEXT does yet")
+  # increment_section()
+  # if section == 0:
+  #   choose_template()
+  # if active_template_fn:
+  #   active_template_fn()
   return
 
 def flush():
-  update_section(0)
-  if active_template_fn:
-    active_template_fn()
+  print("flush called. not sure what flush does yet")
+  # update_section(0)
+  # if active_template_fn:
+  #   active_template_fn()
 
   return
 
